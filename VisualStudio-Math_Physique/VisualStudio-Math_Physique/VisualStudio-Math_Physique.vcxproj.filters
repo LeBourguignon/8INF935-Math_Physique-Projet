@@ -68,10 +68,10 @@
     <ClInclude Include="libs\ImGui\backends\imgui_impl_opengl3_loader.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="libs\ImGui\examples\libs\glfw\include\GLFW\glfw3.h">
+    <ClInclude Include="libs\glfw\include\GLFW\glfw3.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="libs\ImGui\examples\libs\glfw\include\GLFW\glfw3native.h">
+    <ClInclude Include="libs\glfw\include\GLFW\glfw3native.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
