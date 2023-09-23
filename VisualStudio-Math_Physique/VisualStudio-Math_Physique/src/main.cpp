@@ -16,6 +16,7 @@
 #include"graphic/VBO.h"
 #include"graphic/EBO.h"
 #include"graphic/Camera.h"
+#include"engine/Particule.h"
 
 // Resolution 720p
 const unsigned int width = 1280;
