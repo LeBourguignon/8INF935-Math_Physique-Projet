@@ -18,24 +18,28 @@
 #include"graphic/Camera.h"
 #include"engine/Particule.h"
 
+#include "engine/Vecteur3D.h"
+#include "graphic/ManagerParticule.h"
+
 // Resolution 720p
 const unsigned int width = 1280;
 const unsigned int height = 720;
 
 // Vertices coordinates
 GLfloat vertices[] =
-{ //     COORDINATES      /        COLORS        //
-	-10.0f, 0.0f,  10.0f,	0.83f, 0.70f, 0.44f,
-	-10.0f, 0.0f, -10.0f,	0.83f, 0.70f, 0.44f,
-	 10.0f, 0.0f, -10.0f,	0.83f, 0.70f, 0.44f,
-	 10.0f, 0.0f,  10.0f,	0.83f, 0.70f, 0.44f
+{	//  COORDINATES   /      COLORS       //
+	0.0f, 0.0f, 0.0f,	1.0f, 1.0f, 1.0f,
+	1.0f, 0.0f, 0.0f,	1.0f, 0.0f, 0.0f,
+	0.0f, 1.0f, 0.0f,	0.0f, 1.0f, 0.0f,
+	0.0f, 0.0f, 1.0f,	0.0f, 0.0f, 1.0f
 };
 
 // Indices for vertices order
 GLuint indices[] =
 {
-	0, 1, 2,
-	0, 2, 3
+	0, 1,
+	0, 2, 
+	0, 3
 };
 
 int main()
@@ -99,7 +103,7 @@ int main()
 	glEnable(GL_DEPTH_TEST);
 
 	// Creates camera object
-	Camera camera(width, height, glm::vec3(0.0f, 2.0f, 2.0f));
+	Camera camera(width, height, glm::vec3(0.0f, 0.0f, 2.0f));
 
 	// Initialize ImGUI
 	IMGUI_CHECKVERSION();
@@ -109,6 +113,12 @@ int main()
 	ImGui::StyleColorsDark();
 	ImGui_ImplGlfw_InitForOpenGL(window, true);
 	ImGui_ImplOpenGL3_Init("#version 330");
+
+	bool show_particule_window = true;
+	float pos[3] = { 0, 0, 0 }, vel[3] = { 0, 0, 0 }, acc[3] = { 0, 0, 0 };
+	double ttl = 60.0;
+
+	ManagerParticule manager;
 
 	// Main while loop
 	while (!glfwWindowShouldClose(window))
@@ -131,19 +141,39 @@ int main()
 		// Bind the VAO so OpenGL knows to use it
 		VAO1.Bind();
 		// Draw primitives, number of indices, datatype of indices, index of indices
-		glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(int), GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_LINES, sizeof(indices) / sizeof(int), GL_UNSIGNED_INT, 0);
+		// Bind the VAO so OpenGL knows to use it
+		VAO1.Unbind();
+
+		manager.draw(io.DeltaTime);
 
 		// Tell OpenGL a new frame is about to begin
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
 
-		// ImGUI window creation
+		// Main Window
 		ImGui::Begin("Menu Principal");
-		// Text that appears in the window
 		ImGui::Text("%.1f FPS", io.Framerate);
-		// Ends the window
+		ImGui::Checkbox("Particule Window", &show_particule_window);
 		ImGui::End();
+
+		// Particule Window
+		if (show_particule_window)
+		{
+			ImGui::Begin("Particule Window", &show_particule_window);
+
+			ImGui::InputFloat3("Position", pos);
+			ImGui::InputFloat3("Velocite", vel);
+			ImGui::InputFloat3("Acceleration\n \r", acc);
+			ImGui::InputDouble("Temps de vie (en seconde)", &ttl);
+
+			if (ImGui::Button("Generation particule")) {
+				manager.add(Particule(Vecteur3D(pos[0], pos[1], pos[2]), Vecteur3D(vel[0], vel[1], vel[2]), Vecteur3D(acc[0], acc[1], acc[2])), ttl);
+			}
+
+			ImGui::End();
+		}
 
 		// Renders the ImGUI elements
 		ImGui::Render();

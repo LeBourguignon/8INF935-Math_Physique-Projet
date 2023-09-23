@@ -12,7 +12,7 @@ public:
 	Particule(Vecteur3D, Vecteur3D, Vecteur3D);
 
 	//Intégration
-	void integration(double deltaTime);
+	void integration(double deltaTime); // Update position and velocity
 
 };
 

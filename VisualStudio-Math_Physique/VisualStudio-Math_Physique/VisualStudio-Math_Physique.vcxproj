@@ -128,7 +128,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>Default</LanguageStandard>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -146,6 +146,7 @@
     <ClCompile Include="include\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="include\imgui\imgui_tables.cpp" />
     <ClCompile Include="include\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="src\graphic\ManagerParticule.cpp" />
     <ClCompile Include="src\engine\Particule.cpp" />
     <ClCompile Include="src\engine\Vecteur3D.cpp" />
     <ClCompile Include="src\graphic\Camera.cpp" />
@@ -168,6 +169,7 @@
     <ClInclude Include="include\imgui\imstb_rectpack.h" />
     <ClInclude Include="include\imgui\imstb_textedit.h" />
     <ClInclude Include="include\imgui\imstb_truetype.h" />
+    <ClInclude Include="src\graphic\ManagerParticule.h" />
     <ClInclude Include="src\engine\Particule.h" />
     <ClInclude Include="src\engine\Vecteur3D.h" />
     <ClInclude Include="src\graphic\Camera.h" />
