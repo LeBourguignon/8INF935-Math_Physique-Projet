@@ -3,28 +3,27 @@
 
 #include <iostream>
 
-template <typename T>
-class Vecteur3D{
-    public:
-        T x;
-        T y;
-        T z;
+class Vecteur3D {
+public:
+    double x;
+    double y;
+    double z;
     Vecteur3D(); // returns vector zero
-    Vecteur3D(T, T, T);
+    Vecteur3D(double, double, double);
 
-    T norme();
-    Vecteur3D<T> direction();
+    double norme();
+    Vecteur3D direction();
 
     // Scalar operations
-    Vecteur3D<T> operator*(T);
-    Vecteur3D<T> operator/(T);
-    Vecteur3D<T> operator-(); // get opposite vector
+    Vecteur3D operator*(double);
+    Vecteur3D operator/(double);
+    Vecteur3D operator-(); // get opposite vector
 
     // Vector operations
-    Vecteur3D<T> operator+(Vecteur3D<T>);
-    Vecteur3D<T> operator-(Vecteur3D<T>);
-    T operator*(Vecteur3D<T>); // scalar product
-    Vecteur3D<T> operator%(Vecteur3D<T>); // vectorial product
+    Vecteur3D operator+(Vecteur3D);
+    Vecteur3D operator-(Vecteur3D);
+    double operator*(Vecteur3D); // scalar product
+    Vecteur3D operator%(Vecteur3D); // vectorial product
 
     // Other
     void print();
