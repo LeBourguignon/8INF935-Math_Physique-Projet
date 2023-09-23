@@ -23,28 +23,19 @@ const unsigned int height = 720;
 
 // Vertices coordinates
 GLfloat vertices[] =
-{ //     COORDINATES     /        COLORS      /   TexCoord  //
-	-0.5f, 0.0f,  0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,
-	-0.5f, 0.0f, -0.5f,     0.83f, 0.70f, 0.44f,	5.0f, 0.0f,
-	 0.5f, 0.0f, -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,
-	 0.5f, 0.0f,  0.5f,     0.83f, 0.70f, 0.44f,	5.0f, 0.0f,
-	 0.0f, 0.8f,  0.0f,     0.92f, 0.86f, 0.76f,	2.5f, 5.0f
+{ //     COORDINATES      /        COLORS        //
+	-10.0f, 0.0f,  10.0f,	0.83f, 0.70f, 0.44f,
+	-10.0f, 0.0f, -10.0f,	0.83f, 0.70f, 0.44f,
+	 10.0f, 0.0f, -10.0f,	0.83f, 0.70f, 0.44f,
+	 10.0f, 0.0f,  10.0f,	0.83f, 0.70f, 0.44f
 };
 
 // Indices for vertices order
 GLuint indices[] =
 {
 	0, 1, 2,
-	0, 2, 3,
-	0, 1, 4,
-	1, 2, 4,
-	2, 3, 4,
-	3, 0, 4
+	0, 2, 3
 };
-
-// Timing
-float deltaTime = 0.0f;	// time between current frame and last frame
-float lastFrame = 0.0f;
 
 int main()
 {
@@ -59,22 +50,25 @@ int main()
 	// So that means we only have the modern functions
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	// Create a GLFWwindow object of 720p, naming it "YoutubeOpenGL"
-	GLFWwindow* window = glfwCreateWindow(width, height, "YoutubeOpenGL", NULL, NULL);
+	// Create a GLFWwindow object of 720p, naming it "8INF935-Math_Physique-Projet"
+	GLFWwindow* window = glfwCreateWindow(width, height, "8INF935-Math_Physique-Projet", NULL, NULL);
 	// Error check if the window fails to create
 	if (window == NULL)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
 		glfwTerminate();
-		return -1;
+		return 1;
 	}
 	// Introduce the window into the current context
 	glfwMakeContextCurrent(window);
 
+	// Enable vsync
+	glfwSwapInterval(1); 
+
 	//Load GLAD so it configures OpenGL
 	gladLoadGL();
 	// Specify the viewport of OpenGL in the Window
-	// In this case the viewport goes from x = 0, y = 0, to x = 800, y = 800
+	// In this case the viewport goes from x = 0, y = 0, to x = 1280, y = 720
 	glViewport(0, 0, width, height);
 
 	// Generates Shader object using shaders default.vert and default.frag
@@ -90,28 +84,27 @@ int main()
 	EBO EBO1(indices, sizeof(indices));
 
 	// Links VBO attributes such as coordinates and colors to VAO
-	VAO1.LinkAttrib(VBO1, 0, 3, GL_FLOAT, 8 * sizeof(float), (void*)0);
-	VAO1.LinkAttrib(VBO1, 1, 3, GL_FLOAT, 8 * sizeof(float), (void*)(3 * sizeof(float)));
-	VAO1.LinkAttrib(VBO1, 2, 2, GL_FLOAT, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+	VAO1.LinkAttrib(VBO1, 0, 3, GL_FLOAT, 6 * sizeof(float), (void*)0);
+	VAO1.LinkAttrib(VBO1, 1, 3, GL_FLOAT, 6 * sizeof(float), (void*)(3 * sizeof(float)));
 	// Unbind all to prevent accidentally modifying them
 	VAO1.Unbind();
 	VBO1.Unbind();
 	EBO1.Unbind();
 
-	// Original code from the tutorial
-	Texture brickTex("resources/brick.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
-	brickTex.texUnit(shaderProgram, "tex0", 0);
+	// Gets ID of uniform called "scale"
+	GLuint uniID = glGetUniformLocation(shaderProgram.ID, "scale");
 
 	// Enables the Depth Buffer
 	glEnable(GL_DEPTH_TEST);
 
 	// Creates camera object
-	Camera camera(width, height, glm::vec3(0.0f, 0.0f, 2.0f));
+	Camera camera(width, height, glm::vec3(0.0f, 2.0f, 2.0f));
 
 	// Initialize ImGUI
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
-	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	ImGuiIO& io = ImGui::GetIO(); 
+	(void)io;
 	ImGui::StyleColorsDark();
 	ImGui_ImplGlfw_InitForOpenGL(window, true);
 	ImGui_ImplOpenGL3_Init("#version 330");
@@ -119,11 +112,6 @@ int main()
 	// Main while loop
 	while (!glfwWindowShouldClose(window))
 	{
-		// per-frame time logic
-		float currentFrame = static_cast<float>(glfwGetTime());
-		deltaTime = currentFrame - lastFrame;
-		lastFrame = currentFrame;
-
 		// Specify the color of the background
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 		// Clean the back buffer and depth buffer
@@ -131,34 +119,35 @@ int main()
 		// Tell OpenGL which Shader Program we want to use
 		shaderProgram.Activate();
 
+		// Assigns a value to the uniform; NOTE: Must always be done after activating the Shader Program
+		glUniform1f(uniID, 0.5f);
+
 		// Handles camera inputs
-		camera.Inputs(window, deltaTime);
+		camera.Inputs(window, io.DeltaTime);
 		// Updates and exports the camera matrix to the Vertex Shader
 		camera.Matrix(45.0f, 0.1f, 100.0f, shaderProgram, "camMatrix");
 
-		// Binds texture so that is appears in rendering
-		brickTex.Bind();
 		// Bind the VAO so OpenGL knows to use it
 		VAO1.Bind();
 		// Draw primitives, number of indices, datatype of indices, index of indices
 		glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(int), GL_UNSIGNED_INT, 0);
-		
+
 		// Tell OpenGL a new frame is about to begin
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
-		
+
 		// ImGUI window creation
-		ImGui::Begin("My name is window, ImGUI window");
+		ImGui::Begin("Menu Principal");
 		// Text that appears in the window
-		ImGui::Text("Hello there adventurer!");
+		ImGui::Text("%.1f FPS", io.Framerate);
 		// Ends the window
 		ImGui::End();
 
 		// Renders the ImGUI elements
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-		
+
 		// Swap the back buffer with the front buffer
 		glfwSwapBuffers(window);
 		// Take care of all GLFW events
@@ -174,11 +163,11 @@ int main()
 	VAO1.Delete();
 	VBO1.Delete();
 	EBO1.Delete();
-	brickTex.Delete();
 	shaderProgram.Delete();
 	// Delete window before ending the program
 	glfwDestroyWindow(window);
 	// Terminate GLFW before ending the program
 	glfwTerminate();
+
 	return 0;
 }
