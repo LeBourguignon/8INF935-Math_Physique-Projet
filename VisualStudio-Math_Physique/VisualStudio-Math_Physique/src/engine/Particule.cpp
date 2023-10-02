@@ -2,18 +2,56 @@
 #include <iostream>
 
 Particule::Particule()  
-// returns particule zero, made of three vector zero
+// Retourne particule zero. Composition : trois vecteur zero, masse infini      
 {
-    this->position      = Vecteur3D();       
+    this->position      = Vecteur3D();  
     this->velocite      = Vecteur3D();
     this->acceleration  = Vecteur3D();
+    this->inverseMasse  = 0;            //masse = infini -> inverseMasse = 0
 }
 
 Particule::Particule(Vecteur3D position, Vecteur3D velocite , Vecteur3D acceleration)
+// masse infini
 {
     this->position      = position;
     this->velocite      = velocite;
     this->acceleration  = acceleration;
+    this->inverseMasse = 0;             //masse = infini -> inverseMasse = 0
+}
+
+Particule::Particule(double masse)
+// trois vecteur zéro
+{
+    this->position      = Vecteur3D();
+    this->velocite      = Vecteur3D();
+    this->acceleration  = Vecteur3D();
+    if(masse == 0)
+    {
+        //message d'erreur
+        std::cout << "Erreur : Masse nulle, masse défini à 'infini' par défaut";
+        this->inverseMasse = 0;         //masse = infini -> inverseMasse = 0
+    }
+    else
+    {
+        this->inverseMasse = 1/masse;
+    }
+}
+
+Particule::Particule(Vecteur3D position, Vecteur3D velocite, Vecteur3D acceleration, double masse)
+{
+    this->position      = position;
+    this->velocite      = velocite;
+    this->acceleration  = acceleration;
+    if (masse == 0)
+    {
+        //message d'erreur
+        std::cout << "Erreur : Masse nulle, masse défini à 'infini' par défaut";
+        this->inverseMasse = 0;         //masse = infini -> inverseMasse = 0
+    }
+    else
+    {
+        this->inverseMasse = 1 / masse;
+    }
 }
 
 void Particule::integration(double deltaTime)

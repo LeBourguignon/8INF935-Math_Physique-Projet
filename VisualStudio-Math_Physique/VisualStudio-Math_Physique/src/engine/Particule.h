@@ -7,12 +7,19 @@ class Particule
 {
 public:
 	Vecteur3D position, velocite, acceleration;
+	double inverseMasse;
 
-	Particule();// returns particule zero, made of three vector zero
-	Particule(Vecteur3D, Vecteur3D, Vecteur3D);
-
+	Particule();										// Retourne particule zero. Composition : trois vecteur zero, masse nulle
+	Particule(Vecteur3D, Vecteur3D, Vecteur3D, double);
+	Particule(Vecteur3D, Vecteur3D, Vecteur3D);			// masse nulle
+	Particule(double);									// trois vecteur zéro
+	
 	//Intégration
 	void integration(double deltaTime); // Update position and velocity
+
+
+	//A implémenter 
+	//GetMasse();
 
 };
 
