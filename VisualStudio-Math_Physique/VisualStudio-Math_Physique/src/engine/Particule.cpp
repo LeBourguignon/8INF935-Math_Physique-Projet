@@ -1,5 +1,6 @@
 #include "Particule.h"
 #include <iostream>
+#include "Constant.h"
 
 Particule::Particule()  
 // returns particule zero, made of three vector zero
@@ -21,8 +22,7 @@ void Particule::integration(double deltaTime)
     //mise à jour position
     this->position = this->position + this->velocite * deltaTime + this->acceleration * 0.5 * deltaTime * deltaTime;
     //mise à jour vitesse
-    this->velocite = this->velocite * 0.9999 + this->acceleration * deltaTime;
-
+    this->velocite = this->velocite * facteurAmortissement + this->acceleration * deltaTime;
 }
 
 

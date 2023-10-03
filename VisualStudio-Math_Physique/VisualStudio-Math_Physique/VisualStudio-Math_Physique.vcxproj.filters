@@ -27,7 +27,7 @@
     <ClCompile Include="src\Main.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphic\shaderClass.cpp">
+    <ClCompile Include="src\graphic\Shader.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="src\stb.cpp">
@@ -69,7 +69,16 @@
     <ClCompile Include="src\engine\Particule.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\graphic\ManagerParticule.cpp">
+    <ClCompile Include="src\graphic\Mesh.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\Model.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphic\Graphic.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphic\ParticuleMesh.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -80,7 +89,7 @@
     <ClInclude Include="src\graphic\EBO.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\graphic\shaderClass.h">
+    <ClInclude Include="src\graphic\Shader.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="src\graphic\Texture.h">
@@ -125,7 +134,19 @@
     <ClInclude Include="src\engine\Particule.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\graphic\ManagerParticule.h">
+    <ClInclude Include="src\graphic\Mesh.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\Model.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphic\Graphic.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphic\ParticuleMesh.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\Constant.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
@@ -135,6 +156,12 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\brick.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="resources\planksSpec.png">
+      <Filter>Fichiers de ressources</Filter>
+    </Image>
+    <Image Include="resources\planks.png">
       <Filter>Fichiers de ressources</Filter>
     </Image>
   </ItemGroup>
