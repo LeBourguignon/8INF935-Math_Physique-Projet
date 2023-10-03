@@ -13,6 +13,13 @@ Mesh::Mesh(std::vector <Vertex>& vertices, std::vector <GLuint>& indices)
 	ebo.Unbind();
 }
 
+Mesh::Mesh(std::vector<Vertex>* vertices, std::vector<GLuint>* indices)
+	: Mesh(*vertices, *indices)
+{
+	delete vertices;
+	delete indices;
+}
+
 void Mesh::Draw(Shader& shader, Camera& camera)
 {
 	// Bind shader to be able to access uniforms

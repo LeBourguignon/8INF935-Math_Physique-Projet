@@ -42,13 +42,17 @@ private:
 	double ttl = 60.0f;
 
 public:
+	// Initilisation du moteur graphique
 	Graphic(Model* model);
-	
+
+	// Getters
 	GLFWwindow* getWindow();
 	ImGuiIO& getIo();
 
+	// Calcule et affichage de la fenêtre
 	void process();
 
+	// Desctruction du moteur graphique
 	~Graphic();
 };
 

@@ -1,6 +1,6 @@
 #include "ParticuleMesh.h"
 
-std::vector <Vertex>* getVertices(float x, float y, float z)
+std::vector<Vertex>* getVertices(float x, float y, float z)
 {
 	Vertex vertices[] =
 	{//						COORDINATES						  /			COLORS				//
@@ -17,7 +17,7 @@ std::vector <Vertex>* getVertices(float x, float y, float z)
 	return verts;
 }
 
-std::vector <GLuint>* getIndices()
+std::vector<GLuint>* getIndices()
 {
 	GLuint indices[] =
 	{
@@ -39,6 +39,6 @@ std::vector <GLuint>* getIndices()
 }
 
 ParticuleMesh::ParticuleMesh(float x, float y, float z)
-	: Mesh(*getVertices(x, y, z), *getIndices())
+	: Mesh(getVertices(x, y, z), getIndices())
 {
 }

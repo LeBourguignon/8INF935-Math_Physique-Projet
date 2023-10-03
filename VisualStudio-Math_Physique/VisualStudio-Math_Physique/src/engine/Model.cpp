@@ -2,7 +2,6 @@
 
 Model::Model()
 {
-
 }
 
 void Model::addParticule(Particule* particule, float ttl)

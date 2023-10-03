@@ -21,6 +21,7 @@ private:
 public:
 	// Initializes the mesh
 	Mesh(std::vector <Vertex>& vertices, std::vector <GLuint>& indices);
+	Mesh(std::vector <Vertex>* vertices, std::vector <GLuint>* indices);
 
 	// Draws the mesh
 	void Draw(Shader& shader, Camera& camera);
