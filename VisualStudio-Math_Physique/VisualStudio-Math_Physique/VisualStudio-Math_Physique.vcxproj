@@ -139,6 +139,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\graphic\ParticuleMesh.cpp" />
+    <ClCompile Include="src\graphic\Graphic.cpp" />
     <ClCompile Include="include\imgui\imgui.cpp" />
     <ClCompile Include="include\imgui\imgui_demo.cpp" />
     <ClCompile Include="include\imgui\imgui_draw.cpp" />
@@ -146,20 +148,24 @@
     <ClCompile Include="include\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="include\imgui\imgui_tables.cpp" />
     <ClCompile Include="include\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="src\graphic\ManagerParticule.cpp" />
+    <ClCompile Include="src\engine\Model.cpp" />
     <ClCompile Include="src\engine\Particule.cpp" />
     <ClCompile Include="src\engine\Vecteur3D.cpp" />
     <ClCompile Include="src\graphic\Camera.cpp" />
     <ClCompile Include="src\graphic\EBO.cpp" />
     <ClCompile Include="src\glad.c" />
+    <ClCompile Include="src\graphic\Mesh.cpp" />
     <ClCompile Include="src\Main.cpp" />
-    <ClCompile Include="src\graphic\shaderClass.cpp" />
+    <ClCompile Include="src\graphic\Shader.cpp" />
     <ClCompile Include="src\stb.cpp" />
     <ClCompile Include="src\graphic\Texture.cpp" />
     <ClCompile Include="src\graphic\VAO.cpp" />
     <ClCompile Include="src\graphic\VBO.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\engine\Constant.h" />
+    <ClInclude Include="src\graphic\ParticuleMesh.h" />
+    <ClInclude Include="src\graphic\Graphic.h" />
     <ClInclude Include="include\imgui\imconfig.h" />
     <ClInclude Include="include\imgui\imgui.h" />
     <ClInclude Include="include\imgui\imgui_impl_glfw.h" />
@@ -169,12 +175,13 @@
     <ClInclude Include="include\imgui\imstb_rectpack.h" />
     <ClInclude Include="include\imgui\imstb_textedit.h" />
     <ClInclude Include="include\imgui\imstb_truetype.h" />
-    <ClInclude Include="src\graphic\ManagerParticule.h" />
+    <ClInclude Include="src\engine\Model.h" />
     <ClInclude Include="src\engine\Particule.h" />
     <ClInclude Include="src\engine\Vecteur3D.h" />
     <ClInclude Include="src\graphic\Camera.h" />
     <ClInclude Include="src\graphic\EBO.h" />
-    <ClInclude Include="src\graphic\shaderClass.h" />
+    <ClInclude Include="src\graphic\Mesh.h" />
+    <ClInclude Include="src\graphic\Shader.h" />
     <ClInclude Include="src\graphic\Texture.h" />
     <ClInclude Include="src\graphic\VAO.h" />
     <ClInclude Include="src\graphic\VBO.h" />
@@ -185,6 +192,8 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\brick.png" />
+    <Image Include="resources\planks.png" />
+    <Image Include="resources\planksSpec.png" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="lib\glfw3.lib" />
