@@ -127,7 +127,7 @@ void Graphic::process()
 
 		ImGui::InputFloat3("Position", pos);
 		ImGui::InputFloat3("Velocite", vel);
-		ImGui::InputFloat3("Acceleration\n\r", acc);
+		ImGui::InputFloat3("Acceleration", acc);
 		ImGui::InputDouble("Temps de vie (en seconde)", &ttl);
 
 		if (ImGui::Button("Generation particule")) {
