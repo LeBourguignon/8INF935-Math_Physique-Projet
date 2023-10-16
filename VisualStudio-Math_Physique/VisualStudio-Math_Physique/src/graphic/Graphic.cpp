@@ -32,9 +32,12 @@ Graphic::Graphic(Model* model)
 	// In this case the viewport goes from x = 0, y = 0, to x = 1280, y = 720
 	glViewport(0, 0, width, height);
 
+	// Generates Shader object using shaders default.vert and default.frag
+	shaderProgram = Shader("resources/default.vert", "resources/default.frag");
+
 	// Floor
 	// Vertices coordinates
-	Vertex vertices[] =
+	Vertex verticesFloor[] =
 	{ //			COORDINATES					/				COLORS				//
 		Vertex{glm::vec3(-10.0f, -1.0f,  10.0f),	glm::vec3(0.13f, 0.13f, 0.13f)},
 		Vertex{glm::vec3(-10.0f, -1.0f, -10.0f),	glm::vec3(0.13f, 0.13f, 0.13f)},
@@ -43,19 +46,41 @@ Graphic::Graphic(Model* model)
 	};
 
 	// Indices for vertices order
-	GLuint indices[] =
+	GLuint indicesFloor[] =
 	{
 		0, 1, 2,
 		0, 2, 3
 	};
 
-	// Generates Shader object using shaders default.vert and default.frag
-	shaderProgram = Shader("resources/default.vert", "resources/default.frag");
 	// Store mesh data in vectors for the mesh
-	std::vector <Vertex> verts(vertices, vertices + sizeof(vertices) / sizeof(Vertex));
-	std::vector <GLuint> ind(indices, indices + sizeof(indices) / sizeof(GLuint));
+	std::vector <Vertex> vertsFloor(verticesFloor, verticesFloor + sizeof(verticesFloor) / sizeof(Vertex));
+	std::vector <GLuint> indFloor(indicesFloor, indicesFloor + sizeof(indicesFloor) / sizeof(GLuint));
 	// Create floor mesh
-	floor = new Mesh(verts, ind);
+	floor = new Mesh(vertsFloor, indFloor);
+
+	// Maker
+	// Vertices coordinates
+	Vertex verticesMaker[] =
+	{ //			COORDINATES					/				COLORS				//
+		Vertex{glm::vec3(0.0f, 0.0f, 0.0f),			glm::vec3(1.0f, 1.0f, 1.0f)},
+		Vertex{glm::vec3(1.0f, 0.0f, 0.0f),			glm::vec3(1.0f, 0.0f, 0.0f)},
+		Vertex{glm::vec3(0.0f, 1.0f, 0.0f),			glm::vec3(0.0f, 1.0f, 0.0f)},
+		Vertex{glm::vec3(0.0f, 0.0f, 1.0f),			glm::vec3(0.0f, 0.0f, 1.0f)}
+	};
+
+	// Indices for vertices order
+	GLuint indicesMaker[] =
+	{
+		0, 1,
+		0, 2,
+		0, 3
+	};
+
+	// Store mesh data in vectors for the mesh
+	std::vector <Vertex> vertsMaker(verticesMaker, verticesMaker + sizeof(verticesMaker) / sizeof(Vertex));
+	std::vector <GLuint> indMaker(indicesMaker, indicesMaker + sizeof(indicesMaker) / sizeof(GLuint));
+	// Create maker mesh
+	maker = new LineMesh(vertsMaker, indMaker);
 
 	// Tell OpenGL which Shader Program we want to use
 	shaderProgram.Activate();
@@ -102,6 +127,7 @@ void Graphic::process()
 
 	// Draws different meshes
 	floor->Draw(shaderProgram, camera);
+	maker->Draw(shaderProgram, camera);
 	for(Particule* particule : model->getParticules())
 	{
 		ParticuleMesh particuleMesh(particule->position.x, particule->position.y, particule->position.z);

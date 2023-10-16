@@ -10,7 +10,7 @@
 #include<stb/stb_image.h>
 #include<glm/glm.hpp>
 
-#include "../engine/Model.h"
+#include"../engine/Model.h"
 
 #include"Texture.h"
 #include"Shader.h"
@@ -20,6 +20,7 @@
 #include"Camera.h"
 #include"Mesh.h"
 #include"ParticuleMesh.h"
+#include"LineMesh.h"
 
 class Graphic
 {
@@ -31,9 +32,10 @@ private:
 	Model* model;
 	GLFWwindow* window;
 
-	Mesh* floor;
-
 	Shader shaderProgram;
+
+	Mesh* floor;
+	LineMesh* maker;
 
 	Camera camera;
 

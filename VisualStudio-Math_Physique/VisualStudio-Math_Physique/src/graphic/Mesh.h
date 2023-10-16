@@ -11,7 +11,7 @@
 
 class Mesh
 {
-private:
+protected:
 	std::vector <Vertex> vertices;
 	std::vector <GLuint> indices;
 	VAO vao;
@@ -24,7 +24,7 @@ public:
 	Mesh(std::vector <Vertex>* vertices, std::vector <GLuint>* indices);
 
 	// Draws the mesh
-	void Draw(Shader& shader, Camera& camera);
+	virtual void Draw(Shader& shader, Camera& camera);
 
 	~Mesh();
 };

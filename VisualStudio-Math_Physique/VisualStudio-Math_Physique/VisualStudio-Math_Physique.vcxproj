@@ -146,6 +146,7 @@
     <ClCompile Include="include\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="include\imgui\imgui_tables.cpp" />
     <ClCompile Include="include\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="src\graphic\LineMesh.cpp" />
     <ClCompile Include="src\engine\GraviteParticule.cpp" />
     <ClCompile Include="src\engine\RegistreForceParticule.cpp" />
     <ClCompile Include="src\graphic\ParticuleMesh.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="include\imgui\imstb_rectpack.h" />
     <ClInclude Include="include\imgui\imstb_textedit.h" />
     <ClInclude Include="include\imgui\imstb_truetype.h" />
+    <ClInclude Include="src\graphic\LineMesh.h" />
     <ClInclude Include="src\engine\Constant.h" />
     <ClInclude Include="src\engine\GenerateurForceParticule.h" />
     <ClInclude Include="src\engine\GraviteParticule.h" />
