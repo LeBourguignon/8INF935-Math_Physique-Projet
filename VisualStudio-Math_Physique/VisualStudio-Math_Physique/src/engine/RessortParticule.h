@@ -10,11 +10,8 @@ private:
 	double k;
 	double l0;
 	Particule *attache;
-	bool fixe;
 public:
 	RessortParticule(double k, double l0, Particule *attache);
-	RessortParticule(double k, double l0, Vecteur3D attache);
-	~RessortParticule();
 	void ActualiserForce(Particule* p, float duration);
 };
 
