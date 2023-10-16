@@ -11,4 +11,8 @@ void RegistreForceParticule::ajouterEntree(Particule *p, GenerateurForceParticul
     this->registre.push_back(e);
 }
 
-void RegistreForceParticule::actualiserForce(float duration){}
+void RegistreForceParticule::actualiserForce(float duration){
+    for (int i=0 ; i<this->registre.size() ; i+=1){
+        this->registre[i].generateurForce->ActualiserForce(this->registre[i].particule, duration);
+    }
+}
