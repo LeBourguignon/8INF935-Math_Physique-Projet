@@ -12,5 +12,5 @@ RessortFixeParticule::RessortFixeParticule(double k, double l0, Vecteur3D attach
 void RessortFixeParticule::ActualiserForce(Particule* p, float duration){
     Vecteur3D distance = p->position - this->attache;
     Vecteur3D force = distance.direction() * (-this->k * (distance.norme() - this->l0));
-    p->acceleration = p->acceleration + force;
+    p->acceleration = p->acceleration + force * p->inverseMasse;
 }
