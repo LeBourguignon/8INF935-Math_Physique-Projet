@@ -1,6 +1,12 @@
 #include "engine/Model.h"
 #include "graphic/Graphic.h"
 
+// Timing
+float lastUpdate = 0.0f;
+float lastFrame = 0.0f;
+
+const float frameDelay = 0.005f; // Correspond à 200 FPS
+
 void main()
 {
 	// Initialisation du model physique
@@ -10,10 +16,25 @@ void main()
 
 	// Main loop
 	while (!glfwWindowShouldClose(graphic.getWindow())) {
+
+		// per-frame time logic
+		float currentTime = static_cast<float>(glfwGetTime());
+		float deltaUpdateTime = currentTime - lastUpdate;
+		float deltaFrameTime = currentTime - lastFrame;
+		
+		// Actualisation des entrées
+		graphic.updateInput(deltaUpdateTime);
 		// Actualisation logique
-		model->actualiser(graphic.getIo().DeltaTime);
-		// Calcule et affichage de la fenêtre
-		graphic.process();
+		model->actualiser(deltaUpdateTime);
+
+		lastUpdate = currentTime;
+
+		if (deltaFrameTime > frameDelay) {
+			// Actualisation de la fenètre
+			graphic.updateWindow(deltaFrameTime, deltaUpdateTime);
+
+			lastFrame = currentTime;
+		}
 	}
 
 	// Desctruction du moteur graphique

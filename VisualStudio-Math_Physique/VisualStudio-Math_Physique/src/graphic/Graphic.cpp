@@ -113,22 +113,29 @@ ImGuiIO& Graphic::getIo()
 	return io;
 }
 
-void Graphic::process()
+void Graphic::updateInput(float deltaFrameTime)
+{
+	// Handles camera inputs
+	camera.Inputs(window, deltaFrameTime);
+
+	// Take care of all GLFW events
+	glfwPollEvents();
+}
+
+void Graphic::updateWindow(float deltaFrameTime, float deltaUpdateTime)
 {
 	// Specify the color of the background
 	glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 	// Clean the back buffer and depth buffer
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	// Handles camera inputs
-	camera.Inputs(window, getIo().DeltaTime);
 	// Updates and exports the camera matrix to the Vertex Shader
 	camera.updateMatrix(45.0f, 0.1f, 100.0f);
 
 	// Draws different meshes
 	floor->Draw(shaderProgram, camera);
 	maker->Draw(shaderProgram, camera);
-	for(Particule* particule : model->getParticules())
+	for (Particule* particule : model->getParticules())
 	{
 		ParticuleMesh particuleMesh(particule->position.x, particule->position.y, particule->position.z);
 		particuleMesh.Draw(shaderProgram, camera);
@@ -142,7 +149,8 @@ void Graphic::process()
 
 	// Main Window
 	ImGui::Begin("Menu Principal");
-	ImGui::Text("%.1f FPS", getIo().Framerate);
+	ImGui::Text("%.1f FPS", 1 / deltaFrameTime);
+	ImGui::Text("%.1f UPS", 1 / deltaUpdateTime);
 	ImGui::Checkbox("Particule Window", &show_particule_window);
 	ImGui::End();
 
@@ -169,8 +177,6 @@ void Graphic::process()
 
 	// Swap the back buffer with the front buffer
 	glfwSwapBuffers(window);
-	// Take care of all GLFW events
-	glfwPollEvents();
 }
 
 Graphic::~Graphic()

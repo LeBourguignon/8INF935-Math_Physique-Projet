@@ -51,8 +51,8 @@ public:
 	GLFWwindow* getWindow();
 	ImGuiIO& getIo();
 
-	// Calcule et affichage de la fenêtre
-	void process();
+	void updateInput(float deltaFrameTime);
+	void updateWindow(float deltaFrameTime, float deltaUpdateTime);
 
 	// Desctruction du moteur graphique
 	~Graphic();
