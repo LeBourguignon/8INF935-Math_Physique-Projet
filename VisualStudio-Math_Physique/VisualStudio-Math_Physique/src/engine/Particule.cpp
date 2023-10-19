@@ -6,19 +6,16 @@
 Particule::Particule()  
     : Particule(Vecteur3D(), Vecteur3D(), Vecteur3D(), 0)
 {
-
 }
 
 Particule::Particule(Vecteur3D position, Vecteur3D velocite , Vecteur3D acceleration)
     : Particule(position, velocite, acceleration, 0)
 {
-
 }
 
 Particule::Particule(double masse)
     : Particule(Vecteur3D(), Vecteur3D(), Vecteur3D(), masse)
 {
-
 }
 
 Particule::Particule(Vecteur3D position, Vecteur3D velocite, Vecteur3D acceleration, double masse)

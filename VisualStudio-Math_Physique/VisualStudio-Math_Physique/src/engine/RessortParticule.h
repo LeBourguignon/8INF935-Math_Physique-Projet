@@ -13,7 +13,7 @@ private:
 
 public:
 	RessortParticule(double k, double l0, Particule *attache);
-	void actualiserForce(Particule* p, float duration);
+	void actualiserForce(Particule* particule, float duration);
 };
 
 #endif

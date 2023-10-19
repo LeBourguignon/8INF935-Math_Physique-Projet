@@ -13,6 +13,6 @@ void RessortBungeeFixeParticule::actualiserForce(Particule* particule, float dur
     Vecteur3D distance = particule->position - this->attache;
     if (distance.norme() > this->l0){
         Vecteur3D force = distance.direction() * (-this->k * (distance.norme() - this->l0));
-        particule->acceleration = particule->acceleration + force * particule->inverseMasse * duration;
+        particule->acceleration = particule->acceleration + force * particule->inverseMasse/* * duration*/;
     }
 }

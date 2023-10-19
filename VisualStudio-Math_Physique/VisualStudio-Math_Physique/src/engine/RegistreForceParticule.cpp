@@ -5,9 +5,9 @@ RegistreForceParticule::RegistreForceParticule()
     this->registre = Registre();
 }
 
-void RegistreForceParticule::ajouterForceParticule(Particule *p, GenerateurForceParticule *g)
+void RegistreForceParticule::ajouterForceParticule(Particule *particule, GenerateurForceParticule *generateur)
 {
-    struct EntreeForceParticule e = {p, g};
+    struct EntreeForceParticule e = {particule, generateur};
     this->registre.push_back(e);
 }
 

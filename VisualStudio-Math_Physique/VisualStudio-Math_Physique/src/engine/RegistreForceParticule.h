@@ -19,8 +19,8 @@ private:
 public:
     RegistreForceParticule();
 
-    void ajouterForceParticule(Particule*, GenerateurForceParticule*);
-    void actualiserForce(float);
+    void ajouterForceParticule(Particule* particule, GenerateurForceParticule* generateur);
+    void actualiserForce(float duration);
 };
 
 #endif

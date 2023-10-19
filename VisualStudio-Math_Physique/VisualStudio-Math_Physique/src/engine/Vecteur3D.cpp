@@ -6,7 +6,6 @@
 Vecteur3D::Vecteur3D()
     : Vecteur3D(0, 0, 0)
 {
-
 }
 
 Vecteur3D::Vecteur3D(double x, double y, double z)
