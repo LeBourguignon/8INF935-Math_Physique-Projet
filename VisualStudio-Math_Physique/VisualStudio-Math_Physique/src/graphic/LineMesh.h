@@ -1,5 +1,5 @@
-#ifndef __LINEMESH_H__
-#define __LINEMESH_H__
+#ifndef __LINE_MESH_H__
+#define __LINE_MESH_H__
 
 #include "Mesh.h"
 

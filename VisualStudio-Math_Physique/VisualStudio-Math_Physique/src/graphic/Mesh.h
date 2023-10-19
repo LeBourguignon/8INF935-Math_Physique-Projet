@@ -1,5 +1,5 @@
-#ifndef MESH_CLASS_H
-#define MESH_CLASS_H
+#ifndef __MESH_H__
+#define __MESH_H__
 
 #include<string>
 

@@ -1,5 +1,5 @@
-#ifndef __VECTEUR3D_H__
-#define __VECTEUR3D_H__
+#ifndef __VECTEUR_3D_H__
+#define __VECTEUR_3D_H__
 
 #include <iostream>
 
@@ -8,7 +8,8 @@ public:
     double x;
     double y;
     double z;
-    Vecteur3D(); // returns vector zero
+
+    Vecteur3D(); // Returns vector zero
     Vecteur3D(double, double, double);
 
     double norme();
@@ -17,13 +18,13 @@ public:
     // Scalar operations
     Vecteur3D operator*(double);
     Vecteur3D operator/(double);
-    Vecteur3D operator-(); // get opposite vector
+    Vecteur3D operator-(); // Get opposite vector
 
     // Vector operations
     Vecteur3D operator+(Vecteur3D);
     Vecteur3D operator-(Vecteur3D);
-    double operator*(Vecteur3D); // scalar product
-    Vecteur3D operator%(Vecteur3D); // vectorial product
+    double operator*(Vecteur3D); // Scalar product
+    Vecteur3D operator%(Vecteur3D); // Vectorial product
 
     // Other
     void print();

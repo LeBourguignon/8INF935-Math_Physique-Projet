@@ -1,5 +1,5 @@
-#ifndef __GRAVITEPARTICULE_H__
-#define __GRAVITEPARTICULE_H__
+#ifndef __GRAVITE_PARTICULE_H__
+#define __GRAVITE_PARTICULE_H__
 
 #include "GenerateurForceParticule.h"
 
@@ -9,9 +9,7 @@ private:
 	Vecteur3D m_gravite;
 public:
 	// F = particule->GetMass()*m_gravite
-	void ActualiserForce(Particule* p, float duration);
-
-
+	void actualiserForce(Particule* particule, float duration);
 };
 
 #endif

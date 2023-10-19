@@ -3,9 +3,10 @@
 
 #include "Particule.h"
 
-class GenerateurForceParticule{
-    public:
-    virtual void ActualiserForce(Particule *p, float duration) = 0;
+class GenerateurForceParticule
+{
+public:
+    virtual void actualiserForce(Particule* particule, float duration) = 0;
 };
 
 #endif

@@ -179,6 +179,7 @@
     <ClInclude Include="include\imgui\imstb_rectpack.h" />
     <ClInclude Include="include\imgui\imstb_textedit.h" />
     <ClInclude Include="include\imgui\imstb_truetype.h" />
+    <ClInclude Include="src\engine\GenerateurContactParticule.h" />
     <ClInclude Include="src\engine\RessortBungeeFixeParticule.h" />
     <ClInclude Include="src\engine\RessortBungeeParticule.h" />
     <ClInclude Include="src\engine\RessortFixeParticule.h" />

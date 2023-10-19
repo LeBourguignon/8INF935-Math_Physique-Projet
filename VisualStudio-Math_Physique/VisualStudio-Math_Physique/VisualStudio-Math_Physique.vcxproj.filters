@@ -194,6 +194,9 @@
     <ClInclude Include="src\engine\RessortBungeeFixeParticule.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
+    <ClInclude Include="src\engine\GenerateurContactParticule.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\default.frag" />

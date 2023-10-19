@@ -135,9 +135,9 @@ void Graphic::updateWindow(float deltaFrameTime, float deltaUpdateTime)
 	// Draws different meshes
 	floor->Draw(shaderProgram, camera);
 	maker->Draw(shaderProgram, camera);
-	for (Particule* particule : model->getParticules())
+	for (TTLParticule ttlParticule : model->getTTLParticules())
 	{
-		ParticuleMesh particuleMesh(particule->position.x, particule->position.y, particule->position.z);
+		ParticuleMesh particuleMesh(ttlParticule.particule->position.x, ttlParticule.particule->position.y, ttlParticule.particule->position.z);
 		particuleMesh.Draw(shaderProgram, camera);
 		particuleMesh.~ParticuleMesh();
 	}
@@ -165,7 +165,7 @@ void Graphic::updateWindow(float deltaFrameTime, float deltaUpdateTime)
 		ImGui::InputDouble("Temps de vie (en seconde)", &ttl);
 
 		if (ImGui::Button("Generation particule")) {
-			model->addParticule(new Particule(Vecteur3D(pos[0], pos[1], pos[2]), Vecteur3D(vel[0], vel[1], vel[2]), Vecteur3D(acc[0], acc[1], acc[2])), ttl);
+			model->ajouterTTLParticule(new Particule(Vecteur3D(pos[0], pos[1], pos[2]), Vecteur3D(vel[0], vel[1], vel[2]), Vecteur3D(acc[0], acc[1], acc[2]), 1 /*Masse mis à 1*/), ttl);
 		}
 
 		ImGui::End();

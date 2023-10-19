@@ -5,17 +5,21 @@
 #include "Particule.h"
 #include "GenerateurForceParticule.h"
 
-class RegistreForceParticule{
+class RegistreForceParticule
+{
 private:
     struct EntreeForceParticule{
         Particule *particule;
         GenerateurForceParticule *generateurForce;
     };
+
     using Registre = std::vector<EntreeForceParticule>;
     Registre registre;
+
 public:
     RegistreForceParticule();
-    void ajouterEntree(Particule*, GenerateurForceParticule*);
+
+    void ajouterForceParticule(Particule*, GenerateurForceParticule*);
     void actualiserForce(float);
 };
 

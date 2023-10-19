@@ -1,6 +1,6 @@
 #include "GraviteParticule.h"
 
-void GraviteParticule::ActualiserForce(Particule* p, float duration)
+void GraviteParticule::actualiserForce(Particule* particule, float duration)
 {
     /*
     p->position     = dédpend de la vitesse en fonction du temps

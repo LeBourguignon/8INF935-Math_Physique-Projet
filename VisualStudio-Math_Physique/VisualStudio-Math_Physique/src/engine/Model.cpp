@@ -4,38 +4,42 @@ Model::Model()
 {
 }
 
-void Model::addParticule(Particule* particule, float ttl)
+
+void Model::ajouterTTLParticule(Particule* particule, float ttl)
 {
-	particules.push_back(particule);
-	ttls.push_back(ttl);
+	ttlParticules.push_back(TTLParticule(particule, ttl));
 }
 
-void Model::actualiser(float deltaTime)
+TTLParticules Model::getTTLParticules()
 {
-	for (int i = particules.size() - 1; i >= 0; i--)
+	return ttlParticules;
+}
+
+
+void Model::actualiser(float duration)
+{
+	for (int i = ttlParticules.size() - 1; i >= 0; i--)
 	{
-		ttls[i] -= deltaTime;
-		if (ttls[i] < 0.0f)
+		ttlParticules[i].ttl -= duration;
+		if (ttlParticules[i].ttl <= 0.0f)
 		{
-			Particule* particule = particules[i];
-			ttls.erase(ttls.begin() + i);
-			particules.erase(particules.begin() + i);
+			Particule* particule = ttlParticules[i].particule;
+			ttlParticules.erase(ttlParticules.begin() + i);
 			delete particule;
 		}
 		else
 		{
-			particules[i]->integration(deltaTime);
+			ttlParticules[i].particule->actualiser(duration);
 		}
 	}
 }
 
-std::vector<Particule*>& Model::getParticules()
-{
-	return particules;
-}
 
 Model::~Model()
 {
-	particules.~vector();
-	ttls.~vector();
+	for (TTLParticule ttlParticule : ttlParticules)
+	{
+		delete ttlParticule.particule;
+	}
+	ttlParticules.~vector();
 }

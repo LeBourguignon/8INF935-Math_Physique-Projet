@@ -9,18 +9,13 @@ public:
 	Vecteur3D position, velocite, acceleration;
 	double inverseMasse;
 
-	Particule();										// Retourne particule zero. Composition : trois vecteur zero, masse nulle
 	Particule(Vecteur3D, Vecteur3D, Vecteur3D, double);
-	Particule(Vecteur3D, Vecteur3D, Vecteur3D);			// masse nulle
-	Particule(double);									// trois vecteur zéro
+	Particule();										// Retourne particule zero. Composition : trois vecteur zero, masse nulle
+	Particule(Vecteur3D, Vecteur3D, Vecteur3D);			// Masse nulle
+	Particule(double);									// Trois vecteur zéro
 	
-	//Intégration
-	void integration(double deltaTime); // Update position and velocity
-
-
-	//A implémenter 
-	//GetMasse();
-
+	// Intégration
+	void actualiser(double duration); // Update position and velocityparticule à temps de vie
 };
 
 #endif

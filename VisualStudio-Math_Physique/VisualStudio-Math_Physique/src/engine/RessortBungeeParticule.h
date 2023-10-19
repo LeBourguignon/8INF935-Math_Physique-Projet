@@ -10,9 +10,10 @@ private:
 	double k;
 	double l0;
 	Particule *attache;
+
 public:
 	RessortBungeeParticule(double k, double l0, Particule* attache);
-	void ActualiserForce(Particule* p, float duration);
+	void actualiserForce(Particule* particule, float duration);
 };
 
 #endif

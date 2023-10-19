@@ -10,9 +10,10 @@ private:
 	double k;
 	double l0;
 	Vecteur3D attache;
+
 public:
 	RessortBungeeFixeParticule(double k, double l0, Vecteur3D attache);
-	void ActualiserForce(Particule* p, float duration);
+	void actualiserForce(Particule* particule, float duration);
 };
 
 #endif

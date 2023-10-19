@@ -7,7 +7,7 @@ float lastFrame = 0.0f;
 
 const float frameDelay = 0.005f; // Correspond à 200 FPS
 
-void main()
+int main()
 {
 	// Initialisation du model physique
 	Model* model = new Model();
@@ -29,7 +29,7 @@ void main()
 
 		lastUpdate = currentTime;
 
-		if (deltaFrameTime > frameDelay) {
+		if (deltaFrameTime >= frameDelay) {
 			// Actualisation de la fenètre
 			graphic.updateWindow(deltaFrameTime, deltaUpdateTime);
 
