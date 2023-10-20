@@ -18,6 +18,7 @@ TTLParticules Model::getTTLParticules()
 
 void Model::actualiser(float duration)
 {
+	// Phase 1
 	for (int i = ttlParticules.size() - 1; i >= 0; i--)
 	{
 		ttlParticules[i].ttl -= duration;
@@ -32,6 +33,12 @@ void Model::actualiser(float duration)
 			ttlParticules[i].particule->actualiser(duration);
 		}
 	}
+
+	// Phase 2
+	// Générer les forces sur les particules
+	// Intégration des particules
+	// Génerer les contacts
+	// Résoudre les contacts
 }
 
 
