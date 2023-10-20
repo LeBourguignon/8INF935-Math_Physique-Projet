@@ -43,3 +43,17 @@ void Particule::actualiser(double duration)
     // Mise à jour vitesse
     this->velocite = this->velocite * facteurAmortissement + this->acceleration * duration;
 }
+
+double Particule::getMass()
+{
+    if (this->inverseMasse == 0)    // inverseMasse = 0   ->   Masse = infini 
+    {
+        // Message d'erreur
+        std::cout << "Attention : Masse infini" << std::endl;
+        return masseInfini;         
+    }
+    else
+    {
+        return 1 / this->inverseMasse;
+    }
+}

@@ -15,7 +15,8 @@ public:
 	Particule(double);									// Trois vecteur zéro
 	
 	// Intégration
-	void actualiser(double duration); // Update position and velocityparticule à temps de vie
+	void actualiser(double duration);					// Update position and velocity particule à temps de vie
+	double getMass();									// utilise par gravite
 };
 
 #endif
