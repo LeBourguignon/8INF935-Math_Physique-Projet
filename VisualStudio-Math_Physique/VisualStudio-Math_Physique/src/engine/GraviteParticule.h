@@ -6,9 +6,8 @@
 class GraviteParticule : public GenerateurForceParticule
 {
 private:
-	Vecteur3D m_gravite;
+	Vecteur3D m_gravite = { 0, -8.9, 0 };
 public:
-	// F = particule->GetMass()*m_gravite
 	void actualiserForce(Particule* particule, float duration);
 };
 
