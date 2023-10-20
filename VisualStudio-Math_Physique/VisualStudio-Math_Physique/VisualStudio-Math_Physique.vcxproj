@@ -139,6 +139,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\engine\GenerateurContactParticuleNaive.cpp" />
+    <ClCompile Include="src\engine\CableParticule.cpp" />
     <ClCompile Include="include\imgui\imgui.cpp" />
     <ClCompile Include="include\imgui\imgui_demo.cpp" />
     <ClCompile Include="include\imgui\imgui_draw.cpp" />
@@ -146,6 +148,9 @@
     <ClCompile Include="include\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="include\imgui\imgui_tables.cpp" />
     <ClCompile Include="include\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="src\engine\LienParticule.cpp" />
+    <ClCompile Include="src\engine\ResolveurContactParticule.cpp" />
+    <ClCompile Include="src\engine\ContactParticule.cpp" />
     <ClCompile Include="src\engine\RessortBungeeFixeParticule.cpp" />
     <ClCompile Include="src\engine\RessortBungeeParticule.cpp" />
     <ClCompile Include="src\engine\RessortFixeParticule.cpp" />
@@ -168,8 +173,11 @@
     <ClCompile Include="src\graphic\Texture.cpp" />
     <ClCompile Include="src\graphic\VAO.cpp" />
     <ClCompile Include="src\graphic\VBO.cpp" />
+    <ClCompile Include="src\engine\TigeParticule.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\engine\GenerateurContactParticuleNaive.h" />
+    <ClInclude Include="src\engine\CableParticule.h" />
     <ClInclude Include="include\imgui\imconfig.h" />
     <ClInclude Include="include\imgui\imgui.h" />
     <ClInclude Include="include\imgui\imgui_impl_glfw.h" />
@@ -179,6 +187,9 @@
     <ClInclude Include="include\imgui\imstb_rectpack.h" />
     <ClInclude Include="include\imgui\imstb_textedit.h" />
     <ClInclude Include="include\imgui\imstb_truetype.h" />
+    <ClInclude Include="src\engine\LienParticule.h" />
+    <ClInclude Include="src\engine\ResolveurContactParticule.h" />
+    <ClInclude Include="src\engine\ContactParticule.h" />
     <ClInclude Include="src\engine\GenerateurContactParticule.h" />
     <ClInclude Include="src\engine\RessortBungeeFixeParticule.h" />
     <ClInclude Include="src\engine\RessortBungeeParticule.h" />
@@ -201,6 +212,7 @@
     <ClInclude Include="src\graphic\Texture.h" />
     <ClInclude Include="src\graphic\VAO.h" />
     <ClInclude Include="src\graphic\VBO.h" />
+    <ClInclude Include="src\engine\TigeParticule.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\default.frag" />
