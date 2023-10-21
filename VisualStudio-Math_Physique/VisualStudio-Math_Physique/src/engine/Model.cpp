@@ -25,10 +25,7 @@ void Model::actualiser(float duration)
 	this->registreForceParticule.actualiserForce(duration);
 
 	// Mise à jour des particules
-	for (auto particule : this->particules)
-	{
-		particule->actualiser(duration);
-	}
+	this->particules.actualiser(duration);
 
 	// Génerer les contacts
 	// Résoudre les contacts
