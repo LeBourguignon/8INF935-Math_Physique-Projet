@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\engine\Particules.cpp" />
     <ClCompile Include="src\engine\GenerateurContactParticuleNaive.cpp" />
     <ClCompile Include="src\engine\CableParticule.cpp" />
     <ClCompile Include="include\imgui\imgui.cpp" />
@@ -176,6 +177,7 @@
     <ClCompile Include="src\engine\TigeParticule.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\engine\Particules.h" />
     <ClInclude Include="src\engine\GenerateurContactParticuleNaive.h" />
     <ClInclude Include="src\engine\CableParticule.h" />
     <ClInclude Include="include\imgui\imconfig.h" />

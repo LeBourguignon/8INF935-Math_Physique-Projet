@@ -135,9 +135,9 @@ void Graphic::updateWindow(float deltaFrameTime, float deltaUpdateTime)
 	// Draws different meshes
 	floor->Draw(shaderProgram, camera);
 	maker->Draw(shaderProgram, camera);
-	for (TTLParticule ttlParticule : model->getTTLParticules())
+	for (auto particule : model->getParticules())
 	{
-		ParticuleMesh particuleMesh(ttlParticule.particule->position.x, ttlParticule.particule->position.y, ttlParticule.particule->position.z);
+		ParticuleMesh particuleMesh(particule->position.x, particule->position.y, particule->position.z);
 		particuleMesh.Draw(shaderProgram, camera);
 		particuleMesh.~ParticuleMesh();
 	}
@@ -161,11 +161,11 @@ void Graphic::updateWindow(float deltaFrameTime, float deltaUpdateTime)
 
 		ImGui::InputFloat3("Position", pos);
 		ImGui::InputFloat3("Velocite", vel);
-		ImGui::InputFloat3("Acceleration", acc);
-		ImGui::InputDouble("Temps de vie (en seconde)", &ttl);
+		ImGui::InputFloat3("Champ gravitationnel", gra);
+		ImGui::InputDouble("Masse (0 -> masse infinie)", &masse);
 
 		if (ImGui::Button("Generation particule")) {
-			model->ajouterTTLParticule(new Particule(Vecteur3D(pos[0], pos[1], pos[2]), Vecteur3D(vel[0], vel[1], vel[2]), Vecteur3D(acc[0], acc[1], acc[2]), 1 /*Masse mis à 1*/), ttl);
+			model->ajouterParticule(new Particule(Vecteur3D(pos[0], pos[1], pos[2]), Vecteur3D(vel[0], vel[1], vel[2]), Vecteur3D(0.0f, 0.0f, 0.0f), masse), Vecteur3D(gra[0], gra[1], gra[2]));
 		}
 
 		ImGui::End();

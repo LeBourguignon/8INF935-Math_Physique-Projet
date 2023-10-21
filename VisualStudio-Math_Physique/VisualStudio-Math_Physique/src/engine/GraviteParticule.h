@@ -6,8 +6,11 @@
 class GraviteParticule : public GenerateurForceParticule
 {
 private:
-	Vecteur3D m_gravite = { 0, -8.9, 0 };
+	Vecteur3D gravite;
+
 public:
+	GraviteParticule(Vecteur3D gravite);
+
 	void actualiserForce(Particule* particule, float duration);
 };
 

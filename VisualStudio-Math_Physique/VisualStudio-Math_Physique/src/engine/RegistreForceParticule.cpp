@@ -7,13 +7,14 @@ RegistreForceParticule::RegistreForceParticule()
 
 void RegistreForceParticule::ajouterForceParticule(Particule *particule, GenerateurForceParticule *generateur)
 {
-    struct EntreeForceParticule e = {particule, generateur};
-    this->registre.push_back(e);
+    struct ForceParticule forceParticule = {particule, generateur};
+    this->registre.push_back(forceParticule);
 }
 
 void RegistreForceParticule::actualiserForce(float duration)
 {
-    for (int i=0; i<this->registre.size(); i+=1){
-        this->registre[i].generateurForce->actualiserForce(this->registre[i].particule, duration);
+    for (auto& forceParticule: this->registre)
+    {
+        forceParticule.generateurForce->actualiserForce(forceParticule.particule, duration);
     }
 }

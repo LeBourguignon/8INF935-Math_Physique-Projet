@@ -1,39 +1,27 @@
 #ifndef __MODEL_H__
 #define __MODEL_H__
 
-#include <vector>
-
-#include "Particule.h"
-
-// Particule à temps de vie
-struct TTLParticule {
-	Particule* particule;
-	float ttl;
-};
-
-// Liste de particules à temps de vie
-using TTLParticules = std::vector<TTLParticule>;
+#include "Particules.h"
+#include "RegistreForceParticule.h"
 
 // Model physique
 class Model
 {
 private:
-	TTLParticules ttlParticules;
+	Particules particules;
+	RegistreForceParticule registreForceParticule;
 
 public:
 	// Initilisation du model
 	Model();
 
-	// Ajout d'une particule et de son temps de vie dans le model
-	void ajouterTTLParticule(Particule* particule, float ttl);
+	// Ajout d'une particule avec son champs gravitationnel
+	void ajouterParticule(Particule* particule, Vecteur3D gravite);
 	// Liste des particules du model
-	TTLParticules getTTLParticules();
+	Particules getParticules();
 
 	// Actualisation du model d'un dt
 	void actualiser(float duration);
-
-	// Desctruction du model
-	~Model();
 };
 
 #endif

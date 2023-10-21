@@ -15,7 +15,7 @@ void ContactParticule::resoudreInterpenetration()
 	this->particules[1]->position = this->particules[1]->position + (contactNormal * (penetration * this->particules[1]->inverseMasse / (this->particules[0]->inverseMasse + this->particules[1]->inverseMasse)));
 }
 
-ContactParticule::ContactParticule(Particule* particules[2], float restitution, float penetration)
+ContactParticule::ContactParticule(Particule* particules[2], float restitution, float penetration) // contactNormal
 {
 	this->particules[0] = particules[0];
 	this->particules[1] = particules[1];

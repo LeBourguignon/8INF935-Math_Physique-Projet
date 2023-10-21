@@ -40,8 +40,8 @@ private:
 	Camera camera;
 
 	bool show_particule_window = false;
-	float pos[3] = { 0.0f, 0.0f, 0.0f }, vel[3] = { 0.0f, 0.0f, 0.0f }, acc[3] = { 0.0f, 0.0f, 0.0f };
-	double ttl = 60.0f;
+	float pos[3] = { 0.0f, 0.0f, 0.0f }, vel[3] = { 0.0f, 0.0f, 0.0f }, gra[3] = { 0.0f, 0.0f, 0.0f };
+	double masse = 10.0f;
 
 public:
 	// Initilisation du moteur graphique

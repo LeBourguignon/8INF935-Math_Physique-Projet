@@ -19,11 +19,8 @@ Particule::Particule(double masse)
 }
 
 Particule::Particule(Vecteur3D position, Vecteur3D velocite, Vecteur3D acceleration, double masse)
+    : position(position), velocite(velocite), acceleration(acceleration), force()
 {
-    this->position      = position;
-    this->velocite      = velocite;
-    this->acceleration  = acceleration;
-
     if (masse == 0)
     {
         // Message d'erreur
@@ -38,10 +35,17 @@ Particule::Particule(Vecteur3D position, Vecteur3D velocite, Vecteur3D accelerat
 
 void Particule::actualiser(double duration)
 {
-    // Mise à jour position
+    // Mise à jour de la position
+    this->acceleration = this->force * this->inverseMasse;
+
+    // Mise à jour de la position
     this->position = this->position + this->velocite * duration + this->acceleration * 0.5 * duration * duration;
-    // Mise à jour vitesse
-    this->velocite = this->velocite * facteurAmortissement + this->acceleration * duration;
+
+    // Mise à jour de la vitesse
+    this->velocite = this->velocite * Constant::facteurAmortissement + this->acceleration * duration;
+
+    // Réinisilisation de la force
+    this->force = Vecteur3D();
 }
 
 double Particule::getMass()
@@ -50,7 +54,7 @@ double Particule::getMass()
     {
         // Message d'erreur
         std::cout << "Attention : Masse infini" << std::endl;
-        return masseInfini;         
+        return Constant::masseInfinie;
     }
     else
     {

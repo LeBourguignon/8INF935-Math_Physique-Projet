@@ -6,17 +6,17 @@
 class Particule
 {
 public:
-	Vecteur3D position, velocite, acceleration;
+	Vecteur3D position, velocite, acceleration, force;
 	double inverseMasse;
 
 	Particule(Vecteur3D, Vecteur3D, Vecteur3D, double);
-	Particule();										// Retourne particule zero. Composition : trois vecteur zero, masse nulle
-	Particule(Vecteur3D, Vecteur3D, Vecteur3D);			// Masse nulle
+
+	Particule();										// Retourne particule zero. Composition : trois vecteur zero, masse infinie
+	Particule(Vecteur3D, Vecteur3D, Vecteur3D);			// Masse infinie
 	Particule(double);									// Trois vecteur zéro
 	
-	// Intégration
-	void actualiser(double duration);					// Update position and velocity particule à temps de vie
-	double getMass();									// utilise par gravite
+	void actualiser(double duration);					// Mise à jour de la particule
+	double getMass();									// Masse infinie -> Erreur (retourne Constant::masseInfinie = 10^9)
 };
 
 #endif
