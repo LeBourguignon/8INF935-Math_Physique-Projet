@@ -14,4 +14,5 @@ void ContactParticules::deleteContactParticules()
 	{
 		delete contactParticule;
 	}
+	this->~ContactParticules();
 }

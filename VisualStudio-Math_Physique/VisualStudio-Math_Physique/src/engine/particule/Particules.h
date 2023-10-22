@@ -8,6 +8,8 @@ class Particules : public std::vector<Particule*>
 {
 public:
 	void actualiser(double duration);
+
+	void deleteParticules();
 };
 
 #endif

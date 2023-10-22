@@ -7,3 +7,12 @@ void Particules::actualiser(double duration)
 		particule->actualiser(duration);
 	}
 }
+
+void Particules::deleteParticules()
+{
+	for (auto particule : *this)
+	{
+		delete particule;
+	}
+	this->~Particules();
+}

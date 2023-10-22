@@ -8,13 +8,13 @@ Model::Model()
 {
 	this->generateurContactParticuleNaive = new GenerateurContactParticuleNaive(this->particules, 0.2f);
 	generateursContact.push_back(this->generateurContactParticuleNaive);
-
-	this->ajouterParticule(new Particule(Vecteur3D(-1, -1, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 10), Vecteur3D(1, 1, 0));
-	this->ajouterParticule(new Particule(Vecteur3D(1, -1, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 10), Vecteur3D(-1, 1, 0));
-	this->ajouterParticule(new Particule(Vecteur3D(1, 1, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 10), Vecteur3D(-1, -1, 0));
-	this->ajouterParticule(new Particule(Vecteur3D(-1, 1, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 10), Vecteur3D(1, -1, 0));
 }
 
+
+Particules Model::getParticules()
+{
+	return particules;
+}
 
 void Model::ajouterParticule(Particule* particule, Vecteur3D gravite = Vecteur3D())
 {
@@ -23,9 +23,33 @@ void Model::ajouterParticule(Particule* particule, Vecteur3D gravite = Vecteur3D
 	this->generateurContactParticuleNaive->ajouterParticule(particule);
 }
 
-Particules Model::getParticules()
+void Model::reinitialisation()
 {
-	return particules;
+	// Destruction des objets
+	this->particules.deleteParticules();
+	this->registreForceParticule.deleteForce();
+	this->generateursContact.deleteGenerateurs();
+
+	// Initialisation du model
+	this->particules = Particules();
+	this->registreForceParticule = RegistreForceParticule();
+	this->generateursContact = GenerateursContactParticule();
+
+	this->generateurContactParticuleNaive = new GenerateurContactParticuleNaive(this->particules, 0.2f);
+	generateursContact.push_back(this->generateurContactParticuleNaive);
+}
+
+void Model::startDemo1()
+{
+	this->reinitialisation();
+
+	this->ajouterParticule(new Particule(Vecteur3D(-10, 0, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 10), Vecteur3D(10, 0, 0));
+	this->ajouterParticule(new Particule(Vecteur3D(10, 0, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 10), Vecteur3D(-10, 0, 0));
+
+	/*this->ajouterParticule(new Particule(Vecteur3D(-10, -10, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 10), Vecteur3D(10, 10, 0));
+	this->ajouterParticule(new Particule(Vecteur3D(10, -10, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 10), Vecteur3D(-10, 10, 0));
+	this->ajouterParticule(new Particule(Vecteur3D(10, 10, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 10), Vecteur3D(-10, -10, 0));
+	this->ajouterParticule(new Particule(Vecteur3D(-10, 10, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 10), Vecteur3D(10, -10, 0));*/
 }
 
 

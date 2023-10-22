@@ -20,10 +20,15 @@ public:
 	// Initilisation du model
 	Model();
 
-	// Ajout d'une particule avec son champs gravitationnel
-	void ajouterParticule(Particule* particule, Vecteur3D gravite);
 	// Liste des particules du model
 	Particules getParticules();
+	// Ajout d'une particule avec son champs gravitationnel
+	void ajouterParticule(Particule* particule, Vecteur3D gravite);
+	// Réinitialisation du model (Suppression de toutes les particules, des forces et des générateurs)
+	void reinitialisation();
+	
+	// Démo 1
+	void startDemo1();
 
 	// Actualisation du model d'un dt
 	void actualiser(float duration);

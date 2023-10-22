@@ -39,7 +39,7 @@ private:
 
 	Camera camera;
 
-	bool show_particule_window = false;
+	bool show_particule_window = false, show_demo_window = false;
 	float pos[3] = { 0.0f, 0.0f, 0.0f }, vel[3] = { 0.0f, 0.0f, 0.0f }, gra[3] = { 0.0f, 0.0f, 0.0f };
 	double masse = 10.0f;
 

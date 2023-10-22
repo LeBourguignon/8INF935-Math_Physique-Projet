@@ -6,3 +6,12 @@ void GenerateursContactParticule::ajouterContact(ContactParticules& contacts, un
 		generateurContact->ajouterContact(contacts, limit);
 	}
 }
+
+void GenerateursContactParticule::deleteGenerateurs()
+{
+    for (auto  generateurContactParticule : *this)
+    {
+        delete generateurContactParticule;
+    }
+    this->~GenerateursContactParticule();
+}

@@ -152,6 +152,7 @@ void Graphic::updateWindow(float deltaFrameTime, float deltaUpdateTime)
 	ImGui::Text("%.1f FPS", 1 / deltaFrameTime);
 	ImGui::Text("%.1f UPS", 1 / deltaUpdateTime);
 	ImGui::Checkbox("Particule Window", &show_particule_window);
+	ImGui::Checkbox("Demo Window", &show_demo_window);
 	ImGui::End();
 
 	// Particule Window
@@ -164,8 +165,26 @@ void Graphic::updateWindow(float deltaFrameTime, float deltaUpdateTime)
 		ImGui::InputFloat3("Champ gravitationnel", gra);
 		ImGui::InputDouble("Masse (0 -> masse infinie)", &masse);
 
+		ImGui::Spacing();
+
 		if (ImGui::Button("Generation particule")) {
 			model->ajouterParticule(new Particule(Vecteur3D(pos[0], pos[1], pos[2]), Vecteur3D(vel[0], vel[1], vel[2]), Vecteur3D(0.0f, 0.0f, 0.0f), masse), Vecteur3D(gra[0], gra[1], gra[2]));
+		}
+		ImGui::SameLine();
+		if (ImGui::Button("Nettoyage du model")) {
+			model->reinitialisation();
+		}
+
+		ImGui::End();
+	}
+
+	if (show_demo_window)
+	{
+		ImGui::Begin("Demo Window", &show_demo_window);
+
+		if (ImGui::Button("Lancer la Demo 1"))
+		{
+			model->startDemo1();
 		}
 
 		ImGui::End();
