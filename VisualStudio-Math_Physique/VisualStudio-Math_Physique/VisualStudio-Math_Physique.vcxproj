@@ -177,6 +177,7 @@
     <ClCompile Include="src\graphic\VAO.cpp" />
     <ClCompile Include="src\graphic\VBO.cpp" />
     <ClCompile Include="src\engine\particule\contact\TigeParticule.cpp" />
+    <ClCompile Include="src\engine\particule\force\TraineeParticule.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine\particule\contact\GenerateursContactParticule.h" />
@@ -219,6 +220,7 @@
     <ClInclude Include="src\graphic\VAO.h" />
     <ClInclude Include="src\graphic\VBO.h" />
     <ClInclude Include="src\engine\particule\contact\TigeParticule.h" />
+    <ClInclude Include="src\engine\particule\force\TraineeParticule.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\default.frag" />
