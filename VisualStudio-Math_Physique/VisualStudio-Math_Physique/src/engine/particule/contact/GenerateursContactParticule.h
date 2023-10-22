@@ -7,6 +7,8 @@ class GenerateursContactParticule : public std::vector<GenerateurContactParticul
 {
 public:
 	void ajouterContact(ContactParticules& contacts, unsigned int limit);
+
+	void deleteGenerateurs();
 };
 
 #endif

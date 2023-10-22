@@ -21,6 +21,8 @@ public:
 
     void ajouterForceParticule(Particule* particule, GenerateurForceParticule* generateur);
     void actualiserForce(float duration);
+
+    void deleteForce();
 };
 
 #endif

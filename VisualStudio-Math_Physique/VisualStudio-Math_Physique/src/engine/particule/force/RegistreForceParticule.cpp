@@ -18,3 +18,12 @@ void RegistreForceParticule::actualiserForce(float duration)
         forceParticule.generateurForce->actualiserForce(forceParticule.particule, duration);
     }
 }
+
+void RegistreForceParticule::deleteForce()
+{
+    for (auto& forceParticule : this->registre)
+    {
+        delete forceParticule.generateurForce;
+    }
+    this->~RegistreForceParticule();
+}
