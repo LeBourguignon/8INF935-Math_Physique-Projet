@@ -11,6 +11,6 @@ void TigeParticule::ajouterContact(ContactParticules& contacts, unsigned int lim
 {
 	if (contacts.size() < limit)
 	{
-		contacts.push_back(new ContactParticule(particules, 1, longueurActuelle(), (particules[0]->position - particules[1]->position).direction()));
+		contacts.push_back(new ContactParticule(particules, 1, longueur, (particules[0]->position - particules[1]->position).direction()));
 	}
 }
