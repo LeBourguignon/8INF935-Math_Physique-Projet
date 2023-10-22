@@ -2,7 +2,6 @@
 #define __REGISTRE_FORCE_PARTICULE_H__
 
 #include <vector>
-#include "Particule.h"
 #include "GenerateurForceParticule.h"
 
 struct ForceParticule {

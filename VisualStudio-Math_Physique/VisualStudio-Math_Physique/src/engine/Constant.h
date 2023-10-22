@@ -5,8 +5,8 @@ namespace Constant {
 	// Facteur d'amortissement
 	const double facteurAmortissement = 0.999999999;
 
-	// "Masse infinie" = 10^9
-	const double masseInfinie = 1000000000;
+	// "Masse infinie" = 0
+	const double masseInfinie = 0;
 }
 
 #endif

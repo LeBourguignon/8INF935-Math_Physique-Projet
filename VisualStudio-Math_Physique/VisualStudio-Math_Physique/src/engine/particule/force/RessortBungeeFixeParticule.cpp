@@ -1,8 +1,5 @@
 #include "RessortBungeeFixeParticule.h"
 
-#include "Vecteur3D.h"
-#include "Particule.h"
-
 RessortBungeeFixeParticule::RessortBungeeFixeParticule(double k, double l0, Vecteur3D attache)
     : k(k), l0(l0), attache(attache)
 {

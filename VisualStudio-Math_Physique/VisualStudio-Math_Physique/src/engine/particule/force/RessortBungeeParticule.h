@@ -2,7 +2,6 @@
 #define __RESSORT_BUNGEE_PARTICULE_H__
 
 #include "GenerateurForceParticule.h"
-#include "Particule.h"
 
 class RessortBungeeParticule : public GenerateurForceParticule
 {

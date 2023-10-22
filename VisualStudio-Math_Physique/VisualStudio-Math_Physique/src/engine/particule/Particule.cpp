@@ -1,7 +1,7 @@
 #include "Particule.h"
 
 #include <iostream>
-#include "Constant.h"
+#include "../Constant.h"
 
 Particule::Particule()  
     : Particule(Vecteur3D(), Vecteur3D(), Vecteur3D(), 0)
@@ -50,7 +50,7 @@ void Particule::actualiser(double duration)
 
 double Particule::getMass()
 {
-    if (this->inverseMasse == 0)    // inverseMasse = 0   ->   Masse = infini 
+    if (this->inverseMasse == 0)    // inverseMasse = 0   ->   masseInfinie = 0
     {
         // Message d'erreur
         std::cout << "Attention : Masse infini" << std::endl;

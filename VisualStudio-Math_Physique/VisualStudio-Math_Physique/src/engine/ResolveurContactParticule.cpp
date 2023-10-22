@@ -1,1 +1,0 @@
-#include "ResolveurContactParticule.h"

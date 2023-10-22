@@ -1,12 +1,12 @@
 #ifndef __GENERATEUR_CONTACT_PARTICULE_H__
 #define __GENERATEUR_CONTACT_PARTICULE_H__
 
-#include "ContactParticule.h"
+#include "ContactParticules.h"
 
 class GenerateurContactParticule
 {
 public:
-	virtual unsigned int ajouterContact(ContactParticule* contact, unsigned int limit) const = 0;
+	virtual void ajouterContact(ContactParticules& contacts, unsigned int limit) = 0;
 };
 
 #endif

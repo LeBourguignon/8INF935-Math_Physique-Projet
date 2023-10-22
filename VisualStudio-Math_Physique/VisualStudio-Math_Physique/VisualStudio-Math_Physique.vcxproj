@@ -139,9 +139,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\engine\Particules.cpp" />
-    <ClCompile Include="src\engine\GenerateurContactParticuleNaive.cpp" />
-    <ClCompile Include="src\engine\CableParticule.cpp" />
+    <ClCompile Include="src\engine\particule\contact\GenerateursContactParticule.cpp" />
+    <ClCompile Include="src\engine\particule\contact\ContactParticules.cpp" />
+    <ClCompile Include="src\engine\particule\Particules.cpp" />
+    <ClCompile Include="src\engine\particule\contact\GenerateurContactParticuleNaive.cpp" />
+    <ClCompile Include="src\engine\particule\contact\CableParticule.cpp" />
     <ClCompile Include="include\imgui\imgui.cpp" />
     <ClCompile Include="include\imgui\imgui_demo.cpp" />
     <ClCompile Include="include\imgui\imgui_draw.cpp" />
@@ -149,20 +151,20 @@
     <ClCompile Include="include\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="include\imgui\imgui_tables.cpp" />
     <ClCompile Include="include\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="src\engine\LienParticule.cpp" />
-    <ClCompile Include="src\engine\ResolveurContactParticule.cpp" />
-    <ClCompile Include="src\engine\ContactParticule.cpp" />
-    <ClCompile Include="src\engine\RessortBungeeFixeParticule.cpp" />
-    <ClCompile Include="src\engine\RessortBungeeParticule.cpp" />
-    <ClCompile Include="src\engine\RessortFixeParticule.cpp" />
-    <ClCompile Include="src\engine\RessortParticule.cpp" />
+    <ClCompile Include="src\engine\particule\contact\LienParticule.cpp" />
+    <ClCompile Include="src\engine\particule\contact\ResolveurContactParticule.cpp" />
+    <ClCompile Include="src\engine\particule\contact\ContactParticule.cpp" />
+    <ClCompile Include="src\engine\particule\force\RessortBungeeFixeParticule.cpp" />
+    <ClCompile Include="src\engine\particule\force\RessortBungeeParticule.cpp" />
+    <ClCompile Include="src\engine\particule\force\RessortFixeParticule.cpp" />
+    <ClCompile Include="src\engine\particule\force\RessortParticule.cpp" />
     <ClCompile Include="src\graphic\LineMesh.cpp" />
-    <ClCompile Include="src\engine\GraviteParticule.cpp" />
-    <ClCompile Include="src\engine\RegistreForceParticule.cpp" />
+    <ClCompile Include="src\engine\particule\force\GraviteParticule.cpp" />
+    <ClCompile Include="src\engine\particule\force\RegistreForceParticule.cpp" />
     <ClCompile Include="src\graphic\ParticuleMesh.cpp" />
     <ClCompile Include="src\graphic\Graphic.cpp" />
     <ClCompile Include="src\engine\Model.cpp" />
-    <ClCompile Include="src\engine\Particule.cpp" />
+    <ClCompile Include="src\engine\particule\Particule.cpp" />
     <ClCompile Include="src\engine\Vecteur3D.cpp" />
     <ClCompile Include="src\graphic\Camera.cpp" />
     <ClCompile Include="src\graphic\EBO.cpp" />
@@ -174,12 +176,14 @@
     <ClCompile Include="src\graphic\Texture.cpp" />
     <ClCompile Include="src\graphic\VAO.cpp" />
     <ClCompile Include="src\graphic\VBO.cpp" />
-    <ClCompile Include="src\engine\TigeParticule.cpp" />
+    <ClCompile Include="src\engine\particule\contact\TigeParticule.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\engine\Particules.h" />
-    <ClInclude Include="src\engine\GenerateurContactParticuleNaive.h" />
-    <ClInclude Include="src\engine\CableParticule.h" />
+    <ClInclude Include="src\engine\particule\contact\GenerateursContactParticule.h" />
+    <ClInclude Include="src\engine\particule\contact\ContactParticules.h" />
+    <ClInclude Include="src\engine\particule\Particules.h" />
+    <ClInclude Include="src\engine\particule\contact\GenerateurContactParticuleNaive.h" />
+    <ClInclude Include="src\engine\particule\contact\CableParticule.h" />
     <ClInclude Include="include\imgui\imconfig.h" />
     <ClInclude Include="include\imgui\imgui.h" />
     <ClInclude Include="include\imgui\imgui_impl_glfw.h" />
@@ -189,23 +193,23 @@
     <ClInclude Include="include\imgui\imstb_rectpack.h" />
     <ClInclude Include="include\imgui\imstb_textedit.h" />
     <ClInclude Include="include\imgui\imstb_truetype.h" />
-    <ClInclude Include="src\engine\LienParticule.h" />
-    <ClInclude Include="src\engine\ResolveurContactParticule.h" />
-    <ClInclude Include="src\engine\ContactParticule.h" />
-    <ClInclude Include="src\engine\GenerateurContactParticule.h" />
-    <ClInclude Include="src\engine\RessortBungeeFixeParticule.h" />
-    <ClInclude Include="src\engine\RessortBungeeParticule.h" />
-    <ClInclude Include="src\engine\RessortFixeParticule.h" />
-    <ClInclude Include="src\engine\RessortParticule.h" />
+    <ClInclude Include="src\engine\particule\contact\LienParticule.h" />
+    <ClInclude Include="src\engine\particule\contact\ResolveurContactParticule.h" />
+    <ClInclude Include="src\engine\particule\contact\ContactParticule.h" />
+    <ClInclude Include="src\engine\particule\contact\GenerateurContactParticule.h" />
+    <ClInclude Include="src\engine\particule\force\RessortBungeeFixeParticule.h" />
+    <ClInclude Include="src\engine\particule\force\RessortBungeeParticule.h" />
+    <ClInclude Include="src\engine\particule\force\RessortFixeParticule.h" />
+    <ClInclude Include="src\engine\particule\force\RessortParticule.h" />
     <ClInclude Include="src\graphic\LineMesh.h" />
     <ClInclude Include="src\engine\Constant.h" />
-    <ClInclude Include="src\engine\GenerateurForceParticule.h" />
-    <ClInclude Include="src\engine\GraviteParticule.h" />
-    <ClInclude Include="src\engine\RegistreForceParticule.h" />
+    <ClInclude Include="src\engine\particule\force\GenerateurForceParticule.h" />
+    <ClInclude Include="src\engine\particule\force\GraviteParticule.h" />
+    <ClInclude Include="src\engine\particule\force\RegistreForceParticule.h" />
     <ClInclude Include="src\graphic\ParticuleMesh.h" />
     <ClInclude Include="src\graphic\Graphic.h" />
     <ClInclude Include="src\engine\Model.h" />
-    <ClInclude Include="src\engine\Particule.h" />
+    <ClInclude Include="src\engine\particule\Particule.h" />
     <ClInclude Include="src\engine\Vecteur3D.h" />
     <ClInclude Include="src\graphic\Camera.h" />
     <ClInclude Include="src\graphic\EBO.h" />
@@ -214,7 +218,7 @@
     <ClInclude Include="src\graphic\Texture.h" />
     <ClInclude Include="src\graphic\VAO.h" />
     <ClInclude Include="src\graphic\VBO.h" />
-    <ClInclude Include="src\engine\TigeParticule.h" />
+    <ClInclude Include="src\engine\particule\contact\TigeParticule.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\default.frag" />

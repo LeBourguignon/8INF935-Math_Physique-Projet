@@ -8,7 +8,7 @@ class TigeParticule : public LienParticule
 public:
 	float longueur;
 
-	unsigned int ajouterContact(ContactParticule* contact, unsigned int limit) const;
+	void ajouterContact(ContactParticules& contacts, unsigned int limit);
 };
 
 #endif

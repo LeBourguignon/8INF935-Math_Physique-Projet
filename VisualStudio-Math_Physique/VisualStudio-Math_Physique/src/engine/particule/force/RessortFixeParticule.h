@@ -2,7 +2,6 @@
 #define __RESSORT_FIXE_PARTICULE_H__
 
 #include "GenerateurForceParticule.h"
-#include "Particule.h"
 
 class RessortFixeParticule : public GenerateurForceParticule
 {

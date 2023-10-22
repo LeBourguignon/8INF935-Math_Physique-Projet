@@ -1,8 +1,10 @@
 #ifndef __MODEL_H__
 #define __MODEL_H__
 
-#include "Particules.h"
-#include "RegistreForceParticule.h"
+#include "particule/Particules.h"
+#include "particule/force/RegistreForceParticule.h"
+#include "particule/contact/GenerateursContactParticule.h"
+#include "particule/contact/GenerateurContactParticuleNaive.h"
 
 // Model physique
 class Model
@@ -10,6 +12,9 @@ class Model
 private:
 	Particules particules;
 	RegistreForceParticule registreForceParticule;
+	GenerateursContactParticule generateursContact;
+
+	GenerateurContactParticuleNaive* generateurContactParticuleNaive;
 
 public:
 	// Initilisation du model

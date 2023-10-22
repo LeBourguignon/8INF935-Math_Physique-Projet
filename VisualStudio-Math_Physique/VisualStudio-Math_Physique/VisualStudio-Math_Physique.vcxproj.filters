@@ -66,7 +66,7 @@
     <ClCompile Include="src\engine\Vecteur3D.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\Particule.cpp">
+    <ClCompile Include="src\engine\particule\Particule.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="src\graphic\Mesh.cpp">
@@ -81,46 +81,52 @@
     <ClCompile Include="src\graphic\ParticuleMesh.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\GraviteParticule.cpp">
+    <ClCompile Include="src\engine\particule\force\GraviteParticule.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\RegistreForceParticule.cpp">
+    <ClCompile Include="src\engine\particule\force\RegistreForceParticule.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="src\graphic\LineMesh.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\RessortBungeeParticule.cpp">
+    <ClCompile Include="src\engine\particule\force\RessortBungeeParticule.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\RessortFixeParticule.cpp">
+    <ClCompile Include="src\engine\particule\force\RessortFixeParticule.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\RessortParticule.cpp">
+    <ClCompile Include="src\engine\particule\force\RessortParticule.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\RessortBungeeFixeParticule.cpp">
+    <ClCompile Include="src\engine\particule\force\RessortBungeeFixeParticule.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\ContactParticule.cpp">
+    <ClCompile Include="src\engine\particule\contact\ContactParticule.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\ResolveurContactParticule.cpp">
+    <ClCompile Include="src\engine\particule\contact\ResolveurContactParticule.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\LienParticule.cpp">
+    <ClCompile Include="src\engine\particule\contact\LienParticule.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\CableParticule.cpp">
+    <ClCompile Include="src\engine\particule\contact\CableParticule.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\TigeParticule.cpp">
+    <ClCompile Include="src\engine\particule\contact\TigeParticule.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\GenerateurContactParticuleNaive.cpp">
+    <ClCompile Include="src\engine\particule\contact\GenerateurContactParticuleNaive.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\Particules.cpp">
+    <ClCompile Include="src\engine\particule\Particules.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\particule\contact\ContactParticules.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\particule\contact\GenerateursContactParticule.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -173,7 +179,7 @@
     <ClInclude Include="src\engine\Vecteur3D.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\Particule.h">
+    <ClInclude Include="src\engine\particule\Particule.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="src\graphic\Mesh.h">
@@ -191,52 +197,58 @@
     <ClInclude Include="src\engine\Constant.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\GenerateurForceParticule.h">
+    <ClInclude Include="src\engine\particule\force\GenerateurForceParticule.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\GraviteParticule.h">
+    <ClInclude Include="src\engine\particule\force\GraviteParticule.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\RegistreForceParticule.h">
+    <ClInclude Include="src\engine\particule\force\RegistreForceParticule.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="src\graphic\LineMesh.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\RessortBungeeParticule.h">
+    <ClInclude Include="src\engine\particule\force\RessortBungeeParticule.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\RessortFixeParticule.h">
+    <ClInclude Include="src\engine\particule\force\RessortFixeParticule.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\RessortParticule.h">
+    <ClInclude Include="src\engine\particule\force\RessortParticule.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\RessortBungeeFixeParticule.h">
+    <ClInclude Include="src\engine\particule\force\RessortBungeeFixeParticule.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\GenerateurContactParticule.h">
+    <ClInclude Include="src\engine\particule\contact\GenerateurContactParticule.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\ContactParticule.h">
+    <ClInclude Include="src\engine\particule\contact\ContactParticule.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\ResolveurContactParticule.h">
+    <ClInclude Include="src\engine\particule\contact\ResolveurContactParticule.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\LienParticule.h">
+    <ClInclude Include="src\engine\particule\contact\LienParticule.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\CableParticule.h">
+    <ClInclude Include="src\engine\particule\contact\CableParticule.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\TigeParticule.h">
+    <ClInclude Include="src\engine\particule\contact\TigeParticule.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\GenerateurContactParticuleNaive.h">
+    <ClInclude Include="src\engine\particule\contact\GenerateurContactParticuleNaive.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\Particules.h">
+    <ClInclude Include="src\engine\particule\Particules.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\particule\contact\ContactParticules.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\particule\contact\GenerateursContactParticule.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

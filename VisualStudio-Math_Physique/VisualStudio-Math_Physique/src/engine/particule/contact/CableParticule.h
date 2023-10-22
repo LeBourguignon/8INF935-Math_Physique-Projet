@@ -9,7 +9,7 @@ public:
 	float longueurMax;
 	float restitution;
 
-	unsigned int ajouterContact(ContactParticule* contact, unsigned int limit) const;
+	void ajouterContact(ContactParticules& contacts, unsigned int limit);
 };
 
 #endif
