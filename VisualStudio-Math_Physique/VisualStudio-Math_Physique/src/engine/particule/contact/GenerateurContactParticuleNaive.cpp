@@ -23,7 +23,8 @@ void GenerateurContactParticuleNaive::ajouterContact(ContactParticules& contacts
             if (std::abs(distance.x) <= longueurArete && std::abs(distance.y) <= longueurArete && std::abs(distance.z) <= longueurArete)
             {
                 Particule* particuleArray[2] = { particules[i], particules[j] };
-                contacts.push_back(new ContactParticule(particuleArray, 0.5f, longueurArete - distance.norme(), distance.direction()));
+                float penetration = ((distance.direction() * longueurArete).norme() - distance.norme() + (distance.direction() * longueurArete - distance).norme()) / 2;
+                contacts.push_back(new ContactParticule(particuleArray, 0.5f, penetration, distance.direction()));
             }
         }
     }

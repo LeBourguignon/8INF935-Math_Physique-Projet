@@ -9,8 +9,8 @@ Model::Model()
 	this->generateurContactParticuleNaive = new GenerateurContactParticuleNaive(this->particules, 0.2f);
 	generateursContact.push_back(this->generateurContactParticuleNaive);
 
-	this->ajouterParticule(new Particule(Vecteur3D(-10, 0, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 1), Vecteur3D(1, 0, 0));
-	this->ajouterParticule(new Particule(Vecteur3D(10, 0, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 1), Vecteur3D(-1, 0, 0));
+	this->ajouterParticule(new Particule(Vecteur3D(-1, -1, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 1), Vecteur3D(0.1, 0.1, 0));
+	this->ajouterParticule(new Particule(Vecteur3D(1, 1, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 1), Vecteur3D(-0.1, -0.1, 0));
 }
 
 
