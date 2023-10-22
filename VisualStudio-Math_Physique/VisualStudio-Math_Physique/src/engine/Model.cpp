@@ -2,6 +2,7 @@
 
 #include "particule/force/GraviteParticule.h"
 #include "particule/contact/ResolveurContactParticule.h"
+#include "Constant.h"
 
 Model::Model()
 {
@@ -36,7 +37,7 @@ void Model::actualiser(float duration)
 
 	// Génerer les contacts
 	ContactParticules contactParticules;
-	this->generateursContact.ajouterContact(contactParticules, 100);
+	this->generateursContact.ajouterContact(contactParticules, Constant::limiteCollision);
 
 	// Résoudre les contacts
 	ResolveurContactParticule resolveurContact;

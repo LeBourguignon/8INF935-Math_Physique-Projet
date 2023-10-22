@@ -7,6 +7,9 @@ namespace Constant {
 
 	// "Masse infinie" = 0
 	const double masseInfinie = 0;
+
+	// Limite de collision pouvant etre generee
+	const unsigned int limiteCollision = 30;
 }
 
 #endif

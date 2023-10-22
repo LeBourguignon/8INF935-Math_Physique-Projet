@@ -11,7 +11,7 @@ void ContactParticule::resoudreVelocite()
 void ContactParticule::resoudreInterpenetration()
 {
 	this->particules[0]->position = this->particules[0]->position + (contactNormal * (penetration * this->particules[0]->inverseMasse / (this->particules[0]->inverseMasse + this->particules[1]->inverseMasse)));
-	this->particules[1]->position = this->particules[1]->position + (contactNormal * (penetration * this->particules[1]->inverseMasse / (this->particules[0]->inverseMasse + this->particules[1]->inverseMasse)));
+	this->particules[1]->position = this->particules[1]->position - (contactNormal * (penetration * this->particules[1]->inverseMasse / (this->particules[0]->inverseMasse + this->particules[1]->inverseMasse)));
 }
 
 ContactParticule::ContactParticule(Particule* particules[2], float restitution, float penetration, Vecteur3D contactNormal)
