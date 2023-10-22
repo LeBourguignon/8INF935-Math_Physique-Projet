@@ -1,6 +1,8 @@
 #include "Model.h"
 
 #include "particule/force/GraviteParticule.h"
+#include "particule/force/RessortBungeeParticule.h"
+#include "particule/force/RessortFixeParticule.h"
 #include "particule/contact/ResolveurContactParticule.h"
 #include "Constant.h"
 
@@ -50,6 +52,32 @@ void Model::startDemo1()
 	this->ajouterParticule(new Particule(Vecteur3D(10, -10, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 10), Vecteur3D(-10, 10, 0));
 	this->ajouterParticule(new Particule(Vecteur3D(10, 10, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 10), Vecteur3D(-10, -10, 0));
 	this->ajouterParticule(new Particule(Vecteur3D(-10, 10, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 10), Vecteur3D(10, -10, 0));*/
+}
+
+void Model::startDemo2()
+{
+	this->reinitialisation();
+
+	Particule* particule1 = new Particule(Vecteur3D(-1, 0, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 5);
+	Particule* particule2 = new Particule(Vecteur3D(1, 0, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 5);
+	this->ajouterParticule(particule1, Vecteur3D(-5, 0, 0));
+	this->ajouterParticule(particule2, Vecteur3D(5, 0, 0));
+	this->registreForceParticule.ajouterForceParticule(particule1, new RessortBungeeParticule(100, 5, particule2));
+	this->registreForceParticule.ajouterForceParticule(particule2, new RessortBungeeParticule(100, 5, particule1));
+}
+
+void Model::startDemo3()
+{
+	this->reinitialisation();
+
+	Particule* particule1 = new Particule(Vecteur3D(1, 0, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 1);
+	Particule* particule2 = new Particule(Vecteur3D(1, 1, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 2);
+	this->ajouterParticule(particule1, Vecteur3D(1, 0, 0));
+	this->ajouterParticule(particule2, Vecteur3D(1, 0, 0));
+	RessortFixeParticule* ressort1 = new RessortFixeParticule(20, 2, Vecteur3D(0, 0, 0));
+	RessortFixeParticule* ressort2 = new RessortFixeParticule(20, 2, Vecteur3D(0, 1, 0));
+	this->registreForceParticule.ajouterForceParticule(particule1, ressort1);
+	this->registreForceParticule.ajouterForceParticule(particule2, ressort2);
 }
 
 

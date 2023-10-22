@@ -26,9 +26,13 @@ public:
 	void ajouterParticule(Particule* particule, Vecteur3D gravite);
 	// Réinitialisation du model (Suppression de toutes les particules, des forces et des générateurs)
 	void reinitialisation();
-	
+
 	// Démo 1
 	void startDemo1();
+	// Démo 2
+	void startDemo2();
+	// Démo 3
+	void startDemo3();
 
 	// Actualisation du model d'un dt
 	void actualiser(float duration);

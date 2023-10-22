@@ -187,6 +187,16 @@ void Graphic::updateWindow(float deltaFrameTime, float deltaUpdateTime)
 			model->startDemo1();
 		}
 
+		if (ImGui::Button("Lancer la Demo 2"))
+		{
+			model->startDemo2();
+		}
+
+		if (ImGui::Button("Lancer la Demo 3"))
+		{
+			model->startDemo3();
+		}
+
 		ImGui::End();
 	}
 
