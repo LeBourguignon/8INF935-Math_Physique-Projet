@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="src\engine\particule\contact\GenerateursContactParticule.cpp" />
     <ClCompile Include="src\engine\particule\contact\ContactParticules.cpp" />
+    <ClCompile Include="src\engine\particule\force\FlottabiliteParticule.cpp" />
     <ClCompile Include="src\engine\particule\Particules.cpp" />
     <ClCompile Include="src\engine\particule\contact\GenerateurContactParticuleNaive.cpp" />
     <ClCompile Include="src\engine\particule\contact\CableParticule.cpp" />
@@ -182,6 +183,7 @@
   <ItemGroup>
     <ClInclude Include="src\engine\particule\contact\GenerateursContactParticule.h" />
     <ClInclude Include="src\engine\particule\contact\ContactParticules.h" />
+    <ClInclude Include="src\engine\particule\force\FlottabiliteParticule.h" />
     <ClInclude Include="src\engine\particule\Particules.h" />
     <ClInclude Include="src\engine\particule\contact\GenerateurContactParticuleNaive.h" />
     <ClInclude Include="src\engine\particule\contact\CableParticule.h" />

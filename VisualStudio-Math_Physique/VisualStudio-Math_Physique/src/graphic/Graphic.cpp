@@ -91,7 +91,7 @@ Graphic::Graphic(Model* model)
 	glEnable(GL_DEPTH_TEST);
 
 	// Creates camera object
-	camera = Camera(width, height, glm::vec3(0.0f, 0.0f, 2.0f));
+	camera = Camera(width, height, glm::vec3(0.0f, 0.0f, 10.0f));
 
 	// Initialize ImGUI
 	IMGUI_CHECKVERSION();
@@ -182,17 +182,23 @@ void Graphic::updateWindow(float deltaFrameTime, float deltaUpdateTime)
 	{
 		ImGui::Begin("Demo Window", &show_demo_window);
 
-		if (ImGui::Button("Lancer la Demo 1"))
+		ImGui::SeparatorText("Demo 1");
+		ImGui::Text("Deux particules avec deux gravites opposee\nsur le meme axe");
+		if (ImGui::Button("Lancer"))
 		{
 			model->startDemo1();
 		}
 
-		if (ImGui::Button("Lancer la Demo 2"))
+		ImGui::SeparatorText("Demo 2");
+		ImGui::Text("");
+		if (ImGui::Button("Lancer"))
 		{
 			model->startDemo2();
 		}
 
-		if (ImGui::Button("Lancer la Demo 3"))
+		ImGui::SeparatorText("Demo 3");
+		ImGui::Text("");
+		if (ImGui::Button("Lancer"))
 		{
 			model->startDemo3();
 		}
