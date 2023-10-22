@@ -42,4 +42,7 @@ void Model::actualiser(float duration)
 	// Résoudre les contacts
 	ResolveurContactParticule resolveurContact;
 	resolveurContact.resoudreContact(contactParticules, duration);
+
+	// Suppression des contacts
+	contactParticules.deleteContactParticules();
 }

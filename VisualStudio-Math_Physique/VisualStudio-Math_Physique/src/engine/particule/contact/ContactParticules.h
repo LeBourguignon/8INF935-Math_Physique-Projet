@@ -6,7 +6,10 @@
 
 class ContactParticules : public std::vector<ContactParticule*>
 {
+public:
 	void resoudre(float duration);
+
+	void deleteContactParticules();
 };
 
 #endif

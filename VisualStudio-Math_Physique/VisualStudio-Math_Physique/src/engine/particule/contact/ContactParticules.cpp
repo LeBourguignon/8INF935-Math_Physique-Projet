@@ -7,3 +7,11 @@ void ContactParticules::resoudre(float duration)
 		contactParticule->resoudre(duration);
 	}
 }
+
+void ContactParticules::deleteContactParticules()
+{
+	for (auto contactParticule : *this)
+	{
+		delete contactParticule;
+	}
+}
