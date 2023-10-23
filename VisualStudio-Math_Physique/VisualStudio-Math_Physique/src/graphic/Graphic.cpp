@@ -210,6 +210,20 @@ void Graphic::updateWindow(float deltaFrameTime, float deltaUpdateTime)
 			model->startDemo4();
 		}
 
+		ImGui::SeparatorText("Demo 5");
+		ImGui::Text("Modelisation d'un pendule simple :\nparticule de masse finie soumise a la\ngravite et fixee a une particule de masse\ninfinie par une tige");
+		if (ImGui::Button("Lancer demo 5"))
+		{
+			model->startDemo5();
+		}
+
+		ImGui::SeparatorText("Demo 6");
+		ImGui::Text("Une particule de masse infinie\net de vitesse non nulle reliee a deux autres\nparticules de masse finie");
+		if (ImGui::Button("Lancer demo 6"))
+		{
+			model->startDemo6();
+		}
+
 		ImGui::End();
 	}
 

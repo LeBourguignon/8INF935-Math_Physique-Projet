@@ -5,6 +5,7 @@
 #include "particule/force/RessortFixeParticule.h"
 #include "particule/contact/ResolveurContactParticule.h"
 #include "particule/contact/CableParticule.h"
+#include "particule/contact/TigeParticule.h"
 #include "Constant.h"
 
 Model::Model()
@@ -95,6 +96,37 @@ void Model::startDemo4()
 	this->ajouterParticule(particule3, Vecteur3D(0, 0, 0));
 	CableParticule* cable12 = new CableParticule(particules12, 3, 0);
 	CableParticule* cable23 = new CableParticule(particules23, 3, 0);
+	generateursContact.push_back(cable12);
+	generateursContact.push_back(cable23);
+}
+
+void Model::startDemo5()
+{
+	this->reinitialisation();
+
+	Particule* particule1 = new Particule(Vecteur3D(0, 2, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 0);
+	Particule* particule2 = new Particule(Vecteur3D(2, 2, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 1);
+	Particule* particules12[2] = { particule1, particule2 };
+	this->ajouterParticule(particule1, Vecteur3D(0, 0, 0));
+	this->ajouterParticule(particule2, Vecteur3D(0, -1, 0));
+	TigeParticule* tige12 = new TigeParticule(particules12, 2);
+	generateursContact.push_back(tige12);
+}
+
+void Model::startDemo6()
+{
+	this->reinitialisation();
+
+	Particule* particule1 = new Particule(Vecteur3D(0, 0, 0), Vecteur3D(4, 0, 0), Vecteur3D(0, 0, 0), 0);
+	Particule* particule2 = new Particule(Vecteur3D(-1, 1, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 2);
+	Particule* particule3 = new Particule(Vecteur3D(-1, -1, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 2);
+	Particule* particules12[2] = { particule1, particule2 };
+	Particule* particules13[2] = { particule1, particule3 };
+	this->ajouterParticule(particule1, Vecteur3D(0, 0, 0));
+	this->ajouterParticule(particule2, Vecteur3D(0, 0, 0));
+	this->ajouterParticule(particule3, Vecteur3D(0, 0, 0));
+	CableParticule* cable12 = new CableParticule(particules12, 4, 0);
+	CableParticule* cable23 = new CableParticule(particules13, 4, 0);
 	generateursContact.push_back(cable12);
 	generateursContact.push_back(cable23);
 }
