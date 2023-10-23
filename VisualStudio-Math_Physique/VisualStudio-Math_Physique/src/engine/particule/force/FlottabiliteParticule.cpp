@@ -3,22 +3,25 @@
 #include "../Particule.h"
 
 
-FlottabiliteParticule::FlottabiliteParticule(double profondeurMaxObjet, double volumeObjet, double niveauLiquide, double densiteLiquide){
-    this->profondeurMaxObjet = profondeurMaxObjet;
+FlottabiliteParticule::FlottabiliteParticule(double hauteurObjet, double volumeObjet, double niveauLiquide, double densiteLiquide){
+    this->hauteurObjet = hauteurObjet;
     this->volumeObjet = volumeObjet;
     this->niveauLiquide = niveauLiquide;
     this->densiteLiquide = densiteLiquide;
 }
 
-void FlottabiliteParticule::ActualiserForce(Particule* p, float duration){
-    double d = (p->position.y - this->niveauLiquide - this->profondeurMaxObjet) / (2 * this->profondeurMaxObjet);
+void FlottabiliteParticule::actualiserForce(Particule* particule, float duration){
+    double d = -(particule->position.y - this->niveauLiquide - this->hauteurObjet) / (2 * this->hauteurObjet);
     Vecteur3D force = Vecteur3D();
-    if (d <= 0){
+    if (d <= 0)
+    {
         force.y = 0;
-    }else if (d >= 1){
+    }else if (d >= 1)
+    {
         force.y = this->volumeObjet * this->densiteLiquide;
-    }else{
+    }else
+    {
         force.y = d * this->volumeObjet * this->densiteLiquide;
     }
-    p->acceleration = p->acceleration + force * p->inverseMasse;
+    particule->force = particule->force + force;
 }

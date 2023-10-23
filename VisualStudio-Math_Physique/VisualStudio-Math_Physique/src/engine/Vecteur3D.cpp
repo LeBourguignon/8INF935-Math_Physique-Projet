@@ -23,6 +23,9 @@ double Vecteur3D::norme()
 
 Vecteur3D Vecteur3D::direction() 
 {
+    double norme = this->norme();
+    if (norme == 0)
+        return Vecteur3D();
     return *this / this->norme();
 }
 

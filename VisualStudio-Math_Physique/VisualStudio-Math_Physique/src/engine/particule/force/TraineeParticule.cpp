@@ -7,10 +7,8 @@ TraineeParticule::TraineeParticule(double k1, double k2)
 
 void TraineeParticule::actualiserForce(Particule* particule, float duration)
 {
-	// forceTrainee = - P.direction * ( k1 * P.norme + k2 * P.norme * P.norme)
-	Vecteur3D ForceTrainee = -particule->velocite.direction() * (k1 * particule->velocite.norme() + k2 * particule->velocite.norme() * particule->velocite.norme());
-	particule->force = particule->force + ForceTrainee;
-	
+	Vecteur3D forceTrainee = -particule->velocite.direction() * (k1 * particule->velocite.norme() + k2 * particule->velocite.norme() * particule->velocite.norme());
+	particule->force = particule->force + forceTrainee;
 }
 
 

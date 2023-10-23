@@ -7,13 +7,14 @@
 class FlottabiliteParticule : public GenerateurForceParticule
 {
 private:
-	double profondeurMaxObjet;
+	double hauteurObjet;
 	double volumeObjet;
 	double niveauLiquide;
 	double densiteLiquide;
+
 public:
-	FlottabiliteParticule(double profondeurMaxObjet, double volumeObjet, double niveauLiquide, double densiteLiquide);
-	void ActualiserForce(Particule* p, float duration);
+	FlottabiliteParticule(double hauteurObjet, double volumeObjet, double niveauLiquide, double densiteLiquide);
+	void actualiserForce(Particule* particule, float duration);
 };
 
 #endif

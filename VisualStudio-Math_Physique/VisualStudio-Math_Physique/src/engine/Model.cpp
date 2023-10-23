@@ -7,6 +7,8 @@
 #include "particule/contact/CableParticule.h"
 #include "particule/contact/TigeParticule.h"
 #include "Constant.h"
+#include "particule/force/TraineeParticule.h"
+#include "particule/force/FlottabiliteParticule.h"
 
 Model::Model()
 {
@@ -49,11 +51,6 @@ void Model::startDemo1()
 
 	this->ajouterParticule(new Particule(Vecteur3D(-10, 0, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 10), Vecteur3D(10, 0, 0));
 	this->ajouterParticule(new Particule(Vecteur3D(10, 0, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 10), Vecteur3D(-10, 0, 0));
-
-	/*this->ajouterParticule(new Particule(Vecteur3D(-10, -10, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 10), Vecteur3D(10, 10, 0));
-	this->ajouterParticule(new Particule(Vecteur3D(10, -10, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 10), Vecteur3D(-10, 10, 0));
-	this->ajouterParticule(new Particule(Vecteur3D(10, 10, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 10), Vecteur3D(-10, -10, 0));
-	this->ajouterParticule(new Particule(Vecteur3D(-10, 10, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 10), Vecteur3D(10, -10, 0));*/
 }
 
 void Model::startDemo2()
@@ -129,6 +126,35 @@ void Model::startDemo6()
 	CableParticule* cable23 = new CableParticule(particules13, 4, 0);
 	generateursContact.push_back(cable12);
 	generateursContact.push_back(cable23);
+}
+
+void Model::startDemo7()
+{
+	this->reinitialisation();
+
+	Particule* particule1 = new Particule(Vecteur3D(-10, 1, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 1);
+	Particule* particule2 = new Particule(Vecteur3D(-10, -1, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 1);
+	this->ajouterParticule(particule1, Vecteur3D(1, 0, 0));
+	this->ajouterParticule(particule2, Vecteur3D(1, 0, 0));
+	this->registreForceParticule.ajouterForceParticule(particule1, new TraineeParticule(0.01, 0.1));
+}
+
+void Model::startDemo8()
+{
+	this->reinitialisation();
+
+	Particule* particule1 = new Particule(Vecteur3D(1, 1, 1), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 0.008);
+	Particule* particule2 = new Particule(Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 0.008);
+	Particule* particule3 = new Particule(Vecteur3D(-1, -1, -1), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 0.008);
+	this->ajouterParticule(particule1, Vecteur3D(0, -10, 0));
+	this->ajouterParticule(particule2, Vecteur3D(0, -10, 0));
+	this->ajouterParticule(particule3, Vecteur3D(0, -10, 0));
+	this->registreForceParticule.ajouterForceParticule(particule1, new FlottabiliteParticule(0.2, 0.008, -5, 20));
+	this->registreForceParticule.ajouterForceParticule(particule1, new TraineeParticule(0.001, 0.01));
+	this->registreForceParticule.ajouterForceParticule(particule2, new FlottabiliteParticule(0.2, 0.008, -5, 20));
+	this->registreForceParticule.ajouterForceParticule(particule2, new TraineeParticule(0.001, 0.01));
+	this->registreForceParticule.ajouterForceParticule(particule3, new FlottabiliteParticule(0.2, 0.008, -5, 20));
+	this->registreForceParticule.ajouterForceParticule(particule3, new TraineeParticule(0.001, 0.01));
 }
 
 

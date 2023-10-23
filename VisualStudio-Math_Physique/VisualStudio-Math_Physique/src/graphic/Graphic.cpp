@@ -39,10 +39,10 @@ Graphic::Graphic(Model* model)
 	// Vertices coordinates
 	Vertex verticesFloor[] =
 	{ //			COORDINATES					/				COLORS				//
-		Vertex{glm::vec3(-10.0f, -1.0f,  10.0f),	glm::vec3(0.13f, 0.13f, 0.13f)},
-		Vertex{glm::vec3(-10.0f, -1.0f, -10.0f),	glm::vec3(0.13f, 0.13f, 0.13f)},
-		Vertex{glm::vec3(10.0f, -1.0f, -10.0f),		glm::vec3(0.13f, 0.13f, 0.13f)},
-		Vertex{glm::vec3(10.0f, -1.0f,  10.0f),		glm::vec3(0.13f, 0.13f, 0.13f)}
+		Vertex{glm::vec3(-10.0f, -5.0f,  10.0f),	glm::vec3(0.13f, 0.13f, 0.13f)},
+		Vertex{glm::vec3(-10.0f, -5.0f, -10.0f),	glm::vec3(0.13f, 0.13f, 0.13f)},
+		Vertex{glm::vec3(10.0f, -5.0f, -10.0f),		glm::vec3(0.13f, 0.13f, 0.13f)},
+		Vertex{glm::vec3(10.0f, -5.0f,  10.0f),		glm::vec3(0.13f, 0.13f, 0.13f)}
 	};
 
 	// Indices for vertices order
@@ -218,10 +218,24 @@ void Graphic::updateWindow(float deltaFrameTime, float deltaUpdateTime)
 		}
 
 		ImGui::SeparatorText("Demo 6");
-		ImGui::Text("Une particule de masse infinie\net de vitesse non nulle reliee a deux autres\nparticules de masse finie");
+		ImGui::Text("Une particule de masse infinie\net de vitesse non nulle reliee a deux\nautres particules de masse finie");
 		if (ImGui::Button("Lancer demo 6"))
 		{
 			model->startDemo6();
+		}
+
+		ImGui::SeparatorText("Demo 7");
+		ImGui::Text("Deux particules au meme poids\nsoumis a la meme gravite mais celle du\ndessus a des frottements");
+		if (ImGui::Button("Lancer demo 7"))
+		{
+			model->startDemo7();
+		}
+
+		ImGui::SeparatorText("Demo 8");
+		ImGui::Text("Trois particules qui tombe dans un\nliquide lui permettant de flotter\navec des frottements");
+		if (ImGui::Button("Lancer demo 8"))
+		{
+			model->startDemo8();
 		}
 
 		ImGui::End();

@@ -53,7 +53,7 @@ double Particule::getMass()
     if (this->inverseMasse == 0)    // inverseMasse = 0   ->   masseInfinie = 0
     {
         // Message d'erreur
-        std::cout << "Attention : Masse infini" << std::endl;
+        // std::cout << "Attention : Masse infini" << std::endl;
         return Constant::masseInfinie;
     }
     else
