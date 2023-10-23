@@ -33,6 +33,8 @@ public:
 	void startDemo2();
 	// Démo 3
 	void startDemo3();
+	// Démo 4
+	void startDemo4();
 
 	// Actualisation du model d'un dt
 	void actualiser(float duration);

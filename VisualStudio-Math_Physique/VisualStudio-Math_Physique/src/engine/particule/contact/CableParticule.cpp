@@ -11,6 +11,6 @@ void CableParticule::ajouterContact(ContactParticules& contacts, unsigned int li
 {
 	if (contacts.size() < limit && longueurActuelle() > longueurMax)
 	{
-		contacts.push_back(new ContactParticule(particules, restitution, longueurActuelle() - longueurMax, (particules[0]->position - particules[1]->position).direction()));
+		contacts.push_back(new ContactParticule(particules, restitution, longueurActuelle() - longueurMax, (particules[1]->position - particules[0]->position).direction()));
 	}
 }

@@ -184,23 +184,30 @@ void Graphic::updateWindow(float deltaFrameTime, float deltaUpdateTime)
 
 		ImGui::SeparatorText("Demo 1");
 		ImGui::Text("Deux particules avec deux gravites opposee\nsur le meme axe");
-		if (ImGui::Button("Lancer"))
+		if (ImGui::Button("Lancer demo 1"))
 		{
 			model->startDemo1();
 		}
 
 		ImGui::SeparatorText("Demo 2");
-		ImGui::Text("");
-		if (ImGui::Button("Lancer"))
+		ImGui::Text("Deux particules avec gravite opposee (les\neloignant) reliees par un ressort\nde type bungee");
+		if (ImGui::Button("Lancer demo 2"))
 		{
 			model->startDemo2();
 		}
 
 		ImGui::SeparatorText("Demo 3");
-		ImGui::Text("");
-		if (ImGui::Button("Lancer"))
+		ImGui::Text("Deux particules de meme gravite reliees a\nl'axe y par des ressorts identiques\nla particule du haut est deux fois plus\nmassive que celle du bas");
+		if (ImGui::Button("Lancer demo 3"))
 		{
 			model->startDemo3();
+		}
+
+		ImGui::SeparatorText("Demo 4");
+		ImGui::Text("Trois particules de meme masse (sans\ngravite). Celle de droite a une vitesse\ninitiale non nulle, celle du milieu est\nreliee aux autres par un cable");
+		if (ImGui::Button("Lancer demo 4"))
+		{
+			model->startDemo4();
 		}
 
 		ImGui::End();
