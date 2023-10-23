@@ -9,7 +9,8 @@ void RessortBungeeFixeParticule::actualiserForce(Particule* particule, float dur
 {
     Vecteur3D distance = particule->position - this->attache;
 
-    if (distance.norme() > this->l0){
+    if (distance.norme() > this->l0)
+    {
         Vecteur3D force = distance.direction() * (-this->k * (distance.norme() - this->l0));
         particule->force = particule->force + force;
     }

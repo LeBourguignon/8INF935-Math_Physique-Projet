@@ -8,7 +8,7 @@ class LienParticule : public GenerateurContactParticule
 public:
 	Particule* particules[2];
 
-	float longueurActuelle() const; //retourne la longueur entre P0 et P1
+	float longueurActuelle() const;
 
 	void ajouterContact(ContactParticules& contacts, unsigned int limit) = 0;
 };
