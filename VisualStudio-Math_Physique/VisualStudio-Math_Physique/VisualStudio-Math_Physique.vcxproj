@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\engine\Quaternion.cpp" />
     <ClCompile Include="src\engine\particule\contact\GenerateursContactParticule.cpp" />
     <ClCompile Include="src\engine\particule\contact\ContactParticules.cpp" />
     <ClCompile Include="src\engine\particule\force\FlottabiliteParticule.cpp" />
@@ -181,6 +182,7 @@
     <ClCompile Include="src\engine\particule\force\TraineeParticule.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\engine\Quaternion.h" />
     <ClInclude Include="src\engine\particule\contact\GenerateursContactParticule.h" />
     <ClInclude Include="src\engine\particule\contact\ContactParticules.h" />
     <ClInclude Include="src\engine\particule\force\FlottabiliteParticule.h" />
