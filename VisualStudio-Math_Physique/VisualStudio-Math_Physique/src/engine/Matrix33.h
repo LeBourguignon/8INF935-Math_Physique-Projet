@@ -28,7 +28,7 @@ public:
     // TODO : Transpose
     // Matrix33 transpose();
 
-    // TODO :
+    // TODO : Faut plutot faire un contructeur
     // void setOrientation(Quaternion);
 };
 

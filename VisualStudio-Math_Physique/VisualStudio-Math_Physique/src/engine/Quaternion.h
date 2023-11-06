@@ -6,9 +6,9 @@
 class Quaternion
 {
 public:
-	double w, i, j, k;
+	double w, x, y, z;
 
-	Quaternion(double w, double i, double j, double k);
+	Quaternion(double w, double x, double y, double z);
 	Quaternion(Vecteur3D vecteur, double angle);
 
 	void normalise();

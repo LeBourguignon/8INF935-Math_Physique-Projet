@@ -1,7 +1,7 @@
 #include "Quaternion.h"
 
-Quaternion::Quaternion(double w, double i, double j, double k)
-	: w(w), i(i), j(j), k(k)
+Quaternion::Quaternion(double w, double x, double y, double z)
+	: w(w), x(x), y(y), z(z)
 {
 	this->normalise();
 }
@@ -14,15 +14,15 @@ Quaternion::Quaternion(Vecteur3D vecteur, double angle)
 
 void Quaternion::normalise()
 {
-	double magnitude = sqrt(w * w + i * i + j * j + k * k);
+	double magnitude = sqrt(w * w + x * x + y * y + z * z);
 
 	if (magnitude == 0)
 		return;
 
 	this->w /= magnitude;
-	this->i /= magnitude;
-	this->j /= magnitude;
-	this->k /= magnitude;
+	this->x /= magnitude;
+	this->y /= magnitude;
+	this->z /= magnitude;
 }
 
 
@@ -30,9 +30,9 @@ Quaternion Quaternion::operator+(const double value)
 {
 	return Quaternion(
 		this->w + value,
-		this->i + value,
-		this->j + value,
-		this->k + value
+		this->x + value,
+		this->y + value,
+		this->z + value
 	);
 }
 
@@ -40,9 +40,9 @@ Quaternion Quaternion::operator*(const double value)
 {
 	return Quaternion(
 		this->w * value,
-		this->i * value,
-		this->j * value,
-		this->k * value
+		this->x * value,
+		this->y * value,
+		this->z * value
 	);
 }
 
@@ -51,9 +51,9 @@ Quaternion Quaternion::operator+(const Quaternion& other)
 {
 	return Quaternion(
 		this->w + other.w,
-		this->i + other.i,
-		this->j + other.j,
-		this->k + other.k
+		this->x + other.x,
+		this->y + other.y,
+		this->z + other.z
 	);
 }
 
@@ -61,19 +61,19 @@ Quaternion Quaternion::operator-(const Quaternion& other)
 {
 	return Quaternion(
 		this->w - other.w,
-		this->i - other.i,
-		this->j - other.j,
-		this->k - other.k
+		this->x - other.x,
+		this->y - other.y,
+		this->z - other.z
 	);
 }
 
 Quaternion Quaternion::operator*(const Quaternion& other)
 {
 	return Quaternion(
-		this->w * other.w - this->i * other.i - this->j * other.j - this->k * other.k,
-		this->w * other.i + this->i * other.w + this->j * other.k - this->k * other.j,
-		this->w * other.j + this->j * other.w + this->k * other.i - this->i * other.k,
-		this->w * other.k + this->k * other.w + this->i * other.j - this->j * other.i
+		this->w * other.w - this->x * other.x - this->y * other.y - this->z * other.z,
+		this->w * other.x + this->x * other.w + this->y * other.z - this->z * other.y,
+		this->w * other.y + this->y * other.w + this->z * other.x - this->x * other.z,
+		this->w * other.z + this->z * other.w + this->x * other.y - this->y * other.x
 	);
 }
 
