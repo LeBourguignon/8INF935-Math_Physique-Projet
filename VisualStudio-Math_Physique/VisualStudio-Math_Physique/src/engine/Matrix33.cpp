@@ -7,6 +7,18 @@ Matrix33::Matrix33(){
 Matrix33::Matrix33(std::array<std::array<double, 3>, 3> values){
     this->values = values;
 }
+Matrix33::Matrix33(Quaternion quat){
+    this->values = std::array<std::array<double, 3>, 3>();
+    this->values[0][0] = 1 - (2*quat.y*quat.y + 2*quat.z*quat.z);
+    this->values[0][1] = 2*quat.x*quat.y + 2*quat.z*quat.w;
+    this->values[0][2] = 2*quat.x*quat.z - 2*quat.y*quat.w;
+    this->values[1][0] = 2*quat.x*quat.y - 2*quat.z*quat.w;
+    this->values[1][1] = 1 - (2*quat.x*quat.x + 2*quat.z*quat.z);
+    this->values[1][2] = 2*quat.y*quat.z + 2*quat.x*quat.w;
+    this->values[2][0] = 2*quat.x*quat.z + 2*quat.y*quat.w;
+    this->values[2][1] = 2*quat.y*quat.z - 2*quat.x*quat.w;
+    this->values[2][2] = 1 - (2*quat.x*quat.x + 2*quat.y*quat.y);
+}
 
 Matrix33 Matrix33::operator+(Matrix33 other){
     std::array<std::array<double, 3>, 3> ret = std::array<std::array<double, 3>, 3>();
@@ -58,6 +70,12 @@ Matrix33 Matrix33::operator*(double x){
     return Matrix33(ret);
 }
 
+Vecteur3D Matrix33::operator*(Vecteur3D v){
+    return Vecteur3D(this->values[0][0]*v.x + this->values[0][1]*v.y + this->values[0][2]*v.z,
+                        this->values[1][0]*v.x + this->values[1][1]*v.y + this->values[1][2]*v.z,
+                        this->values[2][0]*v.x + this->values[2][1]*v.y + this->values[2][2]*v.z);
+}
+
 Matrix33 Matrix33::operator/(double x){
     std::array<std::array<double, 3>, 3> ret = std::array<std::array<double, 3>, 3>();
     for (int i=0 ; i<3 ; i+=1){
@@ -103,4 +121,14 @@ Matrix33 Matrix33::inverse(){
     ret[2][1] = b*g - a*h;
     ret[2][2] = a*e - b*d;
     return Matrix33(ret)/det;
+}
+
+Matrix33 Matrix33::transpose(){
+    Matrix33 ret = Matrix33();
+    for (int i=0 ; i<3 ; i+=1){
+        for (int j=0 ; j<3 ; j+=1){
+            ret.values[i][j] = this->values[j][i];
+        }
+    }
+    return ret;
 }

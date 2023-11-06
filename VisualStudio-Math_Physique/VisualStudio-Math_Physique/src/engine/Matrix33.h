@@ -11,25 +11,19 @@ public:
 
     Matrix33();
     Matrix33(std::array<std::array<double, 3>, 3> values);
+    Matrix33(Quaternion quat);
 
     Matrix33 operator+(Matrix33);
     Matrix33 operator-(Matrix33);
     Matrix33 operator-();
     Matrix33 operator*(Matrix33);
     Matrix33 operator*(double);
+    Vecteur3D operator*(Vecteur3D);
     Matrix33 operator/(double);
-
-    // TODO : Trasnform vector -> V=M*V
-    // Vecteur3D operator*(Vecteur3D);
 
     double determinant();
     Matrix33 inverse();
-
-    // TODO : Transpose
-    // Matrix33 transpose();
-
-    // TODO : Faut plutot faire un contructeur
-    // void setOrientation(Quaternion);
+    Matrix33 transpose();
 };
 
 #endif
