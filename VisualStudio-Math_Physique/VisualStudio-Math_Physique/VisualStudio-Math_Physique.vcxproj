@@ -139,6 +139,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\engine\corps\CorpsRigide.cpp" />
+    <ClCompile Include="src\engine\Matrix34.cpp" />
+    <ClCompile Include="src\engine\Matrix33.cpp" />
     <ClCompile Include="src\engine\Quaternion.cpp" />
     <ClCompile Include="src\engine\particule\contact\GenerateursContactParticule.cpp" />
     <ClCompile Include="src\engine\particule\contact\ContactParticules.cpp" />
@@ -182,6 +185,9 @@
     <ClCompile Include="src\engine\particule\force\TraineeParticule.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\engine\corps\CorpsRigide.h" />
+    <ClInclude Include="src\engine\Matrix34.h" />
+    <ClInclude Include="src\engine\Matrix33.h" />
     <ClInclude Include="src\engine\Quaternion.h" />
     <ClInclude Include="src\engine\particule\contact\GenerateursContactParticule.h" />
     <ClInclude Include="src\engine\particule\contact\ContactParticules.h" />
