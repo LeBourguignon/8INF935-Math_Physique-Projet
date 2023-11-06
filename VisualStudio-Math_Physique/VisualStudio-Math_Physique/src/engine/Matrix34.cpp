@@ -1,6 +1,5 @@
 #include "Matrix34.h"
 #include "Matrix33.h"
-#include "Vecteur3D.h"
 #include <iostream>
 
 #define ligne 3
@@ -56,6 +55,7 @@ Matrix34 Matrix34::operator-()
 }
 
 Matrix34 Matrix34::operator*(Matrix34 other)
+//multiplication de matrice 4x4, dont la dernière ligne de chaque matrice est 0001
 {/*
     std::array<std::array<double, colonne>, ligne> ret = std::array<std::array<double, colonne>, ligne>();
     for (int i = 0; i < ligne; i += 1) {
@@ -66,6 +66,15 @@ Matrix34 Matrix34::operator*(Matrix34 other)
     return Matrix34(ret);
  */
 }
+
+Vecteur3D Matrix34::operator*(Vecteur3D v)
+{
+    return Vecteur3D(
+        this->values[0][0] * v.x + this->values[0][1] * v.y + this->values[0][2] * v.z + this->values[0][3],
+        this->values[1][0] * v.x + this->values[1][1] * v.y + this->values[1][2] * v.z + this->values[1][3],
+        this->values[2][0] * v.x + this->values[2][1] * v.y + this->values[2][2] * v.z + this->values[2][3]);
+}
+
 
 Matrix34 Matrix34::operator*(double x)
 {
