@@ -1,5 +1,10 @@
 #include "Quaternion.h"
 
+Quaternion::Quaternion()
+	: Quaternion(1, 0, 0, 0)
+{
+}
+
 Quaternion::Quaternion(double w, double x, double y, double z)
 	: w(w), x(x), y(y), z(z)
 {
