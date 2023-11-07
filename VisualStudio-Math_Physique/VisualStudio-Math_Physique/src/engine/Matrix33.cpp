@@ -132,3 +132,12 @@ Matrix33 Matrix33::transpose(){
     }
     return ret;
 }
+
+void Matrix33::setOrientation(const Quaternion quat){
+    std::array<std::array<double, 3>, 3> new_values = std::array<std::array<double, 3>, 3>();
+    Matrix33 other = Matrix33(quat);
+    Matrix33 new_mat = other * *this * other.inverse();
+    this->values = new_mat.values;
+}
+
+

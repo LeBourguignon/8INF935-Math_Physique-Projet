@@ -14,8 +14,8 @@ public:
 
 	void normalise();
 
-	Quaternion operator+(const double value);
-	Quaternion operator*(const double value);
+	// Quaternion operator+(const double value);
+	// Quaternion operator*(const double value);
 
 	Quaternion operator+(const Quaternion& other);
 	Quaternion operator-(const Quaternion& other);

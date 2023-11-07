@@ -24,6 +24,7 @@ public:
     double determinant();
     Matrix33 inverse();
     Matrix33 transpose();
+    void setOrientation(const Quaternion);
 };
 
 #endif
