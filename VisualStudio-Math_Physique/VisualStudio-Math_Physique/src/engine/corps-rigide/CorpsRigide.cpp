@@ -57,5 +57,5 @@ double CorpsRigide::getMass()
 
 Matrix34 CorpsRigide::getTransformMatrix() const
 {
-	return Matrix34(); // TODO
+	return Matrix34(this->position, this->orientation);
 }
