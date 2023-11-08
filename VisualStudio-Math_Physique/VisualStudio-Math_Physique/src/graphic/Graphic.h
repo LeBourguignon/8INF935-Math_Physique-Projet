@@ -19,8 +19,9 @@
 #include"EBO.h"
 #include"Camera.h"
 #include"Mesh.h"
-#include"ParticuleMesh.h"
 #include"LineMesh.h"
+#include"ParticuleMesh.h"
+#include"CuboideMesh.h"
 
 class Graphic
 {
@@ -39,9 +40,13 @@ private:
 
 	Camera camera;
 
-	bool show_particule_window = false, show_demo_window = false;
-	float pos[3] = { 0.0f, 0.0f, 0.0f }, vel[3] = { 0.0f, 0.0f, 0.0f }, gra[3] = { 0.0f, 0.0f, 0.0f };
-	double masse = 10.0f;
+	bool show_particule_window = false, show_demo_window = false, show_cuboide_window = false;
+
+	float ppos[3] = { 0.0f, 0.0f, 0.0f }, pvel[3] = { 0.0f, 0.0f, 0.0f }, pgra[3] = { 0.0f, 0.0f, 0.0f };
+	double pmasse = 10.0f;
+
+	float cpos[3] = { 0.0f, 0.0f, 0.0f }, cvel[3] = { 0.0f, 0.0f, 0.0f }, cori[4] = { 1.0f, 0.0f, 0.0f, 0.0f }, crot[3] = { 0.0f, 0.0f, 0.0f }, ctaille[3] = { 0.2f, 0.2f, 0.2f };
+	double cmasse = 10.0f;
 
 public:
 	// Initilisation du moteur graphique

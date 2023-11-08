@@ -5,7 +5,12 @@
 
 class ParticuleMesh : public Mesh
 {
+private:
+	std::vector<Vertex>* getVertices(float x, float y, float z);
+	std::vector<GLuint>* getIndices();
+
 public:
+	
 	ParticuleMesh(float x, float y, float z);
 };
 

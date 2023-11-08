@@ -6,15 +6,21 @@
 #include "particule/contact/GenerateursContactParticule.h"
 #include "particule/contact/GenerateurContactParticuleNaive.h"
 
+#include "corps-rigide/forme/Cuboides.h"
+
 // Model physique
 class Model
 {
 private:
+	// Particule
 	Particules particules;
 	RegistreForceParticule registreForceParticule;
 	GenerateursContactParticule generateursContact;
 
 	GenerateurContactParticuleNaive* generateurContactParticuleNaive;
+
+	// Corps Rigide
+	Cuboides cuboides;
 
 public:
 	// Initilisation du model
@@ -24,7 +30,13 @@ public:
 	Particules getParticules();
 	// Ajout d'une particule avec son champs gravitationnel
 	void ajouterParticule(Particule* particule, Vecteur3D gravite);
-	// Réinitialisation du model (Suppression de toutes les particules, des forces et des générateurs)
+
+	// Liste des cuboides du model
+	Cuboides getCuboides();
+	// Ajout d'une cuboide
+	void ajouterCuboide(Cuboide* cuboide);
+
+	// Réinitialisation du model
 	void reinitialisation();
 
 	// Démo 1 - gravitee/collision

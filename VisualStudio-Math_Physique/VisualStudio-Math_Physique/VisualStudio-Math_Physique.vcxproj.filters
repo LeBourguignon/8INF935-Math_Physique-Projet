@@ -144,7 +144,16 @@
     <ClCompile Include="src\engine\Matrix34.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\corps\CorpsRigide.cpp">
+    <ClCompile Include="src\engine\corps-rigide\CorpsRigide.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\corps-rigide\forme\Cuboide.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\graphic\CuboideMesh.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\corps-rigide\forme\Cuboides.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -284,7 +293,16 @@
     <ClInclude Include="src\engine\Matrix34.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\corps\CorpsRigide.h">
+    <ClInclude Include="src\engine\corps-rigide\CorpsRigide.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\corps-rigide\forme\Cuboide.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="src\graphic\CuboideMesh.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\corps-rigide\forme\Cuboides.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,6 +2,7 @@
 #define __MATRIX34_H__
 
 #include <array>
+#include <glm/glm.hpp>
 
 #include "Vecteur3D.h"
 #include "Quaternion.h"
@@ -25,6 +26,8 @@ public:
 
     Vecteur3D transformPosition(const Vecteur3D& position); // TODO
     Vecteur3D transformOrientation(const Vecteur3D& orientation); // TODO
+
+    glm::mat4 toGlmMat4();
 };
 #endif
 
