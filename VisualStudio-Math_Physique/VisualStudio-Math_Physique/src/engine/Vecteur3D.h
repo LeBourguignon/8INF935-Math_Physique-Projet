@@ -21,13 +21,13 @@ public:
     Vecteur3D operator-() const; // Get opposite vector
 
     // Vector operations
-    Vecteur3D operator+(Vecteur3D) const;
-    Vecteur3D operator-(Vecteur3D) const;
-    double operator*(Vecteur3D) const; // Scalar product
-    Vecteur3D operator%(Vecteur3D) const; // Vectorial product
+    Vecteur3D operator+(const Vecteur3D&) const;
+    Vecteur3D operator-(const Vecteur3D&) const;
+    double operator*(const Vecteur3D&) const; // Scalar product
+    Vecteur3D operator%(const Vecteur3D&) const; // Vectorial product
 
     // Other
-    void print() const;
+    void print();
 };
 
 #endif

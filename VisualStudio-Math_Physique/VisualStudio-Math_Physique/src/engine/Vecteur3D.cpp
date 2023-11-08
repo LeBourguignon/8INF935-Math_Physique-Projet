@@ -46,22 +46,22 @@ Vecteur3D Vecteur3D::operator-() const
 }
 
 
-Vecteur3D Vecteur3D::operator+(Vecteur3D v) const
+Vecteur3D Vecteur3D::operator+(const Vecteur3D& v) const
 {
     return Vecteur3D(this->x + v.x, this->y + v.y, this->z + v.z);
 }
 
-Vecteur3D Vecteur3D::operator-(Vecteur3D v) const
+Vecteur3D Vecteur3D::operator-(const Vecteur3D& v) const
 {
     return Vecteur3D(this->x - v.x, this->y - v.y, this->z - v.z);
 }
 
-double Vecteur3D::operator*(Vecteur3D v) const
+double Vecteur3D::operator*(const Vecteur3D& v) const
 {
     return this->x * v.x + this->y * v.y + this->z * v.z;
 }
 
-Vecteur3D Vecteur3D::operator%(Vecteur3D v) const
+Vecteur3D Vecteur3D::operator%(const Vecteur3D& v) const
 {
     return Vecteur3D(this->x * v.y - this->y * v.x,
         this->y * v.z - this->z * v.y,
@@ -69,7 +69,7 @@ Vecteur3D Vecteur3D::operator%(Vecteur3D v) const
 }
 
 
-void Vecteur3D::print() const
+void Vecteur3D::print()
 {
     std::cout << "Vecteur3D(" << this->x << "," << this->y << "," << this->z << ")" << std::endl;
 }

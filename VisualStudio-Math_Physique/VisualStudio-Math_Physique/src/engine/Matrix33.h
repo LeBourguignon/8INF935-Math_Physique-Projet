@@ -11,20 +11,22 @@ public:
 
     Matrix33();
     Matrix33(std::array<std::array<double, 3>, 3> values);
-    Matrix33(Quaternion quat);
+    Matrix33(const Quaternion& quat);
 
-    Matrix33 operator+(Matrix33);
-    Matrix33 operator-(Matrix33);
-    Matrix33 operator-();
-    Matrix33 operator*(Matrix33);
-    Matrix33 operator*(double);
-    Vecteur3D operator*(Vecteur3D);
-    Matrix33 operator/(double);
+    Matrix33 operator+(const Matrix33&) const;
+    Matrix33 operator-(const Matrix33&) const;
+    Matrix33 operator-() const;
+    Matrix33 operator*(const Matrix33&) const;
+    Vecteur3D operator*(const Vecteur3D&) const;
+    
+    Matrix33 operator*(double) const;
+    Matrix33 operator/(double) const;
 
-    double determinant();
-    Matrix33 inverse();
-    Matrix33 transpose();
-    void setOrientation(const Quaternion);
+    double determinant() const;
+    Matrix33 inverse() const;
+    Matrix33 transpose() const;
+
+    void setOrientation(const Quaternion&);
 };
 
 #endif
