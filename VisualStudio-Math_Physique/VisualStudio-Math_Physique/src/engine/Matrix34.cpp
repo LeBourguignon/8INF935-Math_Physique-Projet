@@ -1,13 +1,30 @@
 #include "Matrix34.h"
 
 Matrix34::Matrix34()
+    : Matrix34(std::array<std::array<double, 4>, 3>())
 {
-	this->values = std::array<std::array<double, 4>, 3>();
 }
 
-Matrix34::Matrix34(std::array<std::array<double, 4>, 3> values)		
+Matrix34::Matrix34(std::array<std::array<double, 4>, 3> values)	
+    : values(values)
 {
-	this->values = values;
+}
+
+Matrix34::Matrix34(const Vecteur3D& position, const Quaternion& orientation)
+    : Matrix34()
+{
+    Matrix33 m(orientation);
+    for (int i = 0; i < m.values.size(); ++i)
+    {
+        for (int j = 0; j < m.values[i].size(); ++j)
+        {
+            this->values[i][j] = m.values[i][j];
+        }
+    }
+
+    this->values[0][3] = position.x;
+    this->values[1][3] = position.y;
+    this->values[2][3] = position.z;
 }
 
 
@@ -63,10 +80,18 @@ Matrix34 Matrix34::inverse()
         {
             inverse[i][j] = Mat.values[i][j];
         }
+        inverse[i][3] *= -1;
     }
-    inverse[0][3] *= -1;
-    inverse[1][3] *= -1;
-    inverse[2][3] *= -1;
 
     return Matrix34(inverse);
+}
+
+
+
+void Matrix34::setPositionAndOrientation(const Vecteur3D& position, const Quaternion& orientation)
+{
+    std::array<std::array<double, 4>, 3> new_values = std::array<std::array<double, 4>, 3>();
+    Matrix34 other(position, orientation);
+    Matrix34 new_mat = other * *this * other.inverse();
+    this->values = new_mat.values;
 }
