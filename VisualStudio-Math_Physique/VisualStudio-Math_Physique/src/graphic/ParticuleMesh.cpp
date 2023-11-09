@@ -1,23 +1,23 @@
 #include "ParticuleMesh.h"
 
-std::vector<Vertex>* getVertices(float x, float y, float z)
+std::vector<Vertex>* ParticuleMesh::getVertices(float x, float y, float z)
 {
 	Vertex vertices[] =
 	{//						COORDINATES						  /			COLORS				//
-		Vertex{glm::vec3(-0.1f + x, -0.1f + y,	0.1f + z),	glm::vec3(0.0f, 0.0f, 1.0f)},
-		Vertex{glm::vec3(-0.1f + x, -0.1f + y,	-0.1f + z),	glm::vec3(0.0f, 0.0f, 0.0f)},
-		Vertex{glm::vec3(0.1f + x,	-0.1f + y,	-0.1f + z),	glm::vec3(1.0f, 0.0f, 0.0f)},
-		Vertex{glm::vec3(0.1f + x,	-0.1f + y,	0.1f + z),	glm::vec3(1.0f, 0.0f, 1.0f)},
-		Vertex{glm::vec3(-0.1f + x, 0.1f + y,	0.1f + z),	glm::vec3(0.0f, 1.0f, 1.0f)},
-		Vertex{glm::vec3(-0.1f + x, 0.1f + y,	-0.1f + z),	glm::vec3(0.0f, 1.0f, 0.0f)},
-		Vertex{glm::vec3(0.1f + x,  0.1f + y,	-0.1f + z),	glm::vec3(1.0f, 1.0f, 0.0f)},
-		Vertex{glm::vec3(0.1f + x,  0.1f + y,	0.1f + z),	glm::vec3(1.0f, 1.0f, 1.0f)}
+		Vertex{glm::vec3(-0.1f + x, -0.1f + y,	0.1f + z),	glm::vec4(0.0f, 0.0f, 1.0f, 1.0f)},
+		Vertex{glm::vec3(-0.1f + x, -0.1f + y,	-0.1f + z),	glm::vec4(0.0f, 0.0f, 0.0f, 1.0f)},
+		Vertex{glm::vec3(0.1f + x,	-0.1f + y,	-0.1f + z),	glm::vec4(1.0f, 0.0f, 0.0f, 1.0f)},
+		Vertex{glm::vec3(0.1f + x,	-0.1f + y,	0.1f + z),	glm::vec4(1.0f, 0.0f, 1.0f, 1.0f)},
+		Vertex{glm::vec3(-0.1f + x, 0.1f + y,	0.1f + z),	glm::vec4(0.0f, 1.0f, 1.0f, 1.0f)},
+		Vertex{glm::vec3(-0.1f + x, 0.1f + y,	-0.1f + z),	glm::vec4(0.0f, 1.0f, 0.0f, 1.0f)},
+		Vertex{glm::vec3(0.1f + x,  0.1f + y,	-0.1f + z),	glm::vec4(1.0f, 1.0f, 0.0f, 1.0f)},
+		Vertex{glm::vec3(0.1f + x,  0.1f + y,	0.1f + z),	glm::vec4(1.0f, 1.0f, 1.0f, 1.0f)}
 	};
 	std::vector <Vertex>* verts = new std::vector <Vertex>(vertices, vertices + sizeof(vertices) / sizeof(Vertex));
 	return verts;
 }
 
-std::vector<GLuint>* getIndices()
+std::vector<GLuint>* ParticuleMesh::getIndices()
 {
 	GLuint indices[] =
 	{

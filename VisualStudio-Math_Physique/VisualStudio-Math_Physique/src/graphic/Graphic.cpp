@@ -32,17 +32,23 @@ Graphic::Graphic(Model* model)
 	// In this case the viewport goes from x = 0, y = 0, to x = 1280, y = 720
 	glViewport(0, 0, width, height);
 
+	// Enables the Depth Buffer
+	glEnable(GL_DEPTH_TEST);
+
 	// Generates Shader object using shaders default.vert and default.frag
 	shaderProgram = Shader("resources/default.vert", "resources/default.frag");
+
+	// Tell OpenGL which Shader Program we want to use
+	shaderProgram.Activate();
 
 	// Floor
 	// Vertices coordinates
 	Vertex verticesFloor[] =
 	{ //			COORDINATES					/				COLORS				//
-		Vertex{glm::vec3(-10.0f, -5.0f,  10.0f),	glm::vec3(0.13f, 0.13f, 0.13f)},
-		Vertex{glm::vec3(-10.0f, -5.0f, -10.0f),	glm::vec3(0.13f, 0.13f, 0.13f)},
-		Vertex{glm::vec3(10.0f, -5.0f, -10.0f),		glm::vec3(0.13f, 0.13f, 0.13f)},
-		Vertex{glm::vec3(10.0f, -5.0f,  10.0f),		glm::vec3(0.13f, 0.13f, 0.13f)}
+		Vertex{glm::vec3(-10.0f, -5.0f,  10.0f),	glm::vec4(0.13f, 0.13f, 0.13f, 0.8f)},
+		Vertex{glm::vec3(-10.0f, -5.0f, -10.0f),	glm::vec4(0.13f, 0.13f, 0.13f, 0.8f)},
+		Vertex{glm::vec3(10.0f, -5.0f, -10.0f),		glm::vec4(0.13f, 0.13f, 0.13f, 0.8f)},
+		Vertex{glm::vec3(10.0f, -5.0f,  10.0f),		glm::vec4(0.13f, 0.13f, 0.13f, 0.8f)}
 	};
 
 	// Indices for vertices order
@@ -62,10 +68,10 @@ Graphic::Graphic(Model* model)
 	// Vertices coordinates
 	Vertex verticesMaker[] =
 	{ //			COORDINATES					/				COLORS				//
-		Vertex{glm::vec3(0.0f, 0.0f, 0.0f),			glm::vec3(1.0f, 1.0f, 1.0f)},
-		Vertex{glm::vec3(1.0f, 0.0f, 0.0f),			glm::vec3(1.0f, 0.0f, 0.0f)},
-		Vertex{glm::vec3(0.0f, 1.0f, 0.0f),			glm::vec3(0.0f, 1.0f, 0.0f)},
-		Vertex{glm::vec3(0.0f, 0.0f, 1.0f),			glm::vec3(0.0f, 0.0f, 1.0f)}
+		Vertex{glm::vec3(0.0f, 0.0f, 0.0f),			glm::vec4(1.0f, 1.0f, 1.0f, 1.0f)},
+		Vertex{glm::vec3(1.0f, 0.0f, 0.0f),			glm::vec4(1.0f, 0.0f, 0.0f, 1.0f)},
+		Vertex{glm::vec3(0.0f, 1.0f, 0.0f),			glm::vec4(0.0f, 1.0f, 0.0f, 1.0f)},
+		Vertex{glm::vec3(0.0f, 0.0f, 1.0f),			glm::vec4(0.0f, 0.0f, 1.0f, 1.0f)}
 	};
 
 	// Indices for vertices order
@@ -81,14 +87,9 @@ Graphic::Graphic(Model* model)
 	std::vector <GLuint> indMaker(indicesMaker, indicesMaker + sizeof(indicesMaker) / sizeof(GLuint));
 	// Create maker mesh
 	maker = new LineMesh(vertsMaker, indMaker);
-
-	// Tell OpenGL which Shader Program we want to use
-	shaderProgram.Activate();
+	
 	// Gets ID of uniform called "scale"
 	glUniform1f(glGetUniformLocation(shaderProgram.ID, "scale"), 0.5f);
-
-	// Enables the Depth Buffer
-	glEnable(GL_DEPTH_TEST);
 
 	// Creates camera object
 	camera = Camera(width, height, glm::vec3(0.0f, 0.0f, 10.0f));
@@ -141,6 +142,12 @@ void Graphic::updateWindow(float deltaFrameTime, float deltaUpdateTime)
 		particuleMesh.Draw(shaderProgram, camera);
 		particuleMesh.~ParticuleMesh();
 	}
+	for (auto cuboide : model->getCuboides())
+	{
+		CuboideMesh cuboideMesh(*cuboide);
+		cuboideMesh.Draw(shaderProgram, camera);
+		cuboideMesh.~CuboideMesh();
+	}
 
 	// Tell OpenGL a new frame is about to begin
 	ImGui_ImplOpenGL3_NewFrame();
@@ -153,6 +160,7 @@ void Graphic::updateWindow(float deltaFrameTime, float deltaUpdateTime)
 	ImGui::Text("%.1f UPS", 1 / deltaUpdateTime);
 	ImGui::Checkbox("Particule Window", &show_particule_window);
 	ImGui::Checkbox("Demo Window", &show_demo_window);
+	ImGui::Checkbox("Cuboide Window", &show_cuboide_window);
 	ImGui::End();
 
 	// Particule Window
@@ -160,15 +168,15 @@ void Graphic::updateWindow(float deltaFrameTime, float deltaUpdateTime)
 	{
 		ImGui::Begin("Particule Window", &show_particule_window);
 
-		ImGui::InputFloat3("Position", pos);
-		ImGui::InputFloat3("Velocite", vel);
-		ImGui::InputFloat3("Champ gravitationnel", gra);
-		ImGui::InputDouble("Masse (0 -> masse infinie)", &masse);
+		ImGui::InputFloat3("Position", ppos);
+		ImGui::InputFloat3("Velocite", pvel);
+		ImGui::InputFloat3("Champ gravitationnel", pgra);
+		ImGui::InputDouble("Masse (0 -> masse infinie)", &pmasse);
 
 		ImGui::Spacing();
 
 		if (ImGui::Button("Generation particule")) {
-			model->ajouterParticule(new Particule(Vecteur3D(pos[0], pos[1], pos[2]), Vecteur3D(vel[0], vel[1], vel[2]), Vecteur3D(0.0f, 0.0f, 0.0f), masse), Vecteur3D(gra[0], gra[1], gra[2]));
+			model->ajouterParticule(new Particule(Vecteur3D(ppos[0], ppos[1], ppos[2]), Vecteur3D(pvel[0], pvel[1], pvel[2]), Vecteur3D(0.0f, 0.0f, 0.0f), pmasse), Vecteur3D(pgra[0], pgra[1], pgra[2]));
 		}
 		ImGui::SameLine();
 		if (ImGui::Button("Nettoyage du model")) {
@@ -178,6 +186,7 @@ void Graphic::updateWindow(float deltaFrameTime, float deltaUpdateTime)
 		ImGui::End();
 	}
 
+	// Demo Window
 	if (show_demo_window)
 	{
 		ImGui::Begin("Demo Window", &show_demo_window);
@@ -236,6 +245,31 @@ void Graphic::updateWindow(float deltaFrameTime, float deltaUpdateTime)
 		if (ImGui::Button("Lancer demo 8"))
 		{
 			model->startDemo8();
+		}
+
+		ImGui::End();
+	}
+
+	// Cuboide Window
+	if (show_cuboide_window)
+	{
+		ImGui::Begin("Cuboide Window", &show_cuboide_window);
+
+		ImGui::InputFloat3("Position", cpos);
+		ImGui::InputFloat4("Orientation", cori);
+		ImGui::InputFloat3("Velocite", cvel);
+		ImGui::InputFloat3("Rotation", crot);
+		ImGui::InputDouble("Masse (0 -> masse infinie)", &cmasse);
+		ImGui::InputFloat3("Taille", ctaille);
+
+		ImGui::Spacing();
+
+		if (ImGui::Button("Generation particule")) {
+			model->ajouterCuboide(new Cuboide(Vecteur3D(cpos[0], cpos[1], cpos[2]), Quaternion(cori[0], cori[1], cori[2], cori[3]), Vecteur3D(cvel[0], cvel[1], cvel[2]), Vecteur3D(crot[0], crot[1], crot[2]), cmasse, Vecteur3D(ctaille[0], ctaille[1], ctaille[2])));
+		}
+		ImGui::SameLine();
+		if (ImGui::Button("Nettoyage du model")) {
+			model->reinitialisation();
 		}
 
 		ImGui::End();

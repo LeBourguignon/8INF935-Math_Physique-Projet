@@ -2,8 +2,11 @@
 #define __MATRIX34_H__
 
 #include <array>
-#include "Vecteur3D.h"
+#include <glm/glm.hpp>
 
+#include "Vecteur3D.h"
+#include "Quaternion.h"
+#include "Matrix33.h"
 
 class Matrix34
 {
@@ -12,24 +15,19 @@ public:
 
     Matrix34();
     Matrix34(std::array<std::array<double, 4>, 3> values);
+    Matrix34(const Vecteur3D& position, const Quaternion& orientation);
 
-    Matrix34 operator+(Matrix34);
-    Matrix34 operator-(Matrix34);
-    Matrix34 operator-();
-    Matrix34 operator*(Matrix34);
-    Vecteur3D operator*(Vecteur3D);
-    Matrix34 operator*(double);
-    Matrix34 operator/(double);
+    Matrix34 operator*(const Matrix34& other) const;
+    Vecteur3D operator*(const Vecteur3D& vecteur) const;
 
-    // TODO : Trasnform vector -> V=M*V
-    // Vecteur3D operator*(Vecteur3D);
-
-    
     Matrix34 inverse();
 
-    void setOrientationAndPosition(Quaternion,Vecteur3D);
-    Vecteur3D transformPosition(Vecteur3D);
-    Vecteur3D transformDirection(Vecteur3D);
+    void setPositionAndOrientation(const Vecteur3D& position, const Quaternion& orientation);
+
+    Vecteur3D transformPosition(const Vecteur3D& position); // TODO
+    Vecteur3D transformOrientation(const Vecteur3D& orientation); // TODO
+
+    glm::mat4 toGlmMat4();
 };
 #endif
 

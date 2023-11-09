@@ -1,4 +1,5 @@
 #include "Quaternion.h"
+#include <cmath>
 
 Quaternion::Quaternion()
 	: Quaternion(1, 0, 0, 0)
@@ -30,26 +31,6 @@ void Quaternion::normalise()
 	this->z /= magnitude;
 }
 
-
-Quaternion Quaternion::operator+(const double value)
-{
-	return Quaternion(
-		this->w + value,
-		this->x + value,
-		this->y + value,
-		this->z + value
-	);
-}
-
-Quaternion Quaternion::operator*(const double value)
-{
-	return Quaternion(
-		this->w * value,
-		this->x * value,
-		this->y * value,
-		this->z * value
-	);
-}
 
 
 Quaternion Quaternion::operator+(const Quaternion& other)
@@ -98,6 +79,6 @@ void Quaternion::rotationParVecteur(const Vecteur3D& vecteur)
 
 void Quaternion::actualisationParVelociteAngulaire(const Vecteur3D& rotation, float duration)
 {
-	*this = *this + (*this * rotation * (duration / 2));
+	*this = *this + (*this * (rotation * (double)(duration / 2)));
 	this->normalise();
 }

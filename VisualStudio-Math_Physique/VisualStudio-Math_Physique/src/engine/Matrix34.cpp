@@ -1,112 +1,68 @@
 #include "Matrix34.h"
-#include "Matrix33.h"
 #include <iostream>
 
-#define ligne 3
-#define colonne 4
-
 Matrix34::Matrix34()
+    : Matrix34(std::array<std::array<double, 4>, 3>())
 {
-	this->values = std::array<std::array<double, colonne>, ligne>();			//instancie une matrice vide en donnant à la matrice un array vide de taille adapté 
 }
 
-Matrix34::Matrix34(std::array<std::array<double, colonne>, ligne> values)		
+Matrix34::Matrix34(std::array<std::array<double, 4>, 3> values)	
+    : values(values)
 {
-	this->values = values;
 }
 
-Matrix34 Matrix34::operator+(Matrix34 other)
+Matrix34::Matrix34(const Vecteur3D& position, const Quaternion& orientation)
+    : Matrix34()
 {
-    std::array<std::array<double, colonne>, ligne> ret = std::array<std::array<double, colonne>, ligne>();
-    for (int i = 0; i < ligne; i += 1) 
+    Matrix33 m(orientation);
+    for (int i = 0; i < m.values.size(); ++i)
     {
-        for (int j = 0; j < colonne; j += 1) 
+        for (int j = 0; j < m.values[i].size(); ++j)
         {
-            ret[i][j] = this->values[i][j] + other.values[i][j];
+            this->values[i][j] = m.values[i][j];
         }
     }
-    return Matrix34(ret);
+
+    this->values[0][3] = position.x;
+    this->values[1][3] = position.y;
+    this->values[2][3] = position.z;
 }
 
-Matrix34 Matrix34::operator-(Matrix34 other)
+
+Matrix34 Matrix34::operator*(const Matrix34& other) const
 {
-    std::array<std::array<double, colonne>, ligne> ret = std::array<std::array<double, colonne>, ligne>();
-    for (int i = 0; i < ligne; i += 1) 
-    {
-        for (int j = 0; j < colonne; j += 1) 
-        {
-            ret[i][j] = this->values[i][j] - other.values[i][j];
-        }
-    }
-    return Matrix34(ret);
-}
+    Matrix34 resultat;
 
-Matrix34 Matrix34::operator-()
-{
-    std::array<std::array<double, colonne>, ligne> ret = std::array<std::array<double, colonne>, ligne>();
-    for (int i = 0; i < ligne; i += 1) 
+    for (int i = 0; i < 3; ++i)
     {
-        for (int j = 0; j < colonne; j += 1) 
+        for (int j = 0; j < 4; ++j)
         {
-            ret[i][j] = -this->values[i][j];
-        }
-    }
-    return Matrix34(ret);
-}
+            double value = 0;
 
-Matrix34 Matrix34::operator*(Matrix34 other)
-//multiplication de matrice 4x4, dont la dernière ligne de chaque matrice est 0001
-{/*
-    std::array<std::array<double, colonne>, ligne> ret = std::array<std::array<double, colonne>, ligne>();
-    for (int i = 0; i < ligne; i += 1) {
-        for (int j = 0; j < colonne; j += 1) {
-            ret[i][j] = this->values[i][0] * other.values[0][j] + this->values[i][1] * other.values[1][j] + this->values[i][2] * other.values[2][j];
+            for (int k = 0; k < 3; ++k)
+            {
+                value = this->values[i][k] * other.values[k][j];
+            }
+
+            if (j == 3)
+                value += this->values[i][3];
+
+            resultat.values[i][j] = value;
         }
     }
-    return Matrix34(ret);
+    return resultat;
  */
 }
-
-Vecteur3D Matrix34::operator*(Vecteur3D v)
+Vecteur3D Matrix34::operator*(const Vecteur3D& vecteur) const
 {
     return Vecteur3D(
-        this->values[0][0] * v.x + this->values[0][1] * v.y + this->values[0][2] * v.z + this->values[0][3],
-        this->values[1][0] * v.x + this->values[1][1] * v.y + this->values[1][2] * v.z + this->values[1][3],
-        this->values[2][0] * v.x + this->values[2][1] * v.y + this->values[2][2] * v.z + this->values[2][3]);
-}
-
-
-Matrix34 Matrix34::operator*(double x)
-{
-    std::array<std::array<double, colonne>, ligne> ret = std::array<std::array<double, colonne>, ligne>();
-    for (int i = 0; i < ligne; i += 1) 
-    {
-        for (int j = 0; j < colonne; j += 1) 
-        {
-            ret[i][j] = this->values[i][j] * x;
-        }
-    }
+        this->values[0][0] * vecteur.x + this->values[0][1] * vecteur.y + this->values[0][2] + vecteur.z + this->values[0][3],
+        this->values[1][0] * vecteur.x + this->values[1][1] * vecteur.y + this->values[1][2] + vecteur.z + this->values[1][3],
+        this->values[2][0] * vecteur.x + this->values[2][1] * vecteur.y + this->values[2][2] + vecteur.z + this->values[2][3]
+    );
     return Matrix34(ret);
 }
 
-Matrix34 Matrix34::operator/(double x)
-{
-    if (x == 0) {
-        std::cout << "Attention : Masse infini" << std::endl;
-    }
-    else 
-    {
-        std::array<std::array<double, colonne>, ligne> ret = std::array<std::array<double, colonne>, ligne>();
-        for (int i = 0; i < ligne; i += 1)
-        {
-            for (int j = 0; j < colonne; j += 1)
-            {
-                ret[i][j] = this->values[i][j] / x;
-            }
-        }
-        return Matrix34(ret);
-    }
-}
 
 Matrix34 Matrix34::inverse()
 {
@@ -117,24 +73,36 @@ Matrix34 Matrix34::inverse()
         }
     }
     Mat = Mat.inverse();
-
-    Vecteur3D Vec = Vecteur3D(-this->values[0][3], -this->values[1][3], -this->values[2][3]);
     
-    std::array<std::array<double, colonne>, ligne> inverse = std::array<std::array<double, colonne>, ligne>();
+    std::array<std::array<double, 4>, 3> inverse = std::array<std::array<double, 4>, 3>();
     for (int i = 0; i < 3; i += 1)
     {
         for (int j = 0; j < 3; j += 1)
         {
             inverse[i][j] = Mat.values[i][j];
         }
+        inverse[i][3] *= -1;
     }
-    inverse[0][3] = Vec.x;
-    inverse[1][3] = Vec.y;
-    inverse[2][3] = Vec.z;
 
     return Matrix34(inverse);
 }
 
 
 
+void Matrix34::setPositionAndOrientation(const Vecteur3D& position, const Quaternion& orientation)
+{
+    std::array<std::array<double, 4>, 3> new_values = std::array<std::array<double, 4>, 3>();
+    Matrix34 other(position, orientation);
+    Matrix34 new_mat = other * *this * other.inverse();
+    this->values = new_mat.values;
+}
 
+glm::mat4 Matrix34::toGlmMat4()
+{
+    return glm::mat4({
+        this->values[0][0], this->values[0][1], this->values[0][2], this->values[0][3],
+        this->values[1][0], this->values[1][1], this->values[1][2], this->values[1][3],
+        this->values[2][0], this->values[2][1], this->values[2][2], this->values[2][3],
+        0,                  0,                  0,                  1
+    });
+}

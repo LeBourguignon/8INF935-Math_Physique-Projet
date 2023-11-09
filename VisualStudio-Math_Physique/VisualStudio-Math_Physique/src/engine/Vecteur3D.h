@@ -12,19 +12,19 @@ public:
     Vecteur3D(); // Returns vector zero
     Vecteur3D(double, double, double);
 
-    double norme();
-    Vecteur3D direction();
+    double norme() const;
+    Vecteur3D direction() const;
 
     // Scalar operations
-    Vecteur3D operator*(double);
-    Vecteur3D operator/(double);
-    Vecteur3D operator-(); // Get opposite vector
+    Vecteur3D operator*(double) const;
+    Vecteur3D operator/(double) const;
+    Vecteur3D operator-() const; // Get opposite vector
 
     // Vector operations
-    Vecteur3D operator+(Vecteur3D);
-    Vecteur3D operator-(Vecteur3D);
-    double operator*(Vecteur3D); // Scalar product
-    Vecteur3D operator%(Vecteur3D); // Vectorial product
+    Vecteur3D operator+(const Vecteur3D&) const;
+    Vecteur3D operator-(const Vecteur3D&) const;
+    double operator*(const Vecteur3D&) const; // Scalar product
+    Vecteur3D operator%(const Vecteur3D&) const; // Vectorial product
 
     // Other
     void print();

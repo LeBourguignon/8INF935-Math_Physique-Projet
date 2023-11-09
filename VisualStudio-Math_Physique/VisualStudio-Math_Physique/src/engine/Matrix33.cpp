@@ -1,13 +1,16 @@
 #include "Matrix33.h"
 #include <array>
 
-Matrix33::Matrix33(){
+Matrix33::Matrix33()
+{
     this->values = std::array<std::array<double, 3>, 3>();
 }
-Matrix33::Matrix33(std::array<std::array<double, 3>, 3> values){
+Matrix33::Matrix33(std::array<std::array<double, 3>, 3> values)
+{
     this->values = values;
 }
-Matrix33::Matrix33(Quaternion quat){
+Matrix33::Matrix33(const Quaternion& quat)
+{
     this->values = std::array<std::array<double, 3>, 3>();
     this->values[0][0] = 1 - (2*quat.y*quat.y + 2*quat.z*quat.z);
     this->values[0][1] = 2*quat.x*quat.y + 2*quat.z*quat.w;
@@ -20,7 +23,10 @@ Matrix33::Matrix33(Quaternion quat){
     this->values[2][2] = 1 - (2*quat.x*quat.x + 2*quat.y*quat.y);
 }
 
-Matrix33 Matrix33::operator+(Matrix33 other){
+
+
+Matrix33 Matrix33::operator+(const Matrix33& other) const 
+{
     std::array<std::array<double, 3>, 3> ret = std::array<std::array<double, 3>, 3>();
     for (int i=0 ; i<3 ; i+=1){
         for (int j=0 ; j<3 ; j+=1){
@@ -30,7 +36,8 @@ Matrix33 Matrix33::operator+(Matrix33 other){
     return Matrix33(ret);
 }
 
-Matrix33 Matrix33::operator-(Matrix33 other){
+Matrix33 Matrix33::operator-(const Matrix33& other) const 
+{
     std::array<std::array<double, 3>, 3> ret = std::array<std::array<double, 3>, 3>();
     for (int i=0 ; i<3 ; i+=1){
         for (int j=0 ; j<3 ; j+=1){
@@ -40,7 +47,8 @@ Matrix33 Matrix33::operator-(Matrix33 other){
     return Matrix33(ret);
 }
 
-Matrix33 Matrix33::operator-(){
+Matrix33 Matrix33::operator-() const 
+{
     std::array<std::array<double, 3>, 3> ret = std::array<std::array<double, 3>, 3>();
     for (int i=0 ; i<3 ; i+=1){
         for (int j=0 ; j<3 ; j+=1){
@@ -50,7 +58,8 @@ Matrix33 Matrix33::operator-(){
     return Matrix33(ret);
 }
 
-Matrix33 Matrix33::operator*(Matrix33 other){
+Matrix33 Matrix33::operator*(const Matrix33& other) const 
+{
     std::array<std::array<double, 3>, 3> ret = std::array<std::array<double, 3>, 3>();
     for (int i=0 ; i<3 ; i+=1){
         for (int j=0 ; j<3 ; j+=1){
@@ -60,23 +69,28 @@ Matrix33 Matrix33::operator*(Matrix33 other){
     return Matrix33(ret);
 }
 
-Matrix33 Matrix33::operator*(double x){
+Vecteur3D Matrix33::operator*(const Vecteur3D& v) const 
+{
+    return Vecteur3D(this->values[0][0]*v.x + this->values[0][1]*v.y + this->values[0][2]*v.z,
+                        this->values[1][0]*v.x + this->values[1][1]*v.y + this->values[1][2]*v.z,
+                        this->values[2][0]*v.x + this->values[2][1]*v.y + this->values[2][2]*v.z);
+}
+
+
+
+Matrix33 Matrix33::operator*(double x) const
+{
     std::array<std::array<double, 3>, 3> ret = std::array<std::array<double, 3>, 3>();
-    for (int i=0 ; i<3 ; i+=1){
-        for (int j=0 ; j<3 ; j+=1){
+    for (int i = 0; i < 3; i += 1) {
+        for (int j = 0; j < 3; j += 1) {
             ret[i][j] = this->values[i][j] * x;
         }
     }
     return Matrix33(ret);
 }
 
-Vecteur3D Matrix33::operator*(Vecteur3D v){
-    return Vecteur3D(this->values[0][0]*v.x + this->values[0][1]*v.y + this->values[0][2]*v.z,
-                        this->values[1][0]*v.x + this->values[1][1]*v.y + this->values[1][2]*v.z,
-                        this->values[2][0]*v.x + this->values[2][1]*v.y + this->values[2][2]*v.z);
-}
-
-Matrix33 Matrix33::operator/(double x){
+Matrix33 Matrix33::operator/(double x) const 
+{
     std::array<std::array<double, 3>, 3> ret = std::array<std::array<double, 3>, 3>();
     for (int i=0 ; i<3 ; i+=1){
         for (int j=0 ; j<3 ; j+=1){
@@ -86,7 +100,10 @@ Matrix33 Matrix33::operator/(double x){
     return Matrix33(ret);
 }
 
-double Matrix33::determinant(){
+
+
+double Matrix33::determinant() const 
+{
     double a = this->values[0][0];
     double b = this->values[0][1];
     double c = this->values[0][2];
@@ -99,7 +116,8 @@ double Matrix33::determinant(){
     return a*e*i + d*h*c + g*b*f - a*h*f - g*e*c - d*b*i;
 }
 
-Matrix33 Matrix33::inverse(){
+Matrix33 Matrix33::inverse() const 
+{
     double det = this->determinant();
     double a = this->values[0][0];
     double b = this->values[0][1];
@@ -123,7 +141,8 @@ Matrix33 Matrix33::inverse(){
     return Matrix33(ret)/det;
 }
 
-Matrix33 Matrix33::transpose(){
+Matrix33 Matrix33::transpose() const 
+{
     Matrix33 ret = Matrix33();
     for (int i=0 ; i<3 ; i+=1){
         for (int j=0 ; j<3 ; j+=1){
@@ -131,4 +150,14 @@ Matrix33 Matrix33::transpose(){
         }
     }
     return ret;
+}
+
+
+
+void Matrix33::setOrientation(const Quaternion& quat)
+{
+    std::array<std::array<double, 3>, 3> new_values = std::array<std::array<double, 3>, 3>();
+    Matrix33 other = Matrix33(quat);
+    Matrix33 new_mat = other * *this * other.inverse();
+    this->values = new_mat.values;
 }

@@ -29,12 +29,26 @@ void Model::ajouterParticule(Particule* particule, Vecteur3D gravite = Vecteur3D
 	this->generateurContactParticuleNaive->ajouterParticule(particule);
 }
 
+
+Cuboides Model::getCuboides()
+{
+	return cuboides;
+}
+
+void Model::ajouterCuboide(Cuboide* cuboide)
+{
+	this->cuboides.push_back(cuboide);
+}
+
+
 void Model::reinitialisation()
 {
 	// Destruction des objets
 	this->particules.deleteParticules();
 	this->registreForceParticule.deleteForce();
 	this->generateursContact.deleteGenerateurs();
+
+	this->cuboides.deleteCuboides();
 
 	// Initialisation du model
 	this->particules = Particules();
@@ -43,6 +57,8 @@ void Model::reinitialisation()
 
 	this->generateurContactParticuleNaive = new GenerateurContactParticuleNaive(this->particules, 0.2f);
 	generateursContact.push_back(this->generateurContactParticuleNaive);
+
+	this->cuboides = Cuboides();
 }
 
 void Model::startDemo1()
@@ -165,6 +181,9 @@ void Model::actualiser(float duration)
 
 	// Mise à jour des particules
 	this->particules.actualiser(duration);
+
+	// Mise à jour des cuboides
+	this->cuboides.actualiser(duration);
 
 	// Génerer les contacts
 	ContactParticules contactParticules;

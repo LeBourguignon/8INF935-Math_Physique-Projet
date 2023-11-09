@@ -20,6 +20,9 @@ void LineMesh::Draw(Shader& shader, Camera& camera)
 	glUniform3f(glGetUniformLocation(shader.ID, "camPos"), camera.Position.x, camera.Position.y, camera.Position.z);
 	camera.Matrix(shader, "camMatrix");
 
+	// Transfer the transformation matrix to the shader
+	glUniformMatrix4fv(glGetUniformLocation(shader.ID, "transformMatrix"), 1, GL_FALSE, glm::value_ptr(glm::mat4(1.0f)));
+
 	// Draw the actual mesh
 	glDrawElements(GL_LINES, indices.size(), GL_UNSIGNED_INT, 0);
 
