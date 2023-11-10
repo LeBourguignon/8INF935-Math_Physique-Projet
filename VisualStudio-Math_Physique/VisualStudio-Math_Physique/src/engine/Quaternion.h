@@ -9,8 +9,8 @@ public:
 	double w, x, y, z;
 
 	Quaternion();
-	Quaternion(double w, double x, double y, double z);
 	Quaternion(Vecteur3D vecteur, double angle);
+	Quaternion(double w, double x, double y, double z);
 
 	void normalise();
 

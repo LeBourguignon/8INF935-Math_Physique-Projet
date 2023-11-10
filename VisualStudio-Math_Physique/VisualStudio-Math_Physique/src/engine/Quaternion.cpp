@@ -6,14 +6,13 @@ Quaternion::Quaternion()
 {
 }
 
-Quaternion::Quaternion(double w, double x, double y, double z)
-	: w(w), x(x), y(y), z(z)
-{
-	this->normalise();
-}
-
 Quaternion::Quaternion(Vecteur3D vecteur, double angle)
 	: Quaternion(cos(angle / 2), sin(angle / 2) * vecteur.x, sin(angle / 2) * vecteur.y, sin(angle / 2) * vecteur.z)
+{
+}
+
+Quaternion::Quaternion(double w, double x, double y, double z)
+	: w(w), x(x), y(y), z(z)
 {
 }
 
@@ -66,7 +65,7 @@ Quaternion Quaternion::operator*(const Quaternion& other)
 
 Quaternion Quaternion::operator*(const Vecteur3D& vecteur)
 {
-	return *this * Quaternion(0, vecteur.x, vecteur.y, vecteur.z);
+	return *this * Quaternion(vecteur.direction(), vecteur.norme());
 }
 
 
@@ -79,6 +78,6 @@ void Quaternion::rotationParVecteur(const Vecteur3D& vecteur)
 
 void Quaternion::actualisationParVelociteAngulaire(const Vecteur3D& rotation, float duration)
 {
-	*this = *this + (*this * (rotation * (double)(duration / 2)));
+	*this = *this + *this * (rotation * (duration / 2));
 	this->normalise();
 }

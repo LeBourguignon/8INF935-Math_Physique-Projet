@@ -20,7 +20,7 @@ void main()
 	vec4 modelSpacePosition = transformMatrix * vec4(aPos, 1.0);
 
 	// Apply matrix camera
-	gl_Position = camMatrix * vec4(aPos, 1.0);
+	gl_Position = camMatrix * modelSpacePosition;
 
 	// Assigns the colors from the Vertex Data to "color"
 	color = aColor;
