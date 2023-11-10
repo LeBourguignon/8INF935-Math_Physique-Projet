@@ -1,6 +1,6 @@
 #version 330 core
 
-// Positions/Coordinates
+// Positions
 layout (location = 0) in vec3 aPos;
 // Colors
 layout (location = 1) in vec4 aColor;
@@ -8,10 +8,10 @@ layout (location = 1) in vec4 aColor;
 // Outputs the color for the Fragment Shader
 out vec4 color;
 
-// Imports the transformation matrix from the main function
-uniform mat4 transformMatrix;
 // Imports the camera matrix from the main function
 uniform mat4 camMatrix;
+// Imports the transformation matrix from the main function
+uniform mat4 transformMatrix;
 
 
 void main()

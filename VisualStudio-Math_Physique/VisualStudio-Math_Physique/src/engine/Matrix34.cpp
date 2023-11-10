@@ -41,7 +41,7 @@ Matrix34 Matrix34::operator*(const Matrix34& other) const
 
             for (int k = 0; k < 3; ++k)
             {
-                value = this->values[i][k] * other.values[k][j];
+                value += this->values[i][k] * other.values[k][j];
             }
 
             if (j == 3)
@@ -51,8 +51,8 @@ Matrix34 Matrix34::operator*(const Matrix34& other) const
         }
     }
     return resultat;
- */
 }
+
 Vecteur3D Matrix34::operator*(const Vecteur3D& vecteur) const
 {
     return Vecteur3D(
@@ -60,7 +60,6 @@ Vecteur3D Matrix34::operator*(const Vecteur3D& vecteur) const
         this->values[1][0] * vecteur.x + this->values[1][1] * vecteur.y + this->values[1][2] + vecteur.z + this->values[1][3],
         this->values[2][0] * vecteur.x + this->values[2][1] * vecteur.y + this->values[2][2] + vecteur.z + this->values[2][3]
     );
-    return Matrix34(ret);
 }
 
 
@@ -88,14 +87,13 @@ Matrix34 Matrix34::inverse()
 }
 
 
-
 void Matrix34::setPositionAndOrientation(const Vecteur3D& position, const Quaternion& orientation)
 {
-    std::array<std::array<double, 4>, 3> new_values = std::array<std::array<double, 4>, 3>();
     Matrix34 other(position, orientation);
     Matrix34 new_mat = other * *this * other.inverse();
     this->values = new_mat.values;
 }
+
 
 glm::mat4 Matrix34::toGlmMat4()
 {
