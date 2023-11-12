@@ -43,10 +43,10 @@ void CorpsRigide::actualiser(double duration)
 
 
 
-	// Réinisilisation de la force
+	// Réinitialisation de la force
 	this->force = Vecteur3D();
 
-	// Réinisilisation du torque
+	// Réinitialisation du torque
 	this->torque = Vecteur3D();
 }
 
@@ -58,4 +58,23 @@ double CorpsRigide::getMass()
 Matrix34 CorpsRigide::getTransformMatrix() const
 {
 	return Matrix34(this->position, this->orientation);
+}
+
+void CorpsRigide::ajouterForce(const Vecteur3D& force){
+	this->force = this->force + force;
+}
+
+void CorpsRigide::ajouterForcePosition(const Vecteur3D& force, const Vecteur3D& position){
+	this->force = this->force + force;
+	this->torque = (this->getTransformMatrix() * position) % force;
+}
+
+void CorpsRigide::ajouterForcePositionRelative(const Vecteur3D& force, const Vecteur3D& positionRelative){
+	this->force = this->force + force;
+	this->torque = positionRelative % force;
+}
+
+void CorpsRigide::reinitialiserAccumulateur(){
+	this->force = Vecteur3D();
+	this->torque = Vecteur3D();
 }

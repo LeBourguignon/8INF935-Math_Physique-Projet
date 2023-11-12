@@ -21,6 +21,10 @@ public:
 	void actualiser(double duration);
 	double getMass();
 	Matrix34 getTransformMatrix() const;
+	void ajouterForce(const Vecteur3D& force);
+	void ajouterForcePosition(const Vecteur3D& force, const Vecteur3D& position);
+	void ajouterForcePositionRelative(const Vecteur3D& force, const Vecteur3D& positionRelative);
+	void reinitialiserAccumulateur();
 };
 
 #endif
