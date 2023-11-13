@@ -66,12 +66,12 @@ void CorpsRigide::ajouterForce(const Vecteur3D& force){
 
 void CorpsRigide::ajouterForcePosition(const Vecteur3D& force, const Vecteur3D& position){
 	this->force = this->force + force;
-	this->torque = (this->getTransformMatrix() * position) % force;
+	this->torque = (position - this->position) % force;
 }
 
 void CorpsRigide::ajouterForcePositionRelative(const Vecteur3D& force, const Vecteur3D& positionRelative){
 	this->force = this->force + force;
-	this->torque = positionRelative % force;
+	this->torque = ((this->getTransformMatrix() * positionRelative) - this->position) % force;
 }
 
 void CorpsRigide::reinitialiserAccumulateur(){
