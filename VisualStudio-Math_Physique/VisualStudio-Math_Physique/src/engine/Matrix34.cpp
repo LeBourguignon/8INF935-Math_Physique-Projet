@@ -66,17 +66,17 @@ Vecteur3D Matrix34::operator*(const Vecteur3D& vecteur) const
 Matrix34 Matrix34::inverse()
 {
     Matrix33 Mat = Matrix33();
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
+    for (int i = 0; i < 3; ++i) {
+        for (int j = 0; j < 3; ++j) {
             Mat.values[i][j] = this->values[i][j];
         }
     }
     Mat = Mat.inverse();
     
     std::array<std::array<double, 4>, 3> inverse = std::array<std::array<double, 4>, 3>();
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 3; ++i)
     {
-        for (int j = 0; j < 3; j++)
+        for (int j = 0; j < 3; ++j)
         {
             inverse[i][j] = Mat.values[i][j];
         }
@@ -96,8 +96,6 @@ void Matrix34::setPositionAndOrientation(const Vecteur3D& position, const Quater
 
 Vecteur3D Matrix34::transformPosition(const Vecteur3D& position)
 {
-    //transform a position 
-    //?? demander au prof
     return *this * position;
 }
 
@@ -105,16 +103,11 @@ Vecteur3D Matrix34::transformOrientation(const Vecteur3D& orientation)
 {   
     //transform a direction by ignoring the translation
 
-    //Matrice 4x3, ignorer la dernière colonne qui représente la translation
-    //Résultat c'est une multiplication d'une matrice 3x3 par un vecteur donné en paramètre 
-
-    Matrix33 Mat = Matrix33();
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++) {
-            Mat.values[i][j] = this->values[i][j];  
-        }
-    }
-    return  Mat * orientation;  
+    return Vecteur3D(
+        this->values[0][0] * orientation.x + this->values[0][1] * orientation.y + this->values[0][2] + orientation.z,
+        this->values[1][0] * orientation.x + this->values[1][1] * orientation.y + this->values[1][2] + orientation.z,
+        this->values[2][0] * orientation.x + this->values[2][1] * orientation.y + this->values[2][2] + orientation.z
+    );
 }
 
 
