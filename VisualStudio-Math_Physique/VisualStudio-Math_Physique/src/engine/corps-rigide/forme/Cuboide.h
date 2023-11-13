@@ -11,6 +11,8 @@ public:
 	Cuboide(Vecteur3D dimension = Vecteur3D());
 	Cuboide(Vecteur3D position, Quaternion orientation, double masse, Vecteur3D dimension = Vecteur3D());
 	Cuboide(Vecteur3D position, Quaternion orientation, Vecteur3D velocite, Vecteur3D velociteAngulaire, double masse, Vecteur3D dimension = Vecteur3D());
+
+	Matrix33 getTenseurInertie(double masse, Vecteur3D dimension);
 };
 
 #endif

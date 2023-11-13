@@ -2,36 +2,52 @@
 #include "../Constant.h"
 
 CorpsRigide::CorpsRigide()
-	: CorpsRigide(Vecteur3D(), Quaternion(), 0)
+	: CorpsRigide(Vecteur3D(), Quaternion(), 0, Matrix33(std::array<std::array<double, 3>, 3>({ {1,0,0},{0,1,0},{0,0,1} })))
 {
 }
 
-CorpsRigide::CorpsRigide(Vecteur3D position, Quaternion orientation, double masse)
-	: CorpsRigide(position, orientation, Vecteur3D(), Vecteur3D(), masse)
+CorpsRigide::CorpsRigide(Vecteur3D position, Quaternion orientation, double masse, Matrix33 tenseurInertie)
+	: CorpsRigide(position, orientation, Vecteur3D(), Vecteur3D(), masse, tenseurInertie)
 {
 }
 
-CorpsRigide::CorpsRigide(Vecteur3D position, Quaternion orientation, Vecteur3D velocite, Vecteur3D velociteAngulaire, double masse)
-	: position(position), velocite(velocite), acceleration(Vecteur3D()), force(Vecteur3D()),
-	orientation(orientation), velociteAngulaire(velociteAngulaire), accelerationAngulaire(Vecteur3D()), torque(Vecteur3D()),
-	inverseMasse((masse == 0) ? 0 : 1 / masse)
+CorpsRigide::CorpsRigide(Vecteur3D position, Quaternion orientation, Vecteur3D velocite, Vecteur3D velociteAngulaire, double masse, Matrix33 tenseurInertie)
+	: CorpsRigide(position, orientation, velocite, velociteAngulaire, Vecteur3D(), Vecteur3D(), masse, tenseurInertie)
 {
 }
+
+CorpsRigide::CorpsRigide(Vecteur3D position, Quaternion orientation, Vecteur3D velocite, Vecteur3D velociteAngulaire, Vecteur3D acceleration, Vecteur3D accelerationAngulaire, double masse, Matrix33 tenseurInertie)
+	: position(position), velocite(velocite), acceleration(acceleration), force(Vecteur3D()),
+	orientation(orientation), velociteAngulaire(velociteAngulaire), accelerationAngulaire(accelerationAngulaire), torque(Vecteur3D()),
+	inverseMasse((masse == 0) ? 0 : 1 / masse), 
+	transformMatrix(Matrix34(std::array<std::array<double, 4>, 3>({ {1,0,0},{0,1,0},{0,0,1} }))), 
+	tenseurInertieInverse(Matrix33(std::array<std::array<double, 3>, 3>({{1,0,0},{0,1,0},{0,0,1}}))),
+	tenseurInertieInverseLocal(tenseurInertie.inverse())
+{
+}
+
+
 
 void CorpsRigide::actualiser(double duration)
 {
+	// Mise à jour de la position
+	this->position = this->position + this->velocite * duration;
+
+	// Mise à jour de l'orientation
+	this->orientation.actualisationParVelociteAngulaire(this->velociteAngulaire, duration);
+
+
+
+	// Calculer les données dérivées (transformMatrix et tenseurInertieInverse)
+	calculerDonneesDerivees();
+
+
+
 	// Mise à jour de l'accélération
 	this->acceleration = this->force * this->inverseMasse;
 
 	// Mise à jour de l'accélération angulaire
-	// TODO
-
-
-	// Mise à jour de la position
-	this->position = this->position + this->velocite * duration + this->acceleration * 0.5 * duration * duration;
-
-	// Mise à jour de l'orientation
-	this->orientation.actualisationParVelociteAngulaire(this->velociteAngulaire, duration); // TODO
+	this->accelerationAngulaire = this->tenseurInertieInverse * this->torque;
 
 
 
@@ -43,11 +59,8 @@ void CorpsRigide::actualiser(double duration)
 
 
 
-	// Réinitialisation de la force
-	this->force = Vecteur3D();
-
-	// Réinitialisation du torque
-	this->torque = Vecteur3D();
+	// Réinitialisation des accumulateur
+	this->reinitialiserAccumulateur();
 }
 
 double CorpsRigide::getMass()
@@ -55,10 +68,7 @@ double CorpsRigide::getMass()
 	return (this->inverseMasse == 0) ? Constant::masseInfinie : (1 / this->inverseMasse);
 }
 
-Matrix34 CorpsRigide::getTransformMatrix() const
-{
-	return Matrix34(this->position, this->orientation);
-}
+
 
 void CorpsRigide::ajouterForce(const Vecteur3D& force){
 	this->force = this->force + force;
@@ -71,7 +81,15 @@ void CorpsRigide::ajouterForcePosition(const Vecteur3D& force, const Vecteur3D& 
 
 void CorpsRigide::ajouterForcePositionRelative(const Vecteur3D& force, const Vecteur3D& positionRelative){
 	this->force = this->force + force;
-	this->torque = ((this->getTransformMatrix() * positionRelative) - this->position) % force;
+	this->torque = ((this->transformMatrix * positionRelative) - this->position) % force;
+}
+
+void CorpsRigide::calculerDonneesDerivees()
+{
+	this->transformMatrix = Matrix34(this->position, this->orientation);
+
+	this->tenseurInertieInverse.values = this->tenseurInertieInverseLocal.values;
+	this->tenseurInertieInverse.setOrientation(this->orientation);
 }
 
 void CorpsRigide::reinitialiserAccumulateur(){

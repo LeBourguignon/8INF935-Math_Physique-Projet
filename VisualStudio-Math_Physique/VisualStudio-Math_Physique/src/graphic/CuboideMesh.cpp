@@ -58,7 +58,7 @@ void CuboideMesh::Draw(Shader& shader, Camera& camera)
 	camera.Matrix(shader, "camMatrix");
 
 	// Transfer the transformation matrix to the shader
-	glUniformMatrix4fv(glGetUniformLocation(shader.ID, "transformMatrix"), 1, GL_FALSE, glm::value_ptr(cuboide.getTransformMatrix().toGlmMat4()));
+	glUniformMatrix4fv(glGetUniformLocation(shader.ID, "transformMatrix"), 1, GL_FALSE, glm::value_ptr(cuboide.transformMatrix.toGlmMat4()));
 
 	// Draw the actual mesh
 	glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
