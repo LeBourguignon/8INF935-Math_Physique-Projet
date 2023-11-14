@@ -1,14 +1,19 @@
 #include "Model.h"
 
+#include "Constant.h"
+
 #include "particule/force/GraviteParticule.h"
 #include "particule/force/RessortBungeeParticule.h"
 #include "particule/force/RessortFixeParticule.h"
+#include "particule/force/TraineeParticule.h"
+#include "particule/force/FlottabiliteParticule.h"
+
 #include "particule/contact/ResolveurContactParticule.h"
 #include "particule/contact/CableParticule.h"
 #include "particule/contact/TigeParticule.h"
-#include "Constant.h"
-#include "particule/force/TraineeParticule.h"
-#include "particule/force/FlottabiliteParticule.h"
+
+#include "corps-rigide/force/GenerateurGravite.h"
+#include "corps-rigide/force/GenerateurFlottabiliteCuboide.h"
 
 Model::Model()
 {
@@ -35,9 +40,12 @@ Cuboides Model::getCuboides()
 	return cuboides;
 }
 
-void Model::ajouterCuboide(Cuboide* cuboide)
+void Model::ajouterCuboide(Cuboide* cuboide, Vecteur3D gravite = Vecteur3D())
 {
 	this->cuboides.push_back(cuboide);
+	this->registreForce.ajouterForce(cuboide, new GenerateurGravite(gravite));
+	this->registreForce.ajouterForce(cuboide, new GenerateurFlottabiliteCuboide(cuboide->dimension, -5, 200));
+	// this->registreForce.ajouterForce(cuboide, new ); // TODO : Trainee
 }
 
 
@@ -49,6 +57,7 @@ void Model::reinitialisation()
 	this->generateursContact.deleteGenerateurs();
 
 	this->cuboides.deleteCuboides();
+	this->registreForce.deleteForce();
 
 	// Initialisation du model
 	this->particules = Particules();
@@ -59,9 +68,10 @@ void Model::reinitialisation()
 	generateursContact.push_back(this->generateurContactParticuleNaive);
 
 	this->cuboides = Cuboides();
+	this->registreForce = RegistreForce();
 }
 
-void Model::startDemo1()
+void Model::startDemoParticule1()
 {
 	this->reinitialisation();
 
@@ -69,7 +79,7 @@ void Model::startDemo1()
 	this->ajouterParticule(new Particule(Vecteur3D(10, 0, 0), Vecteur3D(0, 0, 0), Vecteur3D(0, 0, 0), 10), Vecteur3D(-10, 0, 0));
 }
 
-void Model::startDemo2()
+void Model::startDemoParticule2()
 {
 	this->reinitialisation();
 
@@ -81,7 +91,7 @@ void Model::startDemo2()
 	this->registreForceParticule.ajouterForceParticule(particule2, new RessortBungeeParticule(100, 5, particule1));
 }
 
-void Model::startDemo3()
+void Model::startDemoParticule3()
 {
 	this->reinitialisation();
 
@@ -95,7 +105,7 @@ void Model::startDemo3()
 	this->registreForceParticule.ajouterForceParticule(particule2, ressort2);
 }
 
-void Model::startDemo4()
+void Model::startDemoParticule4()
 {
 	this->reinitialisation();
 
@@ -113,7 +123,7 @@ void Model::startDemo4()
 	generateursContact.push_back(cable23);
 }
 
-void Model::startDemo5()
+void Model::startDemoParticule5()
 {
 	this->reinitialisation();
 
@@ -126,7 +136,7 @@ void Model::startDemo5()
 	generateursContact.push_back(tige12);
 }
 
-void Model::startDemo6()
+void Model::startDemoParticule6()
 {
 	this->reinitialisation();
 
@@ -144,7 +154,7 @@ void Model::startDemo6()
 	generateursContact.push_back(cable23);
 }
 
-void Model::startDemo7()
+void Model::startDemoParticule7()
 {
 	this->reinitialisation();
 
@@ -155,7 +165,7 @@ void Model::startDemo7()
 	this->registreForceParticule.ajouterForceParticule(particule1, new TraineeParticule(0.01, 0.1));
 }
 
-void Model::startDemo8()
+void Model::startDemoParticule8()
 {
 	this->reinitialisation();
 
@@ -179,11 +189,18 @@ void Model::actualiser(float duration)
 	// Mise à jour des forces sur les particules
 	this->registreForceParticule.actualiserForce(duration);
 
+	// Mise à jour des forces sur les corps rigides
+	this->registreForce.actualiserForce(duration);
+
+
+
 	// Mise à jour des particules
 	this->particules.actualiser(duration);
 
 	// Mise à jour des cuboides
 	this->cuboides.actualiser(duration);
+
+
 
 	// Génerer les contacts
 	ContactParticules contactParticules;

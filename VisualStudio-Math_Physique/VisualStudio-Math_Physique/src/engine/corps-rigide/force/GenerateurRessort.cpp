@@ -7,8 +7,8 @@ GenerateurRessort::GenerateurRessort(Vecteur3D attache, CorpsRigide* autreCorps,
 
 void GenerateurRessort::actualiserForce(CorpsRigide* corps)
 {
-    Matrix34 mat1 = corps->getTransformMatrix();
-    Matrix34 mat2 = this->autreCorps->getTransformMatrix();
+    Matrix34 mat1 = corps->transformMatrix;
+    Matrix34 mat2 = this->autreCorps->transformMatrix;
     Vecteur3D attache1 = mat1 * this->attache;
     Vecteur3D attache2 = mat2 * this->autreCorpsAttache;
     Vecteur3D distance = attache2 - attache1;

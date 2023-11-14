@@ -9,12 +9,12 @@ struct ForceParticule {
     GenerateurForceParticule* generateurForce;
 };
 
-using Registre = std::vector<ForceParticule>;
+using RegistreParticule = std::vector<ForceParticule>;
 
 class RegistreForceParticule
 {
 private:
-    Registre registre;
+    RegistreParticule registre;
 
 public:
     RegistreForceParticule();

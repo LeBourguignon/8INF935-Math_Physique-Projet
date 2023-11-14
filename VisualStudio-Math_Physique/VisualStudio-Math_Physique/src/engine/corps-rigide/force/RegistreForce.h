@@ -20,7 +20,7 @@ public:
     RegistreForce();
 
     void ajouterForce(CorpsRigide* corps, GenerateurForce* generateur);
-    void actualiserForce();
+    void actualiserForce(float duration);
 
     void deleteForce();
 };

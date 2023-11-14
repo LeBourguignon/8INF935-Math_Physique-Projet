@@ -7,6 +7,7 @@
 #include "particule/contact/GenerateurContactParticuleNaive.h"
 
 #include "corps-rigide/forme/Cuboides.h"
+#include "corps-rigide/force/RegistreForce.h"
 
 // Model physique
 class Model
@@ -21,6 +22,7 @@ private:
 
 	// Corps Rigide
 	Cuboides cuboides;
+	RegistreForce registreForce;
 
 public:
 	// Initilisation du model
@@ -34,27 +36,27 @@ public:
 	// Liste des cuboides du model
 	Cuboides getCuboides();
 	// Ajout d'une cuboide
-	void ajouterCuboide(Cuboide* cuboide);
+	void ajouterCuboide(Cuboide* cuboide, Vecteur3D gravite);
 
 	// Réinitialisation du model
 	void reinitialisation();
 
-	// Démo 1 - gravitee/collision
-	void startDemo1();
-	// Démo 2 - ressort
-	void startDemo2();
-	// Démo 3 - ressort/masse
-	void startDemo3();
-	// Démo 4 - cable(chaine)
-	void startDemo4();
-	// Démo 5 - tige(pendule)
-	void startDemo5();
-	// Démo 6 - cable(chaine2)
-	void startDemo6();
-	// Démo 7 - frottement
-	void startDemo7();
-	// Démo 8 - flottabilite
-	void startDemo8();
+	// Démo Particule 1 - gravitee/collision
+	void startDemoParticule1();
+	// Démo Particule 2 - ressort
+	void startDemoParticule2();
+	// Démo Particule 3 - ressort/masse
+	void startDemoParticule3();
+	// Démo Particule 4 - cable(chaine)
+	void startDemoParticule4();
+	// Démo Particule 5 - tige(pendule)
+	void startDemoParticule5();
+	// Démo Particule 6 - cable(chaine2)
+	void startDemoParticule6();
+	// Démo Particule 7 - frottement
+	void startDemoParticule7();
+	// Démo Particule 8 - flottabilite
+	void startDemoParticule8();
 
 	// Actualisation du model d'un dt
 	void actualiser(float duration);

@@ -11,7 +11,7 @@ void RegistreForce::ajouterForce(CorpsRigide *corps, GenerateurForce *generateur
     this->registre.push_back(force);
 }
 
-void RegistreForce::actualiserForce()
+void RegistreForce::actualiserForce(float duration)
 {
     for (auto& force: this->registre)
     {

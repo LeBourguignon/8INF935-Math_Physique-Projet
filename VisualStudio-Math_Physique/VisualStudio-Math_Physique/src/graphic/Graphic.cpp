@@ -195,56 +195,56 @@ void Graphic::updateWindow(float deltaFrameTime, float deltaUpdateTime)
 		ImGui::Text("Deux particules avec deux gravites opposee\nsur le meme axe");
 		if (ImGui::Button("Lancer demo 1"))
 		{
-			model->startDemo1();
+			model->startDemoParticule1();
 		}
 
 		ImGui::SeparatorText("Demo 2");
 		ImGui::Text("Deux particules avec gravite opposee (les\neloignant) reliees par un ressort\nde type bungee");
 		if (ImGui::Button("Lancer demo 2"))
 		{
-			model->startDemo2();
+			model->startDemoParticule2();
 		}
 
 		ImGui::SeparatorText("Demo 3");
 		ImGui::Text("Deux particules de meme gravite reliees a\nl'axe y par des ressorts identiques\nla particule du haut est deux fois plus\nmassive que celle du bas");
 		if (ImGui::Button("Lancer demo 3"))
 		{
-			model->startDemo3();
+			model->startDemoParticule3();
 		}
 
 		ImGui::SeparatorText("Demo 4");
 		ImGui::Text("Trois particules de meme masse (sans\ngravite). Celle de droite a une vitesse\ninitiale non nulle, celle du milieu est\nreliee aux autres par un cable");
 		if (ImGui::Button("Lancer demo 4"))
 		{
-			model->startDemo4();
+			model->startDemoParticule4();
 		}
 
 		ImGui::SeparatorText("Demo 5");
 		ImGui::Text("Modelisation d'un pendule simple :\nparticule de masse finie soumise a la\ngravite et fixee a une particule de masse\ninfinie par une tige");
 		if (ImGui::Button("Lancer demo 5"))
 		{
-			model->startDemo5();
+			model->startDemoParticule5();
 		}
 
 		ImGui::SeparatorText("Demo 6");
 		ImGui::Text("Une particule de masse infinie\net de vitesse non nulle reliee a deux\nautres particules de masse finie");
 		if (ImGui::Button("Lancer demo 6"))
 		{
-			model->startDemo6();
+			model->startDemoParticule6();
 		}
 
 		ImGui::SeparatorText("Demo 7");
 		ImGui::Text("Deux particules au meme poids\nsoumis a la meme gravite mais celle du\ndessus a des frottements");
 		if (ImGui::Button("Lancer demo 7"))
 		{
-			model->startDemo7();
+			model->startDemoParticule7();
 		}
 
 		ImGui::SeparatorText("Demo 8");
 		ImGui::Text("Trois particules qui tombe dans un\nliquide lui permettant de flotter\navec des frottements");
 		if (ImGui::Button("Lancer demo 8"))
 		{
-			model->startDemo8();
+			model->startDemoParticule8();
 		}
 
 		ImGui::End();
@@ -259,13 +259,14 @@ void Graphic::updateWindow(float deltaFrameTime, float deltaUpdateTime)
 		ImGui::InputFloat4("Orientation", cori);
 		ImGui::InputFloat3("Velocite", cvel);
 		ImGui::InputFloat3("Rotation", crot);
+		ImGui::InputFloat3("Champ gravitationnel", cgra);
 		ImGui::InputDouble("Masse (0 -> masse infinie)", &cmasse);
 		ImGui::InputFloat3("Taille", ctaille);
 
 		ImGui::Spacing();
 
 		if (ImGui::Button("Generation particule")) {
-			model->ajouterCuboide(new Cuboide(Vecteur3D(cpos[0], cpos[1], cpos[2]), Quaternion(cori[0], cori[1], cori[2], cori[3]), Vecteur3D(cvel[0], cvel[1], cvel[2]), Vecteur3D(crot[0], crot[1], crot[2]), cmasse, Vecteur3D(ctaille[0], ctaille[1], ctaille[2])));
+			model->ajouterCuboide(new Cuboide(Vecteur3D(cpos[0], cpos[1], cpos[2]), Quaternion(cori[0], cori[1], cori[2], cori[3]), Vecteur3D(cvel[0], cvel[1], cvel[2]), Vecteur3D(crot[0], crot[1], crot[2]), cmasse, Vecteur3D(ctaille[0], ctaille[1], ctaille[2])), Vecteur3D(cgra[0], cgra[1], cgra[2]));
 		}
 		ImGui::SameLine();
 		if (ImGui::Button("Nettoyage du model")) {

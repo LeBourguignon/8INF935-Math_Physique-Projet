@@ -2,7 +2,7 @@
 
 RegistreForceParticule::RegistreForceParticule()
 {
-    this->registre = Registre();
+    this->registre = RegistreParticule();
 }
 
 void RegistreForceParticule::ajouterForceParticule(Particule *particule, GenerateurForceParticule *generateur)
