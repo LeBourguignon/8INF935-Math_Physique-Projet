@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\engine\corps-rigide\force\GenerateurTrainee.cpp" />
     <ClCompile Include="src\engine\corps-rigide\force\GenerateurFlottabiliteCuboide.cpp" />
     <ClCompile Include="src\engine\corps-rigide\force\GenerateurFlottabilite.cpp" />
     <ClCompile Include="src\engine\corps-rigide\force\GenerateurGravite.cpp" />
@@ -193,6 +194,7 @@
     <ClCompile Include="src\engine\particule\force\TraineeParticule.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\engine\corps-rigide\force\GenerateurTrainee.h" />
     <ClInclude Include="src\engine\corps-rigide\force\GenerateurFlottabiliteCuboide.h" />
     <ClInclude Include="src\engine\corps-rigide\force\GenerateurFlottabilite.h" />
     <ClInclude Include="src\engine\corps-rigide\force\GenerateurForce.h" />
