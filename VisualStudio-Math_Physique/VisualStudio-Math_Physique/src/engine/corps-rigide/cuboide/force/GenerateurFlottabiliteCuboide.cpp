@@ -36,17 +36,47 @@ void GenerateurFlottabiliteCuboide::actualiserForce(CorpsRigide* corps)
         {
             ySommetMax = sommet.y;
         }
-        
+
         if (sommet.y < ySommetMin)
         {
             ySommetMin = sommet.y;
             sommetsMin.clear();
             sommetsMin.push_back(sommet);
         }
-        else if (sommet.y == ySommetMin) 
+        else if (sommet.y == ySommetMin)
         {
             sommetsMin.push_back(sommet);
         }
+        
+        /*if (sommet.y < ySommetMin)
+        {
+            ySommetMin = sommet.y;
+        }
+
+        if (sommetsMin.size() != 4)
+        {
+            if (sommetsMin.size() != 0)
+            {
+                if (sommet.y > sommetsMin.begin()->y)
+                    sommetsMin.insert(sommetsMin.begin(), sommet);
+                else
+                    sommetsMin.push_back(sommet);
+            }
+            else
+                sommetsMin.push_back(sommet);
+        }
+        else
+        {
+            for (int i = 0; i < 4; ++i)
+            {
+                if (sommet.y < (sommetsMin.end() - 1 - i)->y)
+                {
+                    sommetsMin.insert(sommetsMin.end() - i, sommet);
+                    sommetsMin.erase(sommetsMin.begin());
+                    i = 4;
+                }
+            }
+        }*/
     }
 
     double hauteurObjet = ySommetMax - ySommetMin;
@@ -67,12 +97,14 @@ void GenerateurFlottabiliteCuboide::actualiserForce(CorpsRigide* corps)
         force.y = d * volumeObjet * this->densiteLiquide;
     }
 
-    Vecteur3D forcePosition;
+    /*Vecteur3D forcePosition;
     for (auto& sommet : sommetsMin)
     {
         forcePosition = forcePosition + sommet;
     }
     forcePosition = forcePosition / sommetsMin.size();
 
-    corps->ajouterForcePositionRelative(force, forcePosition);
+    corps->ajouterForcePositionRelative(force, forcePosition);*/
+
+    corps->ajouterForce(force);
 }

@@ -13,7 +13,8 @@
 #include "particule/contact/TigeParticule.h"
 
 #include "corps-rigide/force/GenerateurGravite.h"
-#include "corps-rigide/force/GenerateurFlottabiliteCuboide.h"
+#include "corps-rigide/force/GenerateurTrainee.h"
+#include "corps-rigide/cuboide/force/GenerateurFlottabiliteCuboide.h"
 
 Model::Model()
 {
@@ -44,8 +45,8 @@ void Model::ajouterCuboide(Cuboide* cuboide, Vecteur3D gravite = Vecteur3D())
 {
 	this->cuboides.push_back(cuboide);
 	this->registreForce.ajouterForce(cuboide, new GenerateurGravite(gravite));
-	this->registreForce.ajouterForce(cuboide, new GenerateurFlottabiliteCuboide(cuboide->dimension, -5, 200));
-	// this->registreForce.ajouterForce(cuboide, new ); // TODO : Trainee
+	this->registreForce.ajouterForce(cuboide, new GenerateurFlottabiliteCuboide(cuboide->dimension, -5, 20));
+	this->registreForce.ajouterForce(cuboide, new GenerateurTrainee(0.01, 0.1));
 }
 
 

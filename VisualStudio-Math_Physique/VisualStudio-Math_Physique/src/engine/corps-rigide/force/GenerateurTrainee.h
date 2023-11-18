@@ -1,5 +1,5 @@
-#ifndef __FLOTTABILITE_PARTICULE_H__
-#define __FLOTTABILITE_PARTICULE_H__
+#ifndef __GENERATEUR_TRAINEE_H__
+#define __GENERATEUR_TRAINEE_H__
 
 #include "GenerateurForce.h"
 

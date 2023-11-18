@@ -2,7 +2,7 @@
 #define __CUBOIDE_MESH_H__
 
 #include "Mesh.h"
-#include "../engine/corps-rigide/forme/Cuboide.h"
+#include "../engine/corps-rigide/cuboide/Cuboide.h"
 
 class CuboideMesh : public Mesh
 {

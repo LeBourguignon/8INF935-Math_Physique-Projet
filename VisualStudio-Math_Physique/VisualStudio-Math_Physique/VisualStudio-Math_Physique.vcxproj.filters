@@ -147,13 +147,13 @@
     <ClCompile Include="src\engine\corps-rigide\CorpsRigide.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\corps-rigide\forme\Cuboide.cpp">
+    <ClCompile Include="src\engine\corps-rigide\cuboide\Cuboide.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="src\graphic\CuboideMesh.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\corps-rigide\forme\Cuboides.cpp">
+    <ClCompile Include="src\engine\corps-rigide\cuboide\Cuboides.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="src\engine\corps-rigide\force\GenerateurGravite.cpp">
@@ -168,7 +168,7 @@
     <ClCompile Include="src\engine\corps-rigide\force\RegistreForce.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\corps-rigide\force\GenerateurFlottabiliteCuboide.cpp">
+    <ClCompile Include="src\engine\corps-rigide\cuboide\force\GenerateurFlottabiliteCuboide.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="src\engine\corps-rigide\force\GenerateurTrainee.cpp">
@@ -323,13 +323,13 @@
     <ClInclude Include="src\engine\corps-rigide\CorpsRigide.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\corps-rigide\forme\Cuboide.h">
+    <ClInclude Include="src\engine\corps-rigide\cuboide\Cuboide.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="src\graphic\CuboideMesh.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\corps-rigide\forme\Cuboides.h">
+    <ClInclude Include="src\engine\corps-rigide\cuboide\Cuboides.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="src\engine\corps-rigide\force\GenerateurRessort.h">
@@ -347,7 +347,7 @@
     <ClInclude Include="src\engine\corps-rigide\force\RegistreForce.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\corps-rigide\force\GenerateurFlottabiliteCuboide.h">
+    <ClInclude Include="src\engine\corps-rigide\cuboide\force\GenerateurFlottabiliteCuboide.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="src\engine\corps-rigide\force\GenerateurTrainee.h">

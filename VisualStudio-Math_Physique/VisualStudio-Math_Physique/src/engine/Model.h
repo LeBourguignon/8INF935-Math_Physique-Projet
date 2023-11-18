@@ -6,8 +6,10 @@
 #include "particule/contact/GenerateursContactParticule.h"
 #include "particule/contact/GenerateurContactParticuleNaive.h"
 
-#include "corps-rigide/forme/Cuboides.h"
+#include "corps-rigide/CorpsRigide.h"
 #include "corps-rigide/force/RegistreForce.h"
+
+#include "corps-rigide/cuboide/Cuboides.h"
 
 // Model physique
 class Model

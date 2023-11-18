@@ -42,11 +42,11 @@ private:
 
 	bool show_particule_window = false, show_demo_window = false, show_cuboide_window = false;
 
-	float ppos[3] = { 0.0f, 0.0f, 0.0f }, pvel[3] = { 0.0f, 0.0f, 0.0f }, pgra[3] = { 0.0f, 0.0f, 0.0f };
-	double pmasse = 10.0f;
+	float ppos[3] = { 0.0f, 0.0f, 0.0f }, pvel[3] = { 0.0f, 0.0f, 0.0f }, pgra[3] = { 0.0f, -1.0f, 0.0f };
+	double pmasse = 1.0f;
 
-	float cpos[3] = { 0.0f, 0.0f, 0.0f }, cvel[3] = { 0.0f, 0.0f, 0.0f }, cori[4] = { 1.0f, 0.0f, 0.0f, 0.0f }, crot[3] = { 0.0f, 0.0f, 0.0f }, cgra[3] = { 0.0f, 0.0f, 0.0f }, ctaille[3] = { 0.2f, 0.2f, 0.2f };
-	double cmasse = 10.0f;
+	float cpos[3] = { 0.0f, 0.0f, 0.0f }, cvel[3] = { 0.0f, 0.0f, 0.0f }, cori[4] = { 1.0f, 0.0f, 0.0f, 0.0f }, crot[3] = { 0.0f, 0.0f, 0.0f }, cgra[3] = { 0.0f, -1.0f, 0.0f }, ctaille[3] = { 0.2f, 1.0f, 0.6f };
+	double cmasse = 1.0f;
 
 public:
 	// Initilisation du moteur graphique

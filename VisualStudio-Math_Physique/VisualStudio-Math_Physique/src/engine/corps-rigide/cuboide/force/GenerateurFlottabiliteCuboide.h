@@ -1,8 +1,8 @@
 #ifndef __GENERATEUR_FLOTTABILITE_CUBOIDE_H__
 #define __GENERATEUR_FLOTTABILITE_CUBOIDE_H__
 
-#include "../CorpsRigide.h"
-#include "GenerateurForce.h"
+#include "../../CorpsRigide.h"
+#include "../../force/GenerateurForce.h"
 
 class GenerateurFlottabiliteCuboide : public GenerateurForce
 {
