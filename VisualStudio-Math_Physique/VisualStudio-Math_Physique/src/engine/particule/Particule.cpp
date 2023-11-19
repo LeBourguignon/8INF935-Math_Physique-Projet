@@ -32,7 +32,7 @@ void Particule::actualiser(double duration)
     this->position = this->position + this->velocite * duration + this->acceleration * 0.5 * duration * duration;
 
     // Mise à jour de la vitesse
-    this->velocite = this->velocite * Constant::facteurAmortissement + this->acceleration * duration;
+    this->velocite = this->velocite * Constant::facteurAmortissementLineaire + this->acceleration * duration;
 
     // Réinisilisation de la force
     this->force = Vecteur3D();

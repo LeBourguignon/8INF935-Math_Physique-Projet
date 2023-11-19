@@ -199,18 +199,18 @@ void Model::startDemoCuboide1()
 {
 	this->reinitialisation();
 
-	Cuboide* anchorLeft = new Cuboide(Vecteur3D(-3, 10, 0), Quaternion(), 10, Vecteur3D(0.5, 0.5, 0.5));
+	Cuboide* anchorLeft = new Cuboide(Vecteur3D(-3, 10, -5), Quaternion(), 10, Vecteur3D(0.5, 0.5, 0.5));
 	this->cuboides.push_back(anchorLeft);
-	Cuboide* anchorRight = new Cuboide(Vecteur3D(3, 10, 0), Quaternion(), 10, Vecteur3D(0.5, 0.5, 0.5));
+	Cuboide* anchorRight = new Cuboide(Vecteur3D(3, 10, -5), Quaternion(), 10, Vecteur3D(0.5, 0.5, 0.5));
 	this->cuboides.push_back(anchorRight);
 
-	Cuboide* top = new Cuboide(Vecteur3D(0, 10, 0), Quaternion(), 10, Vecteur3D(1, 1, 0.2));
+	Cuboide* top = new Cuboide(Vecteur3D(0, 10, -5), Quaternion(), 10, Vecteur3D(1, 1, 0.2));
 	this->ajouterCuboide(top, Vecteur3D(0, -1, 0));
 
-	Cuboide* left = new Cuboide(Vecteur3D(-3, 5, 0), Quaternion(), 10, Vecteur3D(0.5, 0.5, 0.5));
+	Cuboide* left = new Cuboide(Vecteur3D(-3, 5, -5), Quaternion(), 10, Vecteur3D(0.5, 0.5, 0.5));
 	this->ajouterCuboide(left, Vecteur3D(0, -1, 0));
 
-	Cuboide* right = new Cuboide(Vecteur3D(3, 5, 0), Quaternion(), 10, Vecteur3D(0.5, 0.5, 0.5));
+	Cuboide* right = new Cuboide(Vecteur3D(3, 5, -5), Quaternion(), 10, Vecteur3D(0.5, 0.5, 0.5));
 	this->ajouterCuboide(right, Vecteur3D(0, -1, 0));
 
 	this->registreForce.ajouterForce(top, new GenerateurRessort(Vecteur3D(-0.5, 0.5, 0), anchorLeft, Vecteur3D(), 10, 3));

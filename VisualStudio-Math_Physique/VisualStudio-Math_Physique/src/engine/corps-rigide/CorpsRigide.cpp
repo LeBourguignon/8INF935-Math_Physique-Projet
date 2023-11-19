@@ -24,6 +24,8 @@ CorpsRigide::CorpsRigide(Vecteur3D position, Quaternion orientation, Vecteur3D v
 	tenseurInertieInverse(Matrix33(std::array<std::array<double, 3>, 3>({{1,0,0},{0,1,0},{0,0,1}}))),
 	tenseurInertieInverseLocal(tenseurInertie.inverse())
 {
+	// Initialisation des données dérivées (transformMatrix et tenseurInertieInverse)
+	calculerDonneesDerivees();
 }
 
 
@@ -38,7 +40,7 @@ void CorpsRigide::actualiser(double duration)
 
 
 
-	// Calculer les données dérivées (transformMatrix et tenseurInertieInverse)
+	// Calcule les données dérivées (transformMatrix et tenseurInertieInverse)
 	calculerDonneesDerivees();
 
 
@@ -52,10 +54,10 @@ void CorpsRigide::actualiser(double duration)
 
 
 	// Mise à jour de la vitesse
-	this->velocite = this->velocite * Constant::facteurAmortissement + this->acceleration * duration;
+	this->velocite = this->velocite * Constant::facteurAmortissementLineaire + this->acceleration * duration;
 
 	// Mise à jour de la rotation
-	this->velociteAngulaire = this->velociteAngulaire * Constant::facteurAmortissement + this->accelerationAngulaire * duration;
+	this->velociteAngulaire = this->velociteAngulaire * Constant::facteurAmortissementAngulaire + this->accelerationAngulaire * duration;
 
 
 
@@ -84,12 +86,11 @@ void CorpsRigide::ajouterTorque(const Vecteur3D& torque)
 
 void CorpsRigide::ajouterForcePosition(const Vecteur3D& force, const Vecteur3D& position){
 	this->force = this->force + force;
-	this->torque = (position - this->position) % force;
+	this->torque = this->torque + (position - this->position) % force;
 }
 
 void CorpsRigide::ajouterForcePositionRelative(const Vecteur3D& force, const Vecteur3D& positionRelative){
-	this->force = this->force + force;
-	this->torque = ((this->transformMatrix * positionRelative) - this->position) % force;
+	this->ajouterForcePosition(force, this->transformMatrix * positionRelative);
 }
 
 void CorpsRigide::calculerDonneesDerivees()
