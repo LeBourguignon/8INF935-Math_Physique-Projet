@@ -159,8 +159,9 @@ void Graphic::updateWindow(float deltaFrameTime, float deltaUpdateTime)
 	ImGui::Text("%.1f FPS", 1 / deltaFrameTime);
 	ImGui::Text("%.1f UPS", 1 / deltaUpdateTime);
 	ImGui::Checkbox("Particule Window", &show_particule_window);
-	ImGui::Checkbox("Demo Window", &show_demo_window);
+	ImGui::Checkbox("Demo Particule Window", &show_demo_particule_window);
 	ImGui::Checkbox("Cuboide Window", &show_cuboide_window);
+	ImGui::Checkbox("Demo Cuboide Window", &show_demo_cuboide_window);
 	ImGui::End();
 
 	// Particule Window
@@ -186,10 +187,10 @@ void Graphic::updateWindow(float deltaFrameTime, float deltaUpdateTime)
 		ImGui::End();
 	}
 
-	// Demo Window
-	if (show_demo_window)
+	// Demo Particule Window
+	if (show_demo_particule_window)
 	{
-		ImGui::Begin("Demo Window", &show_demo_window);
+		ImGui::Begin("Demo Particule Window", &show_demo_particule_window);
 
 		ImGui::SeparatorText("Demo 1");
 		ImGui::Text("Deux particules avec deux gravites opposee\nsur le meme axe");
@@ -271,6 +272,21 @@ void Graphic::updateWindow(float deltaFrameTime, float deltaUpdateTime)
 		ImGui::SameLine();
 		if (ImGui::Button("Nettoyage du model")) {
 			model->reinitialisation();
+		}
+
+		ImGui::End();
+	}
+
+	// Demo Particule Window
+	if (show_demo_cuboide_window)
+	{
+		ImGui::Begin("Demo Cuboide Window", &show_demo_cuboide_window);
+
+		ImGui::SeparatorText("Demo 1");
+		ImGui::Text("Amas de Cuboides relies par des ressorts");
+		if (ImGui::Button("Lancer demo 1"))
+		{
+			model->startDemoCuboide1();
 		}
 
 		ImGui::End();

@@ -30,18 +30,13 @@ public:
 	// Initilisation du model
 	Model();
 
+	// Réinitialisation du model
+	void reinitialisation();
+
 	// Liste des particules du model
 	Particules getParticules();
 	// Ajout d'une particule avec son champs gravitationnel
 	void ajouterParticule(Particule* particule, Vecteur3D gravite);
-
-	// Liste des cuboides du model
-	Cuboides getCuboides();
-	// Ajout d'une cuboide
-	void ajouterCuboide(Cuboide* cuboide, Vecteur3D gravite);
-
-	// Réinitialisation du model
-	void reinitialisation();
 
 	// Démo Particule 1 - gravitee/collision
 	void startDemoParticule1();
@@ -59,6 +54,15 @@ public:
 	void startDemoParticule7();
 	// Démo Particule 8 - flottabilite
 	void startDemoParticule8();
+
+	// Liste des cuboides du model
+	Cuboides getCuboides();
+	// Ajout d'une cuboide
+	void ajouterCuboide(Cuboide* cuboide, Vecteur3D gravite);
+
+	// Démo Cuboide 1
+	void startDemoCuboide1();
+
 
 	// Actualisation du model d'un dt
 	void actualiser(float duration);

@@ -14,39 +14,15 @@
 
 #include "corps-rigide/force/GenerateurGravite.h"
 #include "corps-rigide/force/GenerateurTrainee.h"
+#include "corps-rigide/force/GenerateurRessort.h"
+#include "corps-rigide/force/GenerateurRessortFixe.h"
+#include "corps-rigide/force/GenerateurRessortBungee.h"
 #include "corps-rigide/cuboide/force/GenerateurFlottabiliteCuboide.h"
 
 Model::Model()
 {
 	this->generateurContactParticuleNaive = new GenerateurContactParticuleNaive(this->particules, 0.2f);
 	generateursContact.push_back(this->generateurContactParticuleNaive);
-}
-
-
-Particules Model::getParticules()
-{
-	return particules;
-}
-
-void Model::ajouterParticule(Particule* particule, Vecteur3D gravite = Vecteur3D())
-{
-	this->particules.push_back(particule);
-	this->registreForceParticule.ajouterForceParticule(particule, new GraviteParticule(gravite));
-	this->generateurContactParticuleNaive->ajouterParticule(particule);
-}
-
-
-Cuboides Model::getCuboides()
-{
-	return cuboides;
-}
-
-void Model::ajouterCuboide(Cuboide* cuboide, Vecteur3D gravite = Vecteur3D())
-{
-	this->cuboides.push_back(cuboide);
-	this->registreForce.ajouterForce(cuboide, new GenerateurGravite(gravite));
-	this->registreForce.ajouterForce(cuboide, new GenerateurFlottabiliteCuboide(cuboide->dimension, -5, 20));
-	this->registreForce.ajouterForce(cuboide, new GenerateurTrainee(0.01, 0.1));
 }
 
 
@@ -71,6 +47,23 @@ void Model::reinitialisation()
 	this->cuboides = Cuboides();
 	this->registreForce = RegistreForce();
 }
+
+/*
+	Particule
+*/
+
+Particules Model::getParticules()
+{
+	return particules;
+}
+
+void Model::ajouterParticule(Particule* particule, Vecteur3D gravite = Vecteur3D())
+{
+	this->particules.push_back(particule);
+	this->registreForceParticule.ajouterForceParticule(particule, new GraviteParticule(gravite));
+	this->generateurContactParticuleNaive->ajouterParticule(particule);
+}
+
 
 void Model::startDemoParticule1()
 {
@@ -182,6 +175,40 @@ void Model::startDemoParticule8()
 	this->registreForceParticule.ajouterForceParticule(particule2, new TraineeParticule(0.001, 0.01));
 	this->registreForceParticule.ajouterForceParticule(particule3, new FlottabiliteParticule(0.2, 0.008, -5, 20));
 	this->registreForceParticule.ajouterForceParticule(particule3, new TraineeParticule(0.001, 0.01));
+}
+
+/*
+	Cuboide
+*/
+
+Cuboides Model::getCuboides()
+{
+	return cuboides;
+}
+
+void Model::ajouterCuboide(Cuboide* cuboide, Vecteur3D gravite = Vecteur3D())
+{
+	this->cuboides.push_back(cuboide);
+	this->registreForce.ajouterForce(cuboide, new GenerateurGravite(gravite));
+	this->registreForce.ajouterForce(cuboide, new GenerateurFlottabiliteCuboide(cuboide->dimension, -5, 20));
+	this->registreForce.ajouterForce(cuboide, new GenerateurTrainee(0.01, 0.1));
+}
+
+
+void Model::startDemoCuboide1()
+{
+	this->reinitialisation();
+
+	Cuboide* test = new Cuboide(Vecteur3D(0, 0, 0), Quaternion(), 1, Vecteur3D(0.4, 1, 0.8));
+	this->cuboides.push_back(test);
+	this->registreForce.ajouterForce(test, new GenerateurRessortFixe(Vecteur3D(-0.2, 0.5, -0.4), Vecteur3D(0, 1, 0), 1, 1));
+
+
+	/*Cuboide* top = new Cuboide(Vecteur3D(0, 10, 0), Quaternion(), 1, Vecteur3D(0.4, 1, 0.8));
+	this->ajouterCuboide(top, Vecteur3D(0, -1, 0));
+
+	this->registreForce.ajouterForce(top, new GenerateurRessortFixe(Vecteur3D(-0.2, 0.5, -0.4), Vecteur3D(-3, 10, 0), 2, 4));
+	this->registreForce.ajouterForce(top, new GenerateurRessortFixe(Vecteur3D(0.2, 0.5, 0.4), Vecteur3D(3, 10, 0), 2, 4));*/
 }
 
 
