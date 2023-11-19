@@ -74,6 +74,14 @@ void CorpsRigide::ajouterForce(const Vecteur3D& force){
 	this->force = this->force + force;
 }
 
+void CorpsRigide::ajouterTorque(const Vecteur3D& torque)
+{
+	this->torque = this->torque + torque;
+}
+
+
+
+
 void CorpsRigide::ajouterForcePosition(const Vecteur3D& force, const Vecteur3D& position){
 	this->force = this->force + force;
 	this->torque = (position - this->position) % force;

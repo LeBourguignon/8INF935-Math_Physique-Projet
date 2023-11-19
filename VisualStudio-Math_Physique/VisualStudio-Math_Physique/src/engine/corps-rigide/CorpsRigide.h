@@ -26,6 +26,8 @@ public:
 	double getMass();
 
 	void ajouterForce(const Vecteur3D& force);
+	void ajouterTorque(const Vecteur3D& torque);
+
 	void ajouterForcePosition(const Vecteur3D& force, const Vecteur3D& position);
 	void ajouterForcePositionRelative(const Vecteur3D& force, const Vecteur3D& positionRelative);
 

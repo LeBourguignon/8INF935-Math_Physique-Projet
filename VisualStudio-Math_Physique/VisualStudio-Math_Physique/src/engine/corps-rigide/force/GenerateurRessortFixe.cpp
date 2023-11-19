@@ -10,7 +10,7 @@ void GenerateurRessortFixe::actualiserForce(CorpsRigide* corps)
     Matrix34 mat1 = corps->transformMatrix;
     Vecteur3D attache1 = mat1 * this->attacheLocale;
     Vecteur3D attache2 = autreAttache;
-    Vecteur3D distance = attache2 - attache1;
+    Vecteur3D distance = attache1 - attache2;
     Vecteur3D force = distance.direction() * (-this->k * (distance.norme() - this->l0));
     corps->ajouterForcePositionRelative(force, this->attacheLocale);
 }

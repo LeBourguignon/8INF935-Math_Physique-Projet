@@ -11,7 +11,12 @@ Cuboide::Cuboide(Vecteur3D position, Quaternion orientation, double masse, Vecte
 }
 
 Cuboide::Cuboide(Vecteur3D position, Quaternion orientation, Vecteur3D velocite, Vecteur3D velociteAngulaire, double masse, Vecteur3D dimension)
-	: CorpsRigide(position, orientation, velocite, velociteAngulaire, masse, getTenseurInertie(masse, dimension)), dimension(dimension)
+	: Cuboide(position, orientation, velocite, velociteAngulaire, Vecteur3D(), Vecteur3D(), masse, dimension)
+{
+}
+
+Cuboide::Cuboide(Vecteur3D position, Quaternion orientation, Vecteur3D velocite, Vecteur3D velociteAngulaire, Vecteur3D acceleration, Vecteur3D accelerationAngulaire, double masse, Vecteur3D dimension)
+	: CorpsRigide(position, orientation, velocite, velociteAngulaire, acceleration, accelerationAngulaire, masse, getTenseurInertie(masse, dimension)), dimension(dimension)
 {
 }
 
