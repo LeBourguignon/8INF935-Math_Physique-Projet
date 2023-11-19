@@ -42,7 +42,7 @@ void CorpsRigide::actualiser(double duration)
 
 	// Calcule les données dérivées (transformMatrix et tenseurInertieInverse)
 	calculerDonneesDerivees();
-
+	
 
 
 	// Mise à jour de l'accélération

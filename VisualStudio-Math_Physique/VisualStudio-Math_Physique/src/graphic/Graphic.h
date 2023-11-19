@@ -40,7 +40,7 @@ private:
 
 	Camera camera;
 
-	bool show_particule_window = false, show_demo_particule_window = false, show_cuboide_window = false, show_demo_cuboide_window = false;
+	bool show_particule_window = false, show_demo_particule_window = false, show_cuboide_window = false, show_demo_cuboide_window = false, show_maker = true, show_floor = true;
 
 	float ppos[3] = { 0.0f, 0.0f, 0.0f }, pvel[3] = { 0.0f, 0.0f, 0.0f }, pgra[3] = { 0.0f, -1.0f, 0.0f };
 	double pmasse = 1.0f;

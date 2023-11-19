@@ -134,8 +134,8 @@ void Graphic::updateWindow(float deltaFrameTime, float deltaUpdateTime)
 	camera.updateMatrix(45.0f, 0.1f, 100.0f);
 
 	// Draws different meshes
-	floor->Draw(shaderProgram, camera);
-	maker->Draw(shaderProgram, camera);
+	if (show_floor)	floor->Draw(shaderProgram, camera);
+	if (show_maker)	maker->Draw(shaderProgram, camera);
 	for (auto particule : model->getParticules())
 	{
 		ParticuleMesh particuleMesh(particule->position.x, particule->position.y, particule->position.z);
@@ -156,12 +156,20 @@ void Graphic::updateWindow(float deltaFrameTime, float deltaUpdateTime)
 
 	// Main Window
 	ImGui::Begin("Menu Principal");
+
 	ImGui::Text("%.1f FPS", 1 / deltaFrameTime);
 	ImGui::Text("%.1f UPS", 1 / deltaUpdateTime);
+
+	ImGui::SeparatorText("Window");
 	ImGui::Checkbox("Particule Window", &show_particule_window);
 	ImGui::Checkbox("Demo Particule Window", &show_demo_particule_window);
 	ImGui::Checkbox("Cuboide Window", &show_cuboide_window);
 	ImGui::Checkbox("Demo Cuboide Window", &show_demo_cuboide_window);
+
+	ImGui::SeparatorText("Mesh");
+	ImGui::Checkbox("Maker", &show_maker);
+	ImGui::Checkbox("Floor", &show_floor);
+
 	ImGui::End();
 
 	// Particule Window

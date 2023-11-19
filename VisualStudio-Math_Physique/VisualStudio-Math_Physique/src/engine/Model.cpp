@@ -216,8 +216,11 @@ void Model::startDemoCuboide1()
 	this->registreForce.ajouterForce(top, new GenerateurRessort(Vecteur3D(-0.5, 0.5, 0), anchorLeft, Vecteur3D(), 10, 3));
 	this->registreForce.ajouterForce(top, new GenerateurRessort(Vecteur3D(0.5, 0.5, 0), anchorRight, Vecteur3D(), 10, 3));
 
-	this->registreForce.ajouterForce(left, new GenerateurRessortBungee(Vecteur3D(0, 0.25, 0), top, Vecteur3D(0, -0.5, 0), 10, 2));
-	this->registreForce.ajouterForce(right, new GenerateurRessortBungee(Vecteur3D(0, 0.25, 0), top, Vecteur3D(0, -0.5, 0), 10, 2));
+	this->registreForce.ajouterForce(left, new GenerateurRessort(Vecteur3D(0, 0.25, 0), top, Vecteur3D(0, -0.5, 0), 10, 3));
+	this->registreForce.ajouterForce(top, new GenerateurRessort(Vecteur3D(0, -0.5, 0), left, Vecteur3D(0, 0.25, 0), 10, 3));
+
+	this->registreForce.ajouterForce(right, new GenerateurRessort(Vecteur3D(0, 0.25, 0), top, Vecteur3D(0, -0.5, 0), 10, 3));
+	this->registreForce.ajouterForce(top, new GenerateurRessort(Vecteur3D(0, -0.5, 0), right, Vecteur3D(0, 0.25, 0), 10, 3));
 
 	this->registreForce.ajouterForce(right, new GenerateurRessort(Vecteur3D(-0.25, 0, 0), left, Vecteur3D(0.25, 0, 0), 10, 3));
 	this->registreForce.ajouterForce(left, new GenerateurRessort(Vecteur3D(0.25, 0, 0), right, Vecteur3D(-0.25, 0, 0), 10, 3));
