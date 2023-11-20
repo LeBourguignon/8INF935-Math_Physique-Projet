@@ -97,12 +97,14 @@ void GenerateurFlottabiliteCuboide::actualiserForce(CorpsRigide* corps)
         force.y = d * volumeObjet * this->densiteLiquide;
     }
 
-    Vecteur3D forcePosition;
+    /*Vecteur3D forcePosition;
     for (auto& sommet : sommetsMin)
     {
         forcePosition = forcePosition + sommet;
     }
     forcePosition = forcePosition / sommetsMin.size();
 
-    corps->ajouterForcePositionRelative(force, forcePosition);
+    corps->ajouterForcePositionRelative(force, forcePosition);*/
+
+    corps->ajouterForce(force);
 }
