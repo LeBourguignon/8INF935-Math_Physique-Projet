@@ -2,7 +2,11 @@
 #include <iostream>
 
 Matrix34::Matrix34()
-    : Matrix34(std::array<std::array<double, 4>, 3>())
+    : Matrix34(std::array<std::array<double, 4>, 3>({
+        {1, 0, 0, 0}, 
+        {0, 1, 0, 0}, 
+        {0, 0, 1, 0}
+        }))
 {
 }
 

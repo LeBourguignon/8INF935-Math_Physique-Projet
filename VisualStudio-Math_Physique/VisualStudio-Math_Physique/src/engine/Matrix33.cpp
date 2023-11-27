@@ -3,7 +3,11 @@
 
 Matrix33::Matrix33()
 {
-    this->values = std::array<std::array<double, 3>, 3>();
+    this->values = std::array<std::array<double, 3>, 3>({
+        {1, 0, 0},
+        {0, 1, 0},
+        {0, 0, 1}
+    });
 }
 Matrix33::Matrix33(std::array<std::array<double, 3>, 3> values)
 {

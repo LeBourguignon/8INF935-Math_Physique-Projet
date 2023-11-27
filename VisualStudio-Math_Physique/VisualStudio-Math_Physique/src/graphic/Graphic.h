@@ -20,7 +20,7 @@
 #include"Camera.h"
 #include"Mesh.h"
 #include"LineMesh.h"
-#include"ParticuleMesh.h"
+#include"SphereMesh.h"
 #include"CuboideMesh.h"
 
 class Graphic

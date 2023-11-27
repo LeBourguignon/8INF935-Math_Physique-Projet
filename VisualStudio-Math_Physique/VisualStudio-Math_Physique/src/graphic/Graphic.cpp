@@ -138,9 +138,9 @@ void Graphic::updateWindow(float deltaFrameTime, float deltaUpdateTime)
 	if (show_maker)	maker->Draw(shaderProgram, camera);
 	for (auto particule : model->getParticules())
 	{
-		ParticuleMesh particuleMesh(particule->position.x, particule->position.y, particule->position.z);
+		SphereMesh particuleMesh(0.1f, Matrix34(particule->position, Quaternion()));
 		particuleMesh.Draw(shaderProgram, camera);
-		particuleMesh.~ParticuleMesh();
+		particuleMesh.~SphereMesh();
 	}
 	for (auto cuboide : model->getCuboides())
 	{
