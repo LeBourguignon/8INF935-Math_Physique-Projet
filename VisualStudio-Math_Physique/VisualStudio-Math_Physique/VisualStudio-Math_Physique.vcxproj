@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\engine\corps-rigide\contact\BoundingVolume.cpp" />
     <ClCompile Include="src\engine\corps-rigide\force\GenerateurRessortBungee.cpp" />
     <ClCompile Include="src\engine\corps-rigide\force\GenerateurRessortBungeeFixe.cpp" />
     <ClCompile Include="src\engine\corps-rigide\force\GenerateurRessortFixe.cpp" />
@@ -197,6 +198,7 @@
     <ClCompile Include="src\engine\particule\force\TraineeParticule.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\engine\corps-rigide\contact\BoundingVolume.h" />
     <ClInclude Include="src\engine\corps-rigide\force\GenerateurRessortBungee.h" />
     <ClInclude Include="src\engine\corps-rigide\force\GenerateurRessortBungeeFixe.h" />
     <ClInclude Include="src\engine\corps-rigide\force\GenerateurRessortFixe.h" />
