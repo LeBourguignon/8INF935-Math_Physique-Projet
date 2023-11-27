@@ -183,7 +183,7 @@
     <ClCompile Include="src\engine\corps-rigide\force\GenerateurRessortBungeeFixe.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\corps-rigide\contact\BoundingVolume.cpp">
+    <ClCompile Include="src\engine\corps-rigide\contact\BoundingVolumeSphere.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -365,7 +365,7 @@
     <ClInclude Include="src\engine\corps-rigide\force\GenerateurRessortBungeeFixe.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\corps-rigide\contact\BoundingVolume.h">
+    <ClInclude Include="src\engine\corps-rigide\contact\BoundingVolumeSphere.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
