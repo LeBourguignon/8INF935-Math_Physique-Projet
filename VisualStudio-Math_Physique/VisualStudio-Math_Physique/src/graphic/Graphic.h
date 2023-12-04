@@ -42,8 +42,8 @@ private:
 
 	bool show_particule_window = false, show_demo_particule_window = false, show_cuboide_window = false, show_demo_cuboide_window = false, show_maker = true, show_floor = true;
 
-	float ppos[3] = { 0.0f, 0.0f, 0.0f }, pvel[3] = { 0.0f, 0.0f, 0.0f }, pgra[3] = { 0.0f, -1.0f, 0.0f };
-	double pmasse = 1.0f;
+	float ppos[3] = { 0.0f, 0.0f, 0.0f }, pvel[3] = { 0.0f, 0.0f, 0.0f }, pgra[3] = { 0.0f, -10.0f, 0.0f };
+	double pmasse = 0.008f;
 
 	float cpos[3] = { 0.0f, 0.0f, 0.0f }, cvel[3] = { 0.0f, 0.0f, 0.0f }, cori[4] = { 1.0f, 0.0f, 0.0f, 0.0f }, crot[3] = { 0.0f, 0.0f, 0.0f }, cgra[3] = { 0.0f, -10.0f, 0.0f }, ctaille[3] = { 0.5f, 0.5f, 0.5f };
 	double cmasse = 1.0f;

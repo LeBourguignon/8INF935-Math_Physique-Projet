@@ -21,7 +21,7 @@
 
 Model::Model()
 {
-	this->generateurContactParticuleNaive = new GenerateurContactParticuleNaive(this->particules, 0.2f);
+	this->generateurContactParticuleNaive = new GenerateurContactParticuleNaive(this->particules, 0.1f);
 	generateursContact.push_back(this->generateurContactParticuleNaive);
 }
 
@@ -41,7 +41,7 @@ void Model::reinitialisation()
 	this->registreForceParticule = RegistreForceParticule();
 	this->generateursContact = GenerateursContactParticule();
 
-	this->generateurContactParticuleNaive = new GenerateurContactParticuleNaive(this->particules, 0.2f);
+	this->generateurContactParticuleNaive = new GenerateurContactParticuleNaive(this->particules, 0.1f);
 	generateursContact.push_back(this->generateurContactParticuleNaive);
 
 	this->cuboides = Cuboides();
@@ -60,7 +60,11 @@ Particules Model::getParticules()
 void Model::ajouterParticule(Particule* particule, Vecteur3D gravite = Vecteur3D())
 {
 	this->particules.push_back(particule);
+
 	this->registreForceParticule.ajouterForceParticule(particule, new GraviteParticule(gravite));
+	this->registreForceParticule.ajouterForceParticule(particule, new FlottabiliteParticule(0.2, 0.008, -5, 20));
+	this->registreForceParticule.ajouterForceParticule(particule, new TraineeParticule(0.001, 0.01));
+
 	this->generateurContactParticuleNaive->ajouterParticule(particule);
 }
 
@@ -169,12 +173,6 @@ void Model::startDemoParticule8()
 	this->ajouterParticule(particule1, Vecteur3D(0, -10, 0));
 	this->ajouterParticule(particule2, Vecteur3D(0, -10, 0));
 	this->ajouterParticule(particule3, Vecteur3D(0, -10, 0));
-	this->registreForceParticule.ajouterForceParticule(particule1, new FlottabiliteParticule(0.2, 0.008, -5, 20));
-	this->registreForceParticule.ajouterForceParticule(particule1, new TraineeParticule(0.001, 0.01));
-	this->registreForceParticule.ajouterForceParticule(particule2, new FlottabiliteParticule(0.2, 0.008, -5, 20));
-	this->registreForceParticule.ajouterForceParticule(particule2, new TraineeParticule(0.001, 0.01));
-	this->registreForceParticule.ajouterForceParticule(particule3, new FlottabiliteParticule(0.2, 0.008, -5, 20));
-	this->registreForceParticule.ajouterForceParticule(particule3, new TraineeParticule(0.001, 0.01));
 }
 
 /*

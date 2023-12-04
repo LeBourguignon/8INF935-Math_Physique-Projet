@@ -1,392 +1,136 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Fichiers sources">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Fichiers d%27en-tête">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Fichiers de ressources">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
+    <ClCompile Include="src\engine\corps-rigide\contact\BoundingVolumeSphere.cpp" />
+    <ClCompile Include="src\graphic\SphereMesh.cpp" />
+    <ClCompile Include="src\engine\corps-rigide\force\GenerateurRessortBungee.cpp" />
+    <ClCompile Include="src\engine\corps-rigide\force\GenerateurRessortBungeeFixe.cpp" />
+    <ClCompile Include="src\engine\corps-rigide\force\GenerateurRessortFixe.cpp" />
+    <ClCompile Include="src\engine\corps-rigide\force\GenerateurTrainee.cpp" />
+    <ClCompile Include="src\engine\corps-rigide\cuboide\force\GenerateurFlottabiliteCuboide.cpp" />
+    <ClCompile Include="src\engine\corps-rigide\force\GenerateurFlottabilite.cpp" />
+    <ClCompile Include="src\engine\corps-rigide\force\GenerateurGravite.cpp" />
+    <ClCompile Include="src\engine\corps-rigide\force\GenerateurRessort.cpp" />
+    <ClCompile Include="src\engine\corps-rigide\force\RegistreForce.cpp" />
+    <ClCompile Include="src\engine\corps-rigide\cuboide\Cuboides.cpp" />
+    <ClCompile Include="src\graphic\CuboideMesh.cpp" />
+    <ClCompile Include="src\engine\corps-rigide\cuboide\Cuboide.cpp" />
+    <ClCompile Include="src\engine\corps-rigide\CorpsRigide.cpp" />
+    <ClCompile Include="src\engine\Matrix34.cpp" />
+    <ClCompile Include="src\engine\Matrix33.cpp" />
+    <ClCompile Include="src\engine\Quaternion.cpp" />
+    <ClCompile Include="src\engine\particule\contact\GenerateursContactParticule.cpp" />
+    <ClCompile Include="src\engine\particule\contact\ContactParticules.cpp" />
+    <ClCompile Include="src\engine\particule\force\FlottabiliteParticule.cpp" />
+    <ClCompile Include="src\engine\particule\Particules.cpp" />
+    <ClCompile Include="src\engine\particule\contact\GenerateurContactParticuleNaive.cpp" />
+    <ClCompile Include="src\engine\particule\contact\CableParticule.cpp" />
+    <ClCompile Include="include\imgui\imgui.cpp" />
+    <ClCompile Include="include\imgui\imgui_demo.cpp" />
+    <ClCompile Include="include\imgui\imgui_draw.cpp" />
+    <ClCompile Include="include\imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="include\imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="include\imgui\imgui_tables.cpp" />
+    <ClCompile Include="include\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="src\engine\particule\contact\LienParticule.cpp" />
+    <ClCompile Include="src\engine\particule\contact\ResolveurContactParticule.cpp" />
+    <ClCompile Include="src\engine\particule\contact\ContactParticule.cpp" />
+    <ClCompile Include="src\engine\particule\force\RessortBungeeFixeParticule.cpp" />
+    <ClCompile Include="src\engine\particule\force\RessortBungeeParticule.cpp" />
+    <ClCompile Include="src\engine\particule\force\RessortFixeParticule.cpp" />
+    <ClCompile Include="src\engine\particule\force\RessortParticule.cpp" />
+    <ClCompile Include="src\graphic\LineMesh.cpp" />
+    <ClCompile Include="src\engine\particule\force\GraviteParticule.cpp" />
+    <ClCompile Include="src\engine\particule\force\RegistreForceParticule.cpp" />
+    <ClCompile Include="src\graphic\Graphic.cpp" />
+    <ClCompile Include="src\engine\Model.cpp" />
+    <ClCompile Include="src\engine\particule\Particule.cpp" />
+    <ClCompile Include="src\engine\Vecteur3D.cpp" />
+    <ClCompile Include="src\graphic\Camera.cpp" />
+    <ClCompile Include="src\graphic\EBO.cpp" />
+    <ClCompile Include="src\glad.c" />
+    <ClCompile Include="src\graphic\Mesh.cpp" />
+    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\graphic\Shader.cpp" />
+    <ClCompile Include="src\stb.cpp" />
+    <ClCompile Include="src\graphic\Texture.cpp" />
+    <ClCompile Include="src\graphic\VAO.cpp" />
+    <ClCompile Include="src\graphic\VBO.cpp" />
+    <ClCompile Include="src\engine\particule\contact\TigeParticule.cpp" />
+    <ClCompile Include="src\engine\particule\force\TraineeParticule.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\graphic\Camera.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphic\EBO.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\glad.c">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Main.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphic\Shader.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\stb.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphic\Texture.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphic\VAO.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphic\VBO.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="include\imgui\imgui.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="include\imgui\imgui_demo.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="include\imgui\imgui_draw.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="include\imgui\imgui_impl_glfw.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="include\imgui\imgui_impl_opengl3.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="include\imgui\imgui_tables.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="include\imgui\imgui_widgets.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\Vecteur3D.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\particule\Particule.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphic\Mesh.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\Model.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphic\Graphic.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphic\ParticuleMesh.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\particule\force\GraviteParticule.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\particule\force\RegistreForceParticule.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphic\LineMesh.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\particule\force\RessortBungeeParticule.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\particule\force\RessortFixeParticule.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\particule\force\RessortParticule.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\particule\force\RessortBungeeFixeParticule.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\particule\contact\ContactParticule.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\particule\contact\ResolveurContactParticule.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\particule\contact\LienParticule.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\particule\contact\CableParticule.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\particule\contact\TigeParticule.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\particule\contact\GenerateurContactParticuleNaive.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\particule\Particules.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\particule\contact\ContactParticules.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\particule\contact\GenerateursContactParticule.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\particule\force\TraineeParticule.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\particule\force\FlottabiliteParticule.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\Quaternion.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\Matrix33.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\Matrix34.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\corps-rigide\CorpsRigide.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\corps-rigide\cuboide\Cuboide.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\graphic\CuboideMesh.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\corps-rigide\cuboide\Cuboides.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\corps-rigide\force\GenerateurGravite.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\corps-rigide\force\GenerateurRessort.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\corps-rigide\force\GenerateurFlottabilite.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\corps-rigide\force\RegistreForce.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\corps-rigide\cuboide\force\GenerateurFlottabiliteCuboide.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\corps-rigide\force\GenerateurTrainee.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\corps-rigide\force\GenerateurRessortBungee.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\corps-rigide\force\GenerateurRessortFixe.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\corps-rigide\force\GenerateurRessortBungeeFixe.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\engine\corps-rigide\contact\BoundingVolumeSphere.cpp">
-    <ClCompile Include="src\graphic\SphereMesh.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
+    <ClInclude Include="src\engine\corps-rigide\contact\BoundingVolumeSphere.h" />
+    <ClInclude Include="src\graphic\SphereMesh.h" />
+    <ClInclude Include="src\engine\corps-rigide\force\GenerateurRessortBungee.h" />
+    <ClInclude Include="src\engine\corps-rigide\force\GenerateurRessortBungeeFixe.h" />
+    <ClInclude Include="src\engine\corps-rigide\force\GenerateurRessortFixe.h" />
+    <ClInclude Include="src\engine\corps-rigide\force\GenerateurTrainee.h" />
+    <ClInclude Include="src\engine\corps-rigide\cuboide\force\GenerateurFlottabiliteCuboide.h" />
+    <ClInclude Include="src\engine\corps-rigide\force\GenerateurFlottabilite.h" />
+    <ClInclude Include="src\engine\corps-rigide\force\GenerateurForce.h" />
+    <ClInclude Include="src\engine\corps-rigide\force\GenerateurGravite.h" />
+    <ClInclude Include="src\engine\corps-rigide\force\GenerateurRessort.h" />
+    <ClInclude Include="src\engine\corps-rigide\force\RegistreForce.h" />
+    <ClInclude Include="src\engine\corps-rigide\cuboide\Cuboides.h" />
+    <ClInclude Include="src\graphic\CuboideMesh.h" />
+    <ClInclude Include="src\engine\corps-rigide\cuboide\Cuboide.h" />
+    <ClInclude Include="src\engine\corps-rigide\CorpsRigide.h" />
+    <ClInclude Include="src\engine\Matrix34.h" />
+    <ClInclude Include="src\engine\Matrix33.h" />
+    <ClInclude Include="src\engine\Quaternion.h" />
+    <ClInclude Include="src\engine\particule\contact\GenerateursContactParticule.h" />
+    <ClInclude Include="src\engine\particule\contact\ContactParticules.h" />
+    <ClInclude Include="src\engine\particule\force\FlottabiliteParticule.h" />
+    <ClInclude Include="src\engine\particule\Particules.h" />
+    <ClInclude Include="src\engine\particule\contact\GenerateurContactParticuleNaive.h" />
+    <ClInclude Include="src\engine\particule\contact\CableParticule.h" />
+    <ClInclude Include="include\imgui\imconfig.h" />
+    <ClInclude Include="include\imgui\imgui.h" />
+    <ClInclude Include="include\imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="include\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="include\imgui\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="include\imgui\imgui_internal.h" />
+    <ClInclude Include="include\imgui\imstb_rectpack.h" />
+    <ClInclude Include="include\imgui\imstb_textedit.h" />
+    <ClInclude Include="include\imgui\imstb_truetype.h" />
+    <ClInclude Include="src\engine\particule\contact\LienParticule.h" />
+    <ClInclude Include="src\engine\particule\contact\ResolveurContactParticule.h" />
+    <ClInclude Include="src\engine\particule\contact\ContactParticule.h" />
+    <ClInclude Include="src\engine\particule\contact\GenerateurContactParticule.h" />
+    <ClInclude Include="src\engine\particule\force\RessortBungeeFixeParticule.h" />
+    <ClInclude Include="src\engine\particule\force\RessortBungeeParticule.h" />
+    <ClInclude Include="src\engine\particule\force\RessortFixeParticule.h" />
+    <ClInclude Include="src\engine\particule\force\RessortParticule.h" />
+    <ClInclude Include="src\graphic\LineMesh.h" />
+    <ClInclude Include="src\engine\Constant.h" />
+    <ClInclude Include="src\engine\particule\force\GenerateurForceParticule.h" />
+    <ClInclude Include="src\engine\particule\force\GraviteParticule.h" />
+    <ClInclude Include="src\engine\particule\force\RegistreForceParticule.h" />
+    <ClInclude Include="src\graphic\Graphic.h" />
+    <ClInclude Include="src\engine\Model.h" />
+    <ClInclude Include="src\engine\particule\Particule.h" />
+    <ClInclude Include="src\engine\Vecteur3D.h" />
+    <ClInclude Include="src\graphic\Camera.h" />
+    <ClInclude Include="src\graphic\EBO.h" />
+    <ClInclude Include="src\graphic\Mesh.h" />
+    <ClInclude Include="src\graphic\Shader.h" />
+    <ClInclude Include="src\graphic\Texture.h" />
+    <ClInclude Include="src\graphic\VAO.h" />
+    <ClInclude Include="src\graphic\VBO.h" />
+    <ClInclude Include="src\engine\particule\contact\TigeParticule.h" />
+    <ClInclude Include="src\engine\particule\force\TraineeParticule.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\graphic\Camera.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphic\EBO.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphic\Shader.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphic\Texture.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphic\VAO.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphic\VBO.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="include\imgui\imconfig.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="include\imgui\imgui.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="include\imgui\imgui_impl_glfw.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="include\imgui\imgui_impl_opengl3.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="include\imgui\imgui_internal.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="include\imgui\imstb_rectpack.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="include\imgui\imstb_textedit.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="include\imgui\imstb_truetype.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="include\imgui\imgui_impl_opengl3_loader.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\Vecteur3D.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\particule\Particule.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphic\Mesh.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\Model.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphic\Graphic.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphic\ParticuleMesh.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\Constant.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\particule\force\GenerateurForceParticule.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\particule\force\GraviteParticule.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\particule\force\RegistreForceParticule.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphic\LineMesh.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\particule\force\RessortBungeeParticule.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\particule\force\RessortFixeParticule.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\particule\force\RessortParticule.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\particule\force\RessortBungeeFixeParticule.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\particule\contact\GenerateurContactParticule.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\particule\contact\ContactParticule.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\particule\contact\ResolveurContactParticule.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\particule\contact\LienParticule.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\particule\contact\CableParticule.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\particule\contact\TigeParticule.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\particule\contact\GenerateurContactParticuleNaive.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\particule\Particules.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\particule\contact\ContactParticules.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\particule\contact\GenerateursContactParticule.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\particule\force\TraineeParticule.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\particule\force\FlottabiliteParticule.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\Quaternion.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\Matrix33.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\Matrix34.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\corps-rigide\CorpsRigide.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\corps-rigide\cuboide\Cuboide.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\graphic\CuboideMesh.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\corps-rigide\cuboide\Cuboides.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\corps-rigide\force\GenerateurRessort.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\corps-rigide\force\GenerateurForce.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\corps-rigide\force\GenerateurGravite.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\corps-rigide\force\GenerateurFlottabilite.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\corps-rigide\force\RegistreForce.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\corps-rigide\cuboide\force\GenerateurFlottabiliteCuboide.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\corps-rigide\force\GenerateurTrainee.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\corps-rigide\force\GenerateurRessortBungee.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\corps-rigide\force\GenerateurRessortFixe.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\corps-rigide\force\GenerateurRessortBungeeFixe.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="src\engine\corps-rigide\contact\BoundingVolumeSphere.h">
-    <ClInclude Include="src\graphic\SphereMesh.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
+    <Library Include="lib\glfw3.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\brick.png" />
+    <Image Include="resources\planks.png" />
+    <Image Include="resources\planksSpec.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\default.frag" />
     <None Include="resources\default.vert" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="resources\brick.png">
-      <Filter>Fichiers de ressources</Filter>
-    </Image>
-    <Image Include="resources\planksSpec.png">
-      <Filter>Fichiers de ressources</Filter>
-    </Image>
-    <Image Include="resources\planks.png">
-      <Filter>Fichiers de ressources</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="lib\glfw3.lib" />
   </ItemGroup>
 </Project>

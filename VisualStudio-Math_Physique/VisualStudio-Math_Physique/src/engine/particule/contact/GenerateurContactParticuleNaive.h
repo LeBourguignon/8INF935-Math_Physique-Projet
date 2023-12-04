@@ -7,12 +7,12 @@
 class GenerateurContactParticuleNaive : public GenerateurContactParticule
 {
 public:
-	float longueurArete;
+	double radius;
 
 	Particules particules;
 
-	GenerateurContactParticuleNaive(float longueurArete);
-	GenerateurContactParticuleNaive(Particules& particules, float longueurArete);
+	GenerateurContactParticuleNaive(double radius);
+	GenerateurContactParticuleNaive(Particules& particules, double radius);
 
 	void ajouterParticule(Particule* particule);
 	void ajouterContact(ContactParticules& contacts, unsigned int limit);
