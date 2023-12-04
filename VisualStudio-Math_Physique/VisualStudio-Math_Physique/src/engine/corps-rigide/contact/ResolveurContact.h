@@ -1,5 +1,5 @@
-#ifndef __RESOLVEUR_CONCACT_H__
-#define __RESOLVEUR_CONCACT_H__
+#ifndef __RESOLVEUR_CONTACT_H__
+#define __RESOLVEUR_CONTACT_H__
 
 #include "Contact.h"
 
