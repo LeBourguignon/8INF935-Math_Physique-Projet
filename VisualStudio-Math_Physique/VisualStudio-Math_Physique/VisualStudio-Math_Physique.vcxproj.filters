@@ -58,8 +58,9 @@
     <ClCompile Include="src\graphic\VBO.cpp" />
     <ClCompile Include="src\engine\particule\contact\TigeParticule.cpp" />
     <ClCompile Include="src\engine\particule\force\TraineeParticule.cpp" />
-    <ClCompile Include="Contact.cpp" />
-    <ClCompile Include="ResolveurContact.cpp" />
+    <ClCompile Include="src\engine\corps-rigide\contact\Contact.cpp" />
+    <ClCompile Include="src\engine\corps-rigide\contact\ResolveurContact.cpp" />
+    <ClCompile Include="ContactData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine\corps-rigide\contact\BoundingVolumeSphere.h" />
@@ -122,9 +123,10 @@
     <ClInclude Include="src\graphic\VBO.h" />
     <ClInclude Include="src\engine\particule\contact\TigeParticule.h" />
     <ClInclude Include="src\engine\particule\force\TraineeParticule.h" />
-    <ClInclude Include="Contact.h" />
+    <ClInclude Include="src\engine\corps-rigide\contact\Contact.h" />
     <ClInclude Include="src\engine\corps-rigide\contact\GenerateurContact.h" />
-    <ClInclude Include="ResolveurContact.h" />
+    <ClInclude Include="src\engine\corps-rigide\contact\ResolveurContact.h" />
+    <ClInclude Include="ContactData.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="lib\glfw3.lib" />

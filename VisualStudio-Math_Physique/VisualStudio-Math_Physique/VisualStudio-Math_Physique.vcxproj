@@ -139,8 +139,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Contact.cpp" />
-    <ClCompile Include="ResolveurContact.cpp" />
+    <ClCompile Include="ContactData.cpp" />
+    <ClCompile Include="src\engine\corps-rigide\contact\Contact.cpp" />
+    <ClCompile Include="src\engine\corps-rigide\contact\ResolveurContact.cpp" />
     <ClCompile Include="src\engine\corps-rigide\contact\BoundingVolumeSphere.cpp" />
     <ClCompile Include="src\graphic\SphereMesh.cpp" />
     <ClCompile Include="src\engine\corps-rigide\force\GenerateurRessortBungee.cpp" />
@@ -200,8 +201,9 @@
     <ClCompile Include="src\engine\particule\force\TraineeParticule.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Contact.h" />
-    <ClInclude Include="ResolveurContact.h" />
+    <ClInclude Include="ContactData.h" />
+    <ClInclude Include="src\engine\corps-rigide\contact\Contact.h" />
+    <ClInclude Include="src\engine\corps-rigide\contact\ResolveurContact.h" />
     <ClInclude Include="src\engine\corps-rigide\contact\BoundingVolumeSphere.h" />
     <ClInclude Include="src\engine\corps-rigide\contact\GenerateurContact.h" />
     <ClInclude Include="src\graphic\SphereMesh.h" />
