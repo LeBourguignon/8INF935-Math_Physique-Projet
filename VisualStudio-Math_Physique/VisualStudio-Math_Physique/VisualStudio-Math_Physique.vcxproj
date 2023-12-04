@@ -139,7 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ContactData.cpp" />
+    <ClCompile Include="src\engine\corps-rigide\contact\DonneeContact.cpp" />
     <ClCompile Include="src\engine\corps-rigide\contact\Contact.cpp" />
     <ClCompile Include="src\engine\corps-rigide\contact\ResolveurContact.cpp" />
     <ClCompile Include="src\engine\corps-rigide\contact\Octree.cpp" />
@@ -202,7 +202,7 @@
     <ClCompile Include="src\engine\particule\force\TraineeParticule.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ContactData.h" />
+    <ClInclude Include="src\engine\corps-rigide\contact\DonneeContact.h" />
     <ClInclude Include="src\engine\corps-rigide\contact\Contact.h" />
     <ClInclude Include="src\engine\corps-rigide\contact\ResolveurContact.h" />
     <ClInclude Include="src\engine\corps-rigide\contact\Octree.h" />

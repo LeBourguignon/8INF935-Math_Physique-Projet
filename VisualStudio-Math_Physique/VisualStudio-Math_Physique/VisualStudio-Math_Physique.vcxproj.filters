@@ -62,6 +62,7 @@
     <ClCompile Include="src\engine\corps-rigide\contact\ResolveurContact.cpp" />
     <ClCompile Include="ContactData.cpp" />
     <ClCompile Include="src\engine\corps-rigide\contact\Octree.cpp" />
+    <ClCompile Include="src\engine\corps-rigide\contact\DonneeContact.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine\corps-rigide\contact\BoundingVolumeSphere.h" />
@@ -129,6 +130,7 @@
     <ClInclude Include="src\engine\corps-rigide\contact\ResolveurContact.h" />
     <ClInclude Include="ContactData.h" />
     <ClInclude Include="src\engine\corps-rigide\contact\Octree.h" />
+    <ClInclude Include="src\engine\corps-rigide\contact\DonneeContact.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="lib\glfw3.lib" />
