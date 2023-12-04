@@ -1,5 +1,5 @@
-#ifndef __DONNEE_CONCACT_H__
-#define __DONNEE_CONCACT_H__
+#ifndef __DONNEE_CONTACT_H__
+#define __DONNEE_CONTACT_H__
 
 #include "../CorpsRigide.h"
 
