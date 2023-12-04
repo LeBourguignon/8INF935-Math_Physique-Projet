@@ -15,7 +15,7 @@ private:
 public:
 	BoundingVolumeSphere(CorpsRigide, double);			// lie un rayon à un corp
 	BoundingVolumeSphere(Cuboide);						// lie un rayon à un cuboide
-	bool PossibleColision(BoundingVolumeSphere *other);	//Si elle la distance est plus petite que la somme des rayon alors il y a colision.
+	bool PossibleCollision(BoundingVolumeSphere *other);	//Si elle la distance est plus petite que la somme des rayons alors il y a colision.
 
 };
 #endif
