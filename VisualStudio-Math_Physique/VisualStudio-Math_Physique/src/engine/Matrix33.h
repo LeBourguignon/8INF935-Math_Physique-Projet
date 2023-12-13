@@ -2,6 +2,7 @@
 #define __MATRIX33_H__
 
 #include <array>
+
 #include "Vecteur3D.h"
 #include "Quaternion.h"
 

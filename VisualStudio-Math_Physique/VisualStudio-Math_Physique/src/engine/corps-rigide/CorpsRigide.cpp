@@ -2,27 +2,26 @@
 #include "../Constant.h"
 
 CorpsRigide::CorpsRigide()
-	: CorpsRigide(Vecteur3D(), Quaternion(), 0, Matrix33(std::array<std::array<double, 3>, 3>({ {1,0,0},{0,1,0},{0,0,1} })))
+	: CorpsRigide(Forme(), 0, Matrix33(std::array<std::array<double, 3>, 3>({ {1,0,0},{0,1,0},{0,0,1} })))
 {
 }
 
-CorpsRigide::CorpsRigide(Vecteur3D position, Quaternion orientation, double masse, Matrix33 tenseurInertie)
-	: CorpsRigide(position, orientation, Vecteur3D(), Vecteur3D(), masse, tenseurInertie)
+CorpsRigide::CorpsRigide(const Forme& forme, double masse, const Matrix33& tenseurInertie)
+	: CorpsRigide(forme, masse, tenseurInertie, Vecteur3D(), Quaternion())
 {
 }
 
-CorpsRigide::CorpsRigide(Vecteur3D position, Quaternion orientation, Vecteur3D velocite, Vecteur3D velociteAngulaire, double masse, Matrix33 tenseurInertie)
-	: CorpsRigide(position, orientation, velocite, velociteAngulaire, Vecteur3D(), Vecteur3D(), masse, tenseurInertie)
+CorpsRigide::CorpsRigide(const Forme& forme, double masse, const Matrix33& tenseurInertie, const Vecteur3D& position, const Quaternion& orientation)
+	: CorpsRigide(forme, masse, tenseurInertie, position, orientation, Vecteur3D(), Vecteur3D())
 {
 }
 
-CorpsRigide::CorpsRigide(Vecteur3D position, Quaternion orientation, Vecteur3D velocite, Vecteur3D velociteAngulaire, Vecteur3D acceleration, Vecteur3D accelerationAngulaire, double masse, Matrix33 tenseurInertie)
-	: position(position), velocite(velocite), acceleration(acceleration), force(Vecteur3D()),
-	orientation(orientation), velociteAngulaire(velociteAngulaire), accelerationAngulaire(accelerationAngulaire), torque(Vecteur3D()),
-	inverseMasse((masse == 0) ? 0 : 1 / masse), 
-	transformMatrix(Matrix34(std::array<std::array<double, 4>, 3>({ {1,0,0},{0,1,0},{0,0,1} }))), 
-	tenseurInertieInverse(Matrix33(std::array<std::array<double, 3>, 3>({{1,0,0},{0,1,0},{0,0,1}}))),
-	tenseurInertieInverseLocal(tenseurInertie.inverse())
+CorpsRigide::CorpsRigide(const Forme& forme, double masse, const Matrix33& tenseurInertie, const Vecteur3D& position, const Quaternion& orientation, const Vecteur3D& velocite, const Vecteur3D& velociteAngulaire)
+	: forme(forme), inverseMasse((masse == 0) ? 0 : 1 / masse), tenseurInertieInverseLocal(tenseurInertie.inverse()),
+	position(position), velocite(velocite), acceleration(Vecteur3D()), force(Vecteur3D()),
+	orientation(orientation), velociteAngulaire(velociteAngulaire), accelerationAngulaire(Vecteur3D()), torque(Vecteur3D()),
+	transformMatrix(Matrix34(std::array<std::array<double, 4>, 3>({ {1,0,0},{0,1,0},{0,0,1} }))),
+	inverseTenseurInertie(Matrix33(std::array<std::array<double, 3>, 3>({ {1,0,0},{0,1,0},{0,0,1} })))
 {
 	// Initialisation des données dérivées (transformMatrix et tenseurInertieInverse)
 	calculerDonneesDerivees();
@@ -49,7 +48,7 @@ void CorpsRigide::actualiser(double duration)
 	this->acceleration = this->force * this->inverseMasse;
 
 	// Mise à jour de l'accélération angulaire
-	this->accelerationAngulaire = this->tenseurInertieInverse * this->torque;
+	this->accelerationAngulaire = this->inverseTenseurInertie * this->torque;
 
 
 
@@ -97,8 +96,8 @@ void CorpsRigide::calculerDonneesDerivees()
 {
 	this->transformMatrix = Matrix34(this->position, this->orientation);
 
-	this->tenseurInertieInverse.values = this->tenseurInertieInverseLocal.values;
-	this->tenseurInertieInverse.setOrientation(this->orientation);
+	this->inverseTenseurInertie.values = this->tenseurInertieInverseLocal.values;
+	this->inverseTenseurInertie.setOrientation(this->orientation);
 }
 
 void CorpsRigide::reinitialiserAccumulateur(){

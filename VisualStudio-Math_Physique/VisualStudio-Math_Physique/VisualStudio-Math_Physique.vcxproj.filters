@@ -60,9 +60,11 @@
     <ClCompile Include="src\engine\particule\force\TraineeParticule.cpp" />
     <ClCompile Include="src\engine\corps-rigide\contact\Contact.cpp" />
     <ClCompile Include="src\engine\corps-rigide\contact\ResolveurContact.cpp" />
-    <ClCompile Include="ContactData.cpp" />
     <ClCompile Include="src\engine\corps-rigide\contact\Octree.cpp" />
     <ClCompile Include="src\engine\corps-rigide\contact\DonneeContact.cpp" />
+    <ClCompile Include="src\engine\corps-rigide\CorpsRigides.cpp" />
+    <ClCompile Include="src\engine\corps-rigide\contact\Contacts.cpp" />
+    <ClCompile Include="src\graphic\CorpsRigideMesh.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine\corps-rigide\contact\BoundingVolumeSphere.h" />
@@ -128,9 +130,11 @@
     <ClInclude Include="src\engine\corps-rigide\contact\Contact.h" />
     <ClInclude Include="src\engine\corps-rigide\contact\GenerateurContact.h" />
     <ClInclude Include="src\engine\corps-rigide\contact\ResolveurContact.h" />
-    <ClInclude Include="ContactData.h" />
     <ClInclude Include="src\engine\corps-rigide\contact\Octree.h" />
     <ClInclude Include="src\engine\corps-rigide\contact\DonneeContact.h" />
+    <ClInclude Include="src\engine\corps-rigide\CorpsRigides.h" />
+    <ClInclude Include="src\engine\corps-rigide\contact\Contacts.h" />
+    <ClInclude Include="src\graphic\CorpsRigideMesh.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="lib\glfw3.lib" />

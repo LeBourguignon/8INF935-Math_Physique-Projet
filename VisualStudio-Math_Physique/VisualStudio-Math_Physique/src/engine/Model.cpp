@@ -33,7 +33,7 @@ void Model::reinitialisation()
 	this->registreForceParticule.deleteForce();
 	this->generateursContact.deleteGenerateurs();
 
-	this->cuboides.deleteCuboides();
+	this->corpsRigides.deleteCorpsRigides();
 	this->registreForce.deleteForce();
 
 	// Initialisation du model
@@ -44,7 +44,7 @@ void Model::reinitialisation()
 	this->generateurContactParticuleNaive = new GenerateurContactParticuleNaive(this->particules, 0.1f);
 	generateursContact.push_back(this->generateurContactParticuleNaive);
 
-	this->cuboides = Cuboides();
+	this->corpsRigides = CorpsRigides();
 	this->registreForce = RegistreForce();
 }
 
@@ -179,36 +179,35 @@ void Model::startDemoParticule8()
 	Cuboide
 */
 
-Cuboides Model::getCuboides()
+CorpsRigides Model::getCorpsRigides()
 {
-	return cuboides;
+	return this->corpsRigides;
 }
 
-void Model::ajouterCuboide(Cuboide* cuboide, Vecteur3D gravite = Vecteur3D())
+void Model::ajouterCuboide(Cuboide* cuboide, Vecteur3D gravite)
 {
-	this->cuboides.push_back(cuboide);
+	this->corpsRigides.push_back(cuboide);
 	this->registreForce.ajouterForce(cuboide, new GenerateurGravite(gravite));
-	this->registreForce.ajouterForce(cuboide, new GenerateurFlottabiliteCuboide(cuboide->dimension, -5, 200));
+	this->registreForce.ajouterForce(cuboide, new GenerateurFlottabiliteCuboide(-5, 200));
 	this->registreForce.ajouterForce(cuboide, new GenerateurTrainee(0.1, 0.5));
 }
-
 
 void Model::startDemoCuboide1()
 {
 	this->reinitialisation();
 
-	Cuboide* anchorLeft = new Cuboide(Vecteur3D(-3, 10, -5), Quaternion(), 10, Vecteur3D(0.5, 0.5, 0.5));
-	this->cuboides.push_back(anchorLeft);
-	Cuboide* anchorRight = new Cuboide(Vecteur3D(3, 10, -5), Quaternion(), 10, Vecteur3D(0.5, 0.5, 0.5));
-	this->cuboides.push_back(anchorRight);
+	Cuboide* anchorLeft = new Cuboide(Vecteur3D(0.5, 0.5, 0.5), 10, Vecteur3D(-3, 10, -5), Quaternion());
+	this->corpsRigides.push_back(anchorLeft);
+	Cuboide* anchorRight = new Cuboide(Vecteur3D(0.5, 0.5, 0.5), 10, Vecteur3D(3, 10, -5), Quaternion());
+	this->corpsRigides.push_back(anchorRight);
 
-	Cuboide* top = new Cuboide(Vecteur3D(0, 10, -5), Quaternion(), 1000, Vecteur3D(1, 1, 0.2));
+	Cuboide* top = new Cuboide(Vecteur3D(1, 1, 0.2), 1000, Vecteur3D(0, 10, -5), Quaternion());
 	this->ajouterCuboide(top, Vecteur3D(0, -1, 0));
 
-	Cuboide* left = new Cuboide(Vecteur3D(-3, 5, -5), Quaternion(), 1000, Vecteur3D(0.5, 0.5, 0.5));
+	Cuboide* left = new Cuboide(Vecteur3D(0.5, 0.5, 0.5), 1000, Vecteur3D(-3, 5, -5), Quaternion());
 	this->ajouterCuboide(left, Vecteur3D(0, -1, 0));
 
-	Cuboide* right = new Cuboide(Vecteur3D(3, 5, -5), Quaternion(), 1000, Vecteur3D(0.5, 0.5, 0.5));
+	Cuboide* right = new Cuboide(Vecteur3D(0.5, 0.5, 0.5), 1000, Vecteur3D(3, 5, -5), Quaternion());
 	this->ajouterCuboide(right, Vecteur3D(0, -1, 0));
 
 	this->registreForce.ajouterForce(top, new GenerateurRessort(Vecteur3D(-0.5, 0.5, 0), anchorLeft, Vecteur3D(), 500, 3));
@@ -238,8 +237,8 @@ void Model::actualiser(float duration)
 	// Mise à jour des particules
 	this->particules.actualiser(duration);
 
-	// Mise à jour des cuboides
-	this->cuboides.actualiser(duration);
+	// Mise à jour des corpsRigides
+	this->corpsRigides.actualiser(duration);
 
 
 

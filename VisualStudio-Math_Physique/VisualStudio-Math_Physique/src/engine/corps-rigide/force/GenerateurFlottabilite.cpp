@@ -1,6 +1,5 @@
 #include "GenerateurFlottabilite.h"
 
-
 GenerateurFlottabilite::GenerateurFlottabilite(double hauteurObjet, double volumeObjet, double niveauLiquide, double densiteLiquide)
     : hauteurObjet(hauteurObjet), volumeObjet(volumeObjet), niveauLiquide(niveauLiquide), densiteLiquide(densiteLiquide)
 {
@@ -24,4 +23,3 @@ void GenerateurFlottabilite::actualiserForce(CorpsRigide* corps)
     }
     corps->ajouterForce(force);
 }
-

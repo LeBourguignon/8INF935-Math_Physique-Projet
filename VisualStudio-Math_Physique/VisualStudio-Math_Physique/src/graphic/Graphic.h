@@ -21,7 +21,7 @@
 #include"Mesh.h"
 #include"LineMesh.h"
 #include"SphereMesh.h"
-#include"CuboideMesh.h"
+#include"CorpsRigideMesh.h"
 
 class Graphic
 {

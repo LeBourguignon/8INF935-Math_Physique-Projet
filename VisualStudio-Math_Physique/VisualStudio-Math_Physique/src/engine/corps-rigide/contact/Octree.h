@@ -2,7 +2,6 @@
 #define __OCTREE_H__
 
 #include "BoundingVolumeSphere.h"
-#include 
 
 //liste de corpRigide
 // Je découpe la dimension en 2, tant qu'il y a plus de 2 objets dans la dimension

@@ -4,7 +4,6 @@
 #include "../CorpsRigide.h"
 #include "GenerateurForce.h"
 
-
 class GenerateurFlottabilite : public GenerateurForce
 {
 private:
@@ -16,7 +15,6 @@ private:
 public:
 	GenerateurFlottabilite(double hauteurObjet, double volumeObjet, double niveauLiquide, double densiteLiquide);
 	void actualiserForce(CorpsRigide* corps) override;
-	
-
 };
+
 #endif

@@ -6,10 +6,10 @@
 #include "particule/contact/GenerateursContactParticule.h"
 #include "particule/contact/GenerateurContactParticuleNaive.h"
 
-#include "corps-rigide/CorpsRigide.h"
+#include "corps-rigide/CorpsRigides.h"
 #include "corps-rigide/force/RegistreForce.h"
 
-#include "corps-rigide/cuboide/Cuboides.h"
+#include "corps-rigide/cuboide/Cuboide.h"
 
 // Model physique
 class Model
@@ -23,7 +23,7 @@ private:
 	GenerateurContactParticuleNaive* generateurContactParticuleNaive;
 
 	// Corps Rigide
-	Cuboides cuboides;
+	CorpsRigides corpsRigides;
 	RegistreForce registreForce;
 
 public:
@@ -55,10 +55,10 @@ public:
 	// Démo Particule 8 - flottabilite
 	void startDemoParticule8();
 
-	// Liste des cuboides du model
-	Cuboides getCuboides();
+	// Liste des CorpsRigides du model
+	CorpsRigides getCorpsRigides();
 	// Ajout d'une cuboide
-	void ajouterCuboide(Cuboide* cuboide, Vecteur3D gravite);
+	void ajouterCuboide(Cuboide* cuboide, Vecteur3D gravite = Vecteur3D());
 
 	// Démo Cuboide 1
 	void startDemoCuboide1();

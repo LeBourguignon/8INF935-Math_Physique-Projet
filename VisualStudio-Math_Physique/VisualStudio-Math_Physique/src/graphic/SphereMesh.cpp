@@ -18,7 +18,7 @@ std::vector<Vertex>* SphereMesh::getVertices(double radius, double density)
             vertex.position.x = radius * sinPhi * cosTheta;
             vertex.position.y = radius * cosPhi;
             vertex.position.z = radius * sinPhi * sinTheta;
-            vertex.color = glm::vec4(std::abs(cosPhi), std::abs(cosTheta), sinPhi * sinTheta, 1.0f); // Change the color as needed
+            vertex.color = glm::vec4(1.0 / (1.0 + std::exp(-vertex.position.x / radius)), 1.0 / (1.0 + std::exp(-vertex.position.y / radius)), 1.0 / (1.0 + std::exp(-vertex.position.z / radius)), 1.0f); // Change the color as needed
             vertices->push_back(vertex);
         }
     }

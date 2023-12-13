@@ -142,11 +142,11 @@ void Graphic::updateWindow(float deltaFrameTime, float deltaUpdateTime)
 		particuleMesh.Draw(shaderProgram, camera);
 		particuleMesh.~SphereMesh();
 	}
-	for (auto cuboide : model->getCuboides())
+	for (auto corpsRigide : model->getCorpsRigides())
 	{
-		CuboideMesh cuboideMesh(*cuboide);
-		cuboideMesh.Draw(shaderProgram, camera);
-		cuboideMesh.~CuboideMesh();
+		CorpsRigideMesh corpsRigideMesh(*corpsRigide);
+		corpsRigideMesh.Draw(shaderProgram, camera);
+		corpsRigideMesh.~CorpsRigideMesh();
 	}
 
 	// Tell OpenGL a new frame is about to begin
@@ -275,7 +275,7 @@ void Graphic::updateWindow(float deltaFrameTime, float deltaUpdateTime)
 		ImGui::Spacing();
 
 		if (ImGui::Button("Generation particule")) {
-			model->ajouterCuboide(new Cuboide(Vecteur3D(cpos[0], cpos[1], cpos[2]), Quaternion(cori[0], cori[1], cori[2], cori[3]), Vecteur3D(cvel[0], cvel[1], cvel[2]), Vecteur3D(crot[0], crot[1], crot[2]), cmasse, Vecteur3D(ctaille[0], ctaille[1], ctaille[2])), Vecteur3D(cgra[0], cgra[1], cgra[2]));
+			model->ajouterCuboide(new Cuboide(Vecteur3D(ctaille[0], ctaille[1], ctaille[2]), cmasse, Vecteur3D(cpos[0], cpos[1], cpos[2]), Quaternion(cori[0], cori[1], cori[2], cori[3]), Vecteur3D(cvel[0], cvel[1], cvel[2]), Vecteur3D(crot[0], crot[1], crot[2])), Vecteur3D(cgra[0], cgra[1], cgra[2]));
 		}
 		ImGui::SameLine();
 		if (ImGui::Button("Nettoyage du model")) {
