@@ -22,6 +22,7 @@ struct Forme
 			if (rayon > maxRayon)
 				maxRayon = rayon;
 		}
+		return maxRayon;
 	}
 };
 
