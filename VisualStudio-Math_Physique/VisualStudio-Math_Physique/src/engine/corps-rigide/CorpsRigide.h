@@ -12,17 +12,24 @@ struct Forme
 	std::vector<Vecteur3D> vertices;
 	std::vector<std::array<int, 3>> indices;
 
-	Forme() : vertices(), indices() {}
-	Forme(const std::vector<Vecteur3D>& vertices, const std::vector<std::array<int, 3>>& indices) : vertices(vertices), indices(indices) {}
+	double maxRayon;
+	double minRayon;
 
-	double getMaxRayon() {
-		double maxRayon = std::numeric_limits<double>::min();
+	Forme() : vertices(), indices(), maxRayon(0.0f), minRayon(DBL_MAX) {}
+	Forme(const std::vector<Vecteur3D>& vertices, const std::vector<std::array<int, 3>>& indices) : vertices(vertices), indices(indices)
+	{
+		this->maxRayon = 0.0f;
+		this->minRayon = DBL_MAX;
+
 		for (auto& vertice : this->vertices) {
 			double rayon = vertice.norme();
-			if (rayon > maxRayon)
-				maxRayon = rayon;
+			
+			if (rayon > this->maxRayon)
+				this->maxRayon = rayon;
+
+			if (rayon < this->minRayon)
+				this->minRayon = rayon;
 		}
-		return maxRayon;
 	}
 };
 
