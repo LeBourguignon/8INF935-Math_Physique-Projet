@@ -67,6 +67,7 @@
     <ClCompile Include="src\graphic\CorpsRigideMesh.cpp" />
     <ClCompile Include="src\engine\corps-rigide\contact\GenerateursContact.cpp" />
     <ClCompile Include="src\engine\corps-rigide\contact\GenerateurContactCorpsRigide.cpp" />
+    <ClCompile Include="src\engine\corps-rigide\cuboide\contact\GenerateurContactCuboide.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine\corps-rigide\contact\BoundingVolumeSphere.h" />
@@ -139,6 +140,7 @@
     <ClInclude Include="src\graphic\CorpsRigideMesh.h" />
     <ClInclude Include="src\engine\corps-rigide\contact\GenerateursContact.h" />
     <ClInclude Include="src\engine\corps-rigide\contact\GenerateurContactCorpsRigide.h" />
+    <ClInclude Include="src\engine\corps-rigide\cuboide\contact\GenerateurContactCuboide.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="lib\glfw3.lib" />
