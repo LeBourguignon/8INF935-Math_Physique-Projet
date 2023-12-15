@@ -14,7 +14,7 @@ public:
 	Vecteur3D pointContact;
 	Vecteur3D normalContact;
 
-	DonneeContact(CorpsRigide* particules[2], float restitution, float penetration, Vecteur3D pointContact, Vecteur3D normalContact);
+	DonneeContact(CorpsRigide* corpsRigides[2], const float& restitution, const float& penetration, const Vecteur3D& pointContact, const Vecteur3D& normalContact);
 };
 
 #endif

@@ -19,42 +19,6 @@ void GenerateurContactCorpsRigide::ajouterContact(Contacts& contacts, unsigned i
 	}
 }
 
-bool GenerateurContactCorpsRigide::RayIntersectsTriangle(Vecteur3D rayOrigin, Vecteur3D rayVector, std::array<Vecteur3D, 3>& inTriangle, Vecteur3D& outIntersectionPoint)
-{
-    const float EPSILON = 0.0000001;
-    Vecteur3D vertex0 = inTriangle[0];
-    Vecteur3D vertex1 = inTriangle[1];
-    Vecteur3D vertex2 = inTriangle[2];
-    Vecteur3D edge1, edge2, h, s, q;
-    float a, f, u, v;
-    edge1 = vertex1 - vertex0;
-    edge2 = vertex2 - vertex0;
-    h = rayVector % edge2;
-    a = edge1 * h;
-    if (a > -EPSILON && a < EPSILON)
-        return false;    // Le rayon est parallèle au triangle.
-
-    f = 1.0 / a;
-    s = rayOrigin - vertex0;
-    u = f * (s * h);
-    if (u < 0.0 || u > 1.0)
-        return false;
-    q = s % edge1;
-    v = f * (rayVector * q);
-    if (v < 0.0 || u + v > 1.0)
-        return false;
-
-    // On calcule t pour savoir ou le point d'intersection se situe sur la ligne.
-    float t = f * (edge2 * q);
-    if (t > EPSILON) // Intersection avec le rayon
-    {
-        outIntersectionPoint = rayOrigin + rayVector * t;
-        return true;
-    }
-    else // On a bien une intersection de droite, mais pas de rayon.
-        return false;
-}
-
 bool GenerateurContactCorpsRigide::isCollision()
 {
     if ((corpsRigides[0]->forme.minRayon + corpsRigides[1]->forme.minRayon) < (corpsRigides[0]->position - corpsRigides[1]->position).norme())
@@ -124,4 +88,42 @@ bool GenerateurContactCorpsRigide::isCollision()
 
 
     return false;
+}
+
+
+
+bool RayIntersectsTriangle(Vecteur3D rayOrigin, Vecteur3D rayVector, std::array<Vecteur3D, 3>& inTriangle, Vecteur3D& outIntersectionPoint)
+{
+    const float EPSILON = 0.0000001;
+    Vecteur3D vertex0 = inTriangle[0];
+    Vecteur3D vertex1 = inTriangle[1];
+    Vecteur3D vertex2 = inTriangle[2];
+    Vecteur3D edge1, edge2, h, s, q;
+    float a, f, u, v;
+    edge1 = vertex1 - vertex0;
+    edge2 = vertex2 - vertex0;
+    h = rayVector % edge2;
+    a = edge1 * h;
+    if (a > -EPSILON && a < EPSILON)
+        return false;    // Le rayon est parallèle au triangle.
+
+    f = 1.0 / a;
+    s = rayOrigin - vertex0;
+    u = f * (s * h);
+    if (u < 0.0 || u > 1.0)
+        return false;
+    q = s % edge1;
+    v = f * (rayVector * q);
+    if (v < 0.0 || u + v > 1.0)
+        return false;
+
+    // On calcule t pour savoir ou le point d'intersection se situe sur la ligne.
+    float t = f * (edge2 * q);
+    if (t > EPSILON) // Intersection avec le rayon
+    {
+        outIntersectionPoint = rayOrigin + rayVector * t;
+        return true;
+    }
+    else // On a bien une intersection de droite, mais pas de rayon.
+        return false;
 }

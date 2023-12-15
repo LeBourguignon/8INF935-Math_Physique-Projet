@@ -14,11 +14,10 @@ public:
 	// TODO
 	void ajouterContact(Contacts& contacts, unsigned int limit) override;
 
-private:
-	// Algorithme d'intersection de Möller-Trumbore - Wikipedia
-	bool RayIntersectsTriangle(Vecteur3D rayOrigin, Vecteur3D rayVector, std::array<Vecteur3D, 3>& inTriangle, Vecteur3D& outIntersectionPoint);
-
 	bool isCollision();
 };
+
+// Algorithme d'intersection de Möller-Trumbore - Wikipedia
+bool RayIntersectsTriangle(Vecteur3D rayOrigin, Vecteur3D rayVector, std::array<Vecteur3D, 3>& inTriangle, Vecteur3D& outIntersectionPoint);
 
 #endif
