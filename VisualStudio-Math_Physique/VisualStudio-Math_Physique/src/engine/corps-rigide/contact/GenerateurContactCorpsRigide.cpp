@@ -10,34 +10,91 @@ void GenerateurContactCorpsRigide::ajouterContact(Contacts& contacts, unsigned i
 {
 	if (contacts.size() < limit)
 	{
-        if (isCollision())
+        std::vector<Vecteur3D> sommetsCorpsRigide0(this->corpsRigides[0]->forme.vertices);
+        std::vector<Vecteur3D> sommetsCorpsRigide1(this->corpsRigides[1]->forme.vertices);
+
+        for (auto& sommet : sommetsCorpsRigide0)
         {
-            // TODO :
-            // Calculer penetration, pointContact, normalContact;
-            // Ajouter le contact : contacts.push_back(new Contact())
+            sommet = this->corpsRigides[0]->transformMatrix * sommet;
+        }
+        for (auto& sommet : sommetsCorpsRigide1)
+        {
+            sommet = this->corpsRigides[1]->transformMatrix * sommet;
+        }
+
+
+        if (this->isCollision(sommetsCorpsRigide0, sommetsCorpsRigide1))
+        {
+            Vecteur3D rayVector = this->corpsRigides[1]->position - this->corpsRigides[0]->position; // 0 -> 1
+
+            Vecteur3D outIntersectionPoint0, outIntersectionPoint1;
+
+            std::array<Vecteur3D, 3> outIntersectionTriangle0, outIntersectionTriangle1;
+
+            for (auto& indice0 : this->corpsRigides[0]->forme.indices)
+            {
+                std::array<Vecteur3D, 3> triangle0({ sommetsCorpsRigide0[indice0[0]], sommetsCorpsRigide0[indice0[1]], sommetsCorpsRigide0[indice0[2]] });
+
+                if (RayIntersectsTriangle(this->corpsRigides[1]->position, -rayVector, triangle0, outIntersectionPoint0))
+                {
+                    outIntersectionTriangle0 = triangle0;
+                    break;
+                }
+            }
+
+            for (auto& indice1 : this->corpsRigides[1]->forme.indices)
+            {
+                std::array<Vecteur3D, 3> triangle1({ sommetsCorpsRigide1[indice1[0]], sommetsCorpsRigide1[indice1[1]], sommetsCorpsRigide1[indice1[2]] });
+
+                if (RayIntersectsTriangle(this->corpsRigides[0]->position, rayVector, triangle1, outIntersectionPoint1))
+                {
+                    outIntersectionTriangle1 = triangle1;
+                    break;
+                }
+            }
+
+            double penetration = (outIntersectionPoint1 - outIntersectionPoint0).norme();
+
+            Vecteur3D pointContact = (outIntersectionPoint0 + outIntersectionPoint1) / 2;
+
+            double centering0 = std::min({
+                (outIntersectionTriangle0[0] - outIntersectionPoint0).norme(), 
+                (outIntersectionTriangle0[1] - outIntersectionPoint0).norme(), 
+                (outIntersectionTriangle0[2] - outIntersectionPoint0).norme() 
+                });
+
+            double centering1 = std::min({
+                (outIntersectionTriangle1[0] - outIntersectionPoint1).norme(),
+                (outIntersectionTriangle1[1] - outIntersectionPoint1).norme(),
+                (outIntersectionTriangle1[2] - outIntersectionPoint1).norme()
+                });
+
+            Vecteur3D normalContact;
+            
+            if (centering0 > centering1)
+            {
+                Vecteur3D u = outIntersectionTriangle0[1] - outIntersectionTriangle0[0];
+                Vecteur3D v = outIntersectionTriangle0[2] - outIntersectionTriangle0[0];
+
+                normalContact = (u % v).direction();
+            }
+            else
+            {
+                Vecteur3D u = outIntersectionTriangle1[1] - outIntersectionTriangle1[0];
+                Vecteur3D v = outIntersectionTriangle1[2] - outIntersectionTriangle1[0];
+
+                normalContact = (u % v).direction();
+            }
+
+            contacts.push_back(new Contact(DonneeContact(this->corpsRigides, 0.5f, penetration, pointContact, normalContact)));
         }
 	}
 }
 
-bool GenerateurContactCorpsRigide::isCollision()
+bool GenerateurContactCorpsRigide::isCollision(const std::vector<Vecteur3D>& sommetsCorpsRigide0, const std::vector<Vecteur3D>& sommetsCorpsRigide1)
 {
-    if ((corpsRigides[0]->forme.minRayon + corpsRigides[1]->forme.minRayon) < (corpsRigides[0]->position - corpsRigides[1]->position).norme())
+    if ((this->corpsRigides[0]->forme.minRayon + this->corpsRigides[1]->forme.minRayon) < (this->corpsRigides[0]->position - this->corpsRigides[1]->position).norme())
         return true;
-
-
-    
-    std::vector<Vecteur3D> sommetsCorpsRigide0(this->corpsRigides[0]->forme.vertices);
-    for (auto& sommet : sommetsCorpsRigide0)
-    {
-        sommet = this->corpsRigides[0]->transformMatrix * sommet;
-    }
-
-    std::vector<Vecteur3D> sommetsCorpsRigide1(this->corpsRigides[1]->forme.vertices);
-    for (auto& sommet : sommetsCorpsRigide1)
-    {
-        sommet = this->corpsRigides[1]->transformMatrix * sommet;
-    }
-
 
 
     for (auto& indice0 : this->corpsRigides[0]->forme.indices)
@@ -50,35 +107,35 @@ bool GenerateurContactCorpsRigide::isCollision()
 
             for (int i = 0; i < 3; i++)
             {
-                Vecteur3D rayOrigin = {
+                Vecteur3D rayOrigin, rayVector, outIntersectionPoint;
+
+                rayOrigin = {
                     triangle0[i].x,
                     triangle0[i].y,
                     triangle0[i].z
                 };
 
-                Vecteur3D rayVector = {
+                rayVector = {
                     triangle0[(i + 1) % 3].x - triangle0[i].x,
                     triangle0[(i + 1) % 3].y - triangle0[i].y,
                     triangle0[(i + 1) % 3].z - triangle0[i].z
                 };
 
-                Vecteur3D outIntersectionPoint;
                 if (RayIntersectsTriangle(rayOrigin, rayVector, triangle1, outIntersectionPoint))
                     return true;
 
-                Vecteur3D rayOrigin = {
+                rayOrigin = {
                     triangle1[i].x,
                     triangle1[i].y,
                     triangle1[i].z
                 };
 
-                Vecteur3D rayVector = {
+                rayVector = {
                     triangle1[(i + 1) % 3].x - triangle1[i].x,
                     triangle1[(i + 1) % 3].y - triangle1[i].y,
                     triangle1[(i + 1) % 3].z - triangle1[i].z
                 };
 
-                Vecteur3D outIntersectionPoint;
                 if (RayIntersectsTriangle(rayOrigin, rayVector, triangle0, outIntersectionPoint))
                     return true;
             }
@@ -86,11 +143,8 @@ bool GenerateurContactCorpsRigide::isCollision()
     }
 
 
-
     return false;
 }
-
-
 
 bool RayIntersectsTriangle(Vecteur3D rayOrigin, Vecteur3D rayVector, std::array<Vecteur3D, 3>& inTriangle, Vecteur3D& outIntersectionPoint)
 {

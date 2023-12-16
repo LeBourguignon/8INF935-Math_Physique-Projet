@@ -11,10 +11,9 @@ public:
 
 	GenerateurContactCorpsRigide(CorpsRigide* corpsRigides[2]);
 
-	// TODO
 	void ajouterContact(Contacts& contacts, unsigned int limit) override;
 
-	bool isCollision();
+	bool isCollision(const std::vector<Vecteur3D>& sommetsCorpsRigide0, const std::vector<Vecteur3D>& sommetsCorpsRigide1);
 };
 
 // Algorithme d'intersection de Möller-Trumbore - Wikipedia

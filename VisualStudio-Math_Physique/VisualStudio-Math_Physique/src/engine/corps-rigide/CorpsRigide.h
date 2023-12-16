@@ -45,7 +45,7 @@ public:
 	Quaternion orientation;
 	Vecteur3D velociteAngulaire, accelerationAngulaire, torque;
 	
-	Matrix34 transformMatrix;	
+	Matrix34 transformMatrix;
 
 	CorpsRigide();
 	CorpsRigide(const Forme& forme, double masse, const Matrix33& tenseurInertie);
