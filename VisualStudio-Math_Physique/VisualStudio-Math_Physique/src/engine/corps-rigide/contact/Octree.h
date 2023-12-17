@@ -53,76 +53,26 @@ public:
     Octree(int* initialDimension, int maxDepth) : maxDepth(maxDepth) { root = new Node(initialDimension); }   //Racine de taille et de profondeur défini
     ~Octree() { deleteTree(root); }
 
-    bool CR_Into_Zone(Node, CorpsRigide); //Retourne true si l'objet est dans la zone et l'ajoute à la liste affilié à la zone
+    bool CR_Into_Zone(Node, CorpsRigide);                   //Retourne true si l'objet est dans la zone et l'ajoute à la liste affilié à la zone
+
     bool test_CR_Into_Zone(Node, CorpsRigide);              //Fait le calcul si le corp rigide se trouve dans une zone où non        
+
     void set_CR_Into_Zone_Liste(Node, CorpsRigide);         //Ajoute à la liste de corps rigide 
-    bool test_nb_CR(Node, CorpsRigide);                     //vérifie si on a 2 objet ou plus
-    //generateNode()                                        //génère une branche
-                                                                    //check si on est pas a profondeur max
-                                                                    //créer 8 branches et donne la dimension à chacun
-                                                                    //test_CR_Into_Zone()  &&  set_CR_Into_Zone_Liste()
+   
+    bool test_nb_CR(Node);                                  //vérifie si on a 1 objet ou moins dans liste_corps_rigide (false si on dépasse 1 objet)
+
+    void generateNode(Node* parent, int depth);             //génère une branche
+                                                                //check si on est pas a profondeur max
+                                                                //créer 8 branches et donne la dimension à chacun
+                                                                //test_CR_Into_Zone()  &&  set_CR_Into_Zone_Liste()
+                                                                    
     CorpsRigide* getleaf(void);                             //Effectue la liste de tout les duets de CR en fouillant les feuilles
 
 
-    void generateNode(Node* parent, int depth) {
-
-        if (depth >= maxDepth) {
-            return;
-        }
-
-        //longeur du parent
-        int dx = (parent->dimension[0] + parent->dimension[1]);    
-        int dy = (parent->dimension[2] + parent->dimension[3]);  
-        int dz = (parent->dimension[4] + parent->dimension[5]);  
-        //millieu du parent
-        int xm = dx / 2;
-        int ym = dy / 2;
-        int zm = dz / 2;
-
-        /*  
-            //dimension des 8 zones du parents sous forme  newdim{Xa,Xb,Ya,Yb,Za,Zb} 
-        
-            int dimA[6] = { xm - dx, xm     , ym - dy, ym     , zm - dz, zm      };
-            int dimB[6] = { xm     , xm + dx, ym - dy, ym     , zm - dz, zm      };
-            int dimC[6] = { xm - dx, xm     , ym - dy, ym     , zm     , zm + dz };
-            int dimD[6] = { xm     , xm + dx, ym - dy, ym     , zm     , zm + dz };
-            int dimE[6] = { xm - dx, xm     , ym     , ym + dy, zm - dz, zm      };
-            int dimF[6] = { xm     , xm + dx, ym     , ym + dy, zm - dz, zm      };
-            int dimG[6] = { xm - dx, xm     , ym     , ym + dy, zm     , zm + dz };
-            int dimH[6] = { xm     , xm + dx, ym     , ym + dy, zm     , zm + dz };
-        */
-
-        
-        int newdimension[8][6] = {  { xm - dx, xm     , ym - dy, ym     , zm - dz, zm      },   //dimension de la zone A
-                                    { xm     , xm + dx, ym - dy, ym     , zm - dz, zm      },   //dimension de la zone B
-                                    { xm - dx, xm     , ym - dy, ym     , zm     , zm + dz },   //dimension de la zone C
-                                    { xm     , xm + dx, ym - dy, ym     , zm     , zm + dz },   //dimension de la zone D
-                                    { xm - dx, xm     , ym     , ym + dy, zm - dz, zm      },   //dimension de la zone E
-                                    { xm     , xm + dx, ym     , ym + dy, zm - dz, zm      },   //dimension de la zone F
-                                    { xm - dx, xm     , ym     , ym + dy, zm     , zm + dz },   //dimension de la zone G
-                                    { xm     , xm + dx, ym     , ym + dy, zm     , zm + dz } }; //dimension de la zone H
-
-        for (int i = 0; i < 8; i++) {
-            Node* newNode = new Node(newdimension[i]);
-            generateNode(newNode, depth + 1);
-           
-        }
-        
-        
-        
-    }
-
-    void deleteTree(Node* node) {
-        if (node == nullptr) {
-            return;
-        }
-
-        for (int i = 0; i < 8; ++i) {
-            deleteTree(node->data[i]);
-        }
-
-        delete node;
-    }
+    
+    
+    void deleteTree(Node* node);                            // Coupe la branche lorsque le dernier corp rigide disparait
+    
 };
 
 
