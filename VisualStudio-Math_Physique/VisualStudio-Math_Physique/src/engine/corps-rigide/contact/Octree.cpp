@@ -86,12 +86,12 @@ void Octree::generateNode(Node* parent, int depth)
 
 }
 
-CorpsRigide* Octree::getleaf(Node branche)
+CorpsRigide* Octree::getleaf(Node* branche, int currentDepth, std::vector<int>& result)
 {
     std::vector<CorpsRigide> liste_CR_Global;
 
-    void traverseOctree(OctreeNode * node, int currentDepth, int maxDepth, std::vector<int>&result) {
-        if (node == nullptr || currentDepth > maxDepth) {
+    
+        if (branche == nullptr || currentDepth > MAX_DEPTH) {
             return;
         }
 
