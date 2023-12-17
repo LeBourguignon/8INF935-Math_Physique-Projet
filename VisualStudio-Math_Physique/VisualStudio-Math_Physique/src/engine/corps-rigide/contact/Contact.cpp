@@ -27,5 +27,5 @@ void Contact::resoudre(float duration)
 
 float Contact::getVelociteRelative()
 {
-	return (this->donneeContact.corpsRigides[0]->velocite - this->donneeContact.corpsRigides[1]->velocite) * contactNormal;
+	return (this->donneeContact.corpsRigides[0]->velocite - this->donneeContact.corpsRigides[1]->velocite) * this->donneeContact.normalContact;
 }
