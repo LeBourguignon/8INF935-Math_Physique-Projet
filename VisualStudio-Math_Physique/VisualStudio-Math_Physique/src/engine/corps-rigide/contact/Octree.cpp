@@ -22,18 +22,18 @@ void Octree::set_CR_Into_Zone_Liste(Node zone, CorpsRigide cr)
 // Place le corps rigide dans la liste de possession de la branche/zone et vérifie si on a dépassé le nombre de corps rigide de la zone
 {
 	zone.liste_Corp_Rigide.push_back(cr);
-	if (test_nb_CR(zone, cr)) {
+	if (test_nb_CR(zone)) {     
 		
-
+        generateNode(&zone, depth + 1);
 
 	}
 }
 
 bool Octree::test_nb_CR(Node zone)
-// Regarde la taille du tableau et vérifie si on a dépassé 2
-// False si on a 2 ou plusieurs élément
+// Regarde la taille du tableau et vérifie si on a dépassé 1 CR par zone 
+// False si on a 2 ou plusieurs éléments
 {
-	return (zone.liste_Corp_Rigide.size() < 2);
+	return (zone.liste_Corp_Rigide.size() < MAX_CORPS_RIGIDE);
 }
 
 
@@ -41,13 +41,10 @@ bool Octree::test_nb_CR(Node zone)
 void Octree::generateNode(Node* parent, int depth)
 {
 
-    if (depth >= maxDepth) {    // On execute la génération d'une branche, sauf si on est a la profondeur max
-        return;
+    if (depth >= maxDepth || (test_nb_CR(*parent)) ){       // On execute la génération d'une branche, sauf si on est a la profondeur max, si on a moins de 2 corps rigide
+        return;                                             // On execute la génération d'une branche, sauf si on a moins de 2 corps rigide dans la liste 
     }
-    if (test_nb_CR(*parent)) {  // On execute la génération d'une branche, sauf si on a moins de 2 corps rigide dans la liste 
-        return;                 // Si "false" c'est qu'on a dépassé 2 éléments, donc on génère des branches
-    }
-
+    
     //longeur du parent
     int dx = (parent->dimension[0] + parent->dimension[1]);
     int dy = (parent->dimension[2] + parent->dimension[3]);
@@ -87,6 +84,19 @@ void Octree::generateNode(Node* parent, int depth)
 
 
 
+}
+
+CorpsRigide* Octree::getleaf(Node branche)
+{
+    std::vector<CorpsRigide> liste_CR_Global;
+
+    void traverseOctree(OctreeNode * node, int currentDepth, int maxDepth, std::vector<int>&result) {
+        if (node == nullptr || currentDepth > maxDepth) {
+            return;
+        }
+
+    
+    return nullptr;
 }
 
 void Octree::deleteTree(Node* node)

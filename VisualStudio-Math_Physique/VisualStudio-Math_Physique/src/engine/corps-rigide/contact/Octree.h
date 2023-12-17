@@ -30,10 +30,6 @@
 const int MAX_DEPTH = 7;
 const int MAX_CORPS_RIGIDE = 2;
 
-
-
-
-
 struct Node {           
     //chaque noeuds possèdent une dimension et une liste pouvant contenir 1 ou 2 corps rigide
     int dimension[6];
@@ -43,8 +39,6 @@ struct Node {
     ~Node() {}                                                                      //destructeur
 };
 
-
-
 class Octree {
 private:
     Node* root;
@@ -53,23 +47,18 @@ public:
     Octree(int* initialDimension, int maxDepth) : maxDepth(maxDepth) { root = new Node(initialDimension); }   //Racine de taille et de profondeur défini
     ~Octree() { deleteTree(root); }
 
-    bool CR_Into_Zone(Node, CorpsRigide);                   //Retourne true si l'objet est dans la zone et l'ajoute à la liste affilié à la zone
-
-    bool test_CR_Into_Zone(Node, CorpsRigide);              //Fait le calcul si le corp rigide se trouve dans une zone où non        
-
-    void set_CR_Into_Zone_Liste(Node, CorpsRigide);         //Ajoute à la liste de corps rigide 
+    bool CR_Into_Zone(Node, CorpsRigide);                   // Execute les 2 codes suivant
+    bool test_CR_Into_Zone(Node, CorpsRigide);              // Fait le calcul si le corp rigide se trouve dans une zone où non        
+    void set_CR_Into_Zone_Liste(Node, CorpsRigide);         // Ajoute à la liste de corps rigide 
    
-    bool test_nb_CR(Node);                                  //vérifie si on a 1 objet ou moins dans liste_corps_rigide (false si on dépasse 1 objet)
+    bool test_nb_CR(Node);                                  // Vérifie si on a 1 objet ou moins dans liste_corps_rigide (false si on dépasse 1 objet)
 
     void generateNode(Node* parent, int depth);             //génère une branche
                                                                 //check si on est pas a profondeur max
                                                                 //créer 8 branches et donne la dimension à chacun
                                                                 //test_CR_Into_Zone()  &&  set_CR_Into_Zone_Liste()
                                                                     
-    CorpsRigide* getleaf(void);                             //Effectue la liste de tout les duets de CR en fouillant les feuilles
-
-
-    
+    CorpsRigide* getleaf(Node);                             //Effectue la liste de tout les duets de CR en fouillant les feuilles
     
     void deleteTree(Node* node);                            // Coupe la branche lorsque le dernier corp rigide disparait
     
