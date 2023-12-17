@@ -1,18 +1,17 @@
 #include "BoundingVolumeSphere.h"
 
-BoundingVolumeSphere::BoundingVolumeSphere(CorpsRigide CorpR, double radius)
-	: corpR(CorpR) , radius(radius)
+BoundingVolumeSphere::BoundingVolumeSphere(CorpsRigide* corpsRigide)
+	: BoundingVolumeSphere(corpsRigide, corpsRigide->forme.maxRayon)
 {
 }
 
-BoundingVolumeSphere::BoundingVolumeSphere(Cuboide cuboide)
-	: BoundingVolumeSphere(cuboide, (cuboide.dimension / 2).norme())
+BoundingVolumeSphere::BoundingVolumeSphere(CorpsRigide* corpsRigide, double radius)
+	: corpsRigide(corpsRigide), radius(radius)
 {
 }
 
 bool BoundingVolumeSphere::PossibleCollision(BoundingVolumeSphere *other)
-//Si elle la somme des rayon est plus grande que la distance entre les deux corps alors il y a collision.
 {
-	return ((this->radius + other->radius) > (this->corpR.position - other->corpR.position).norme());
+	return ((this->radius + other->radius) > (this->corpsRigide->position - other->corpsRigide->position).norme());
 }
 
