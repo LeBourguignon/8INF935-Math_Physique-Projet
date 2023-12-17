@@ -10,6 +10,7 @@ public:
 
 	Contact(const DonneeContact& donneeContact);
 
+	float getVelociteRelative();
 	void resoudre(float duration);
 };
 

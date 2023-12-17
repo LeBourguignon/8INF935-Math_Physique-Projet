@@ -23,3 +23,9 @@ void Contact::resoudre(float duration)
 	c_2->velocite = c_2->velocite + n * k * c_2->inverseMasse;
 	c_2->velociteAngulaire = c_2->velociteAngulaire + inverse_J_2 * (r_2 % (n * k));
 }
+
+
+float Contact::getVelociteRelative()
+{
+	return (this->donneeContact.corpsRigides[0]->velocite - this->donneeContact.corpsRigides[1]->velocite) * contactNormal;
+}

@@ -11,9 +11,9 @@ void ResolveurContact::resoudreContacts(Contacts& contacts, float duration)
 		int vsIndex = 0;
 
 		for (auto contact : contacts) {
-			float newVs = contact->donneeContact.penetration;
+			float newVs = contact->getVelociteRelative();
 
-			if (newVs > minVs) {
+			if (newVs < minVs) {
 
 				minVs = newVs;
 				vsFinalIndex = vsIndex;
