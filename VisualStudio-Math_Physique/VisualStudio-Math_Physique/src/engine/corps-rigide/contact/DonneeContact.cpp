@@ -1,6 +1,6 @@
 #include "DonneeContact.h"
 
-DonneeContact::DonneeContact(CorpsRigide* particules[2], const double& restitution, const double& penetration, const Vecteur3D& pointContact, const Vecteur3D& normalContact)
+DonneeContact::DonneeContact(CorpsRigide* corpsRigides[2], const double& restitution, const double& penetration, const Vecteur3D& pointContact, const Vecteur3D& normalContact)
 	: DonneeContact(corpsRigides[0], corpsRigides[1], restitution, penetration, pointContact, normalContact)
 {
 }
