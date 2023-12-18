@@ -15,6 +15,7 @@ public:
 	Vecteur3D normalContact;
 
 	DonneeContact(CorpsRigide* corpsRigides[2], const double& restitution, const double& penetration, const Vecteur3D& pointContact, const Vecteur3D& normalContact);
+	DonneeContact(CorpsRigide* corpsRigide0, CorpsRigide* corpsRigide1, const double& restitution, const double& penetration, const Vecteur3D& pointContact, const Vecteur3D& normalContact);
 };
 
 #endif
