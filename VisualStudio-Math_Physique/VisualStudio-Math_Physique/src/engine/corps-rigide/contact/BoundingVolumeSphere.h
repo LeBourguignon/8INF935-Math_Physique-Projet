@@ -13,7 +13,7 @@ public:
 	BoundingVolumeSphere(CorpsRigide* corpsRigide);
 	BoundingVolumeSphere(CorpsRigide* corpsRigide, double radius);
 
-	bool PossibleCollision(BoundingVolumeSphere *other);
+	bool PossibleCollision(BoundingVolumeSphere other);
 };
 
 #endif

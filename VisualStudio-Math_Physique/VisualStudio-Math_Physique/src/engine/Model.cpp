@@ -18,11 +18,14 @@
 #include "corps-rigide/force/GenerateurRessortFixe.h"
 #include "corps-rigide/force/GenerateurRessortBungee.h"
 #include "corps-rigide/cuboide/force/GenerateurFlottabiliteCuboide.h"
+#include "corps-rigide/contact/ResolveurContact.h"
+
+#include "corps-rigide/contact/GenerateurContactCorpsRigide.h" // TODO
 
 Model::Model()
 {
 	this->generateurContactParticuleNaive = new GenerateurContactParticuleNaive(this->particules, 0.1f);
-	generateursContact.push_back(this->generateurContactParticuleNaive);
+	generateursContactParticule.push_back(this->generateurContactParticuleNaive);
 }
 
 
@@ -31,7 +34,7 @@ void Model::reinitialisation()
 	// Destruction des objets
 	this->particules.deleteParticules();
 	this->registreForceParticule.deleteForce();
-	this->generateursContact.deleteGenerateurs();
+	this->generateursContactParticule.deleteGenerateurs();
 
 	this->corpsRigides.deleteCorpsRigides();
 	this->registreForce.deleteForce();
@@ -39,10 +42,10 @@ void Model::reinitialisation()
 	// Initialisation du model
 	this->particules = Particules();
 	this->registreForceParticule = RegistreForceParticule();
-	this->generateursContact = GenerateursContactParticule();
+	this->generateursContactParticule = GenerateursContactParticule();
 
 	this->generateurContactParticuleNaive = new GenerateurContactParticuleNaive(this->particules, 0.1f);
-	generateursContact.push_back(this->generateurContactParticuleNaive);
+	generateursContactParticule.push_back(this->generateurContactParticuleNaive);
 
 	this->corpsRigides = CorpsRigides();
 	this->registreForce = RegistreForce();
@@ -117,8 +120,8 @@ void Model::startDemoParticule4()
 	this->ajouterParticule(particule3, Vecteur3D(0, 0, 0));
 	CableParticule* cable12 = new CableParticule(particules12, 3, 0);
 	CableParticule* cable23 = new CableParticule(particules23, 3, 0);
-	generateursContact.push_back(cable12);
-	generateursContact.push_back(cable23);
+	generateursContactParticule.push_back(cable12);
+	generateursContactParticule.push_back(cable23);
 }
 
 void Model::startDemoParticule5()
@@ -131,7 +134,7 @@ void Model::startDemoParticule5()
 	this->ajouterParticule(particule1, Vecteur3D(0, 0, 0));
 	this->ajouterParticule(particule2, Vecteur3D(0, -1, 0));
 	TigeParticule* tige12 = new TigeParticule(particules12, 2);
-	generateursContact.push_back(tige12);
+	generateursContactParticule.push_back(tige12);
 }
 
 void Model::startDemoParticule6()
@@ -148,8 +151,8 @@ void Model::startDemoParticule6()
 	this->ajouterParticule(particule3, Vecteur3D(0, 0, 0));
 	CableParticule* cable12 = new CableParticule(particules12, 4, 0);
 	CableParticule* cable23 = new CableParticule(particules13, 4, 0);
-	generateursContact.push_back(cable12);
-	generateursContact.push_back(cable23);
+	generateursContactParticule.push_back(cable12);
+	generateursContactParticule.push_back(cable23);
 }
 
 void Model::startDemoParticule7()
@@ -242,14 +245,41 @@ void Model::actualiser(float duration)
 
 
 
-	// Génerer les contacts
+	// Génerer les contacts des particules
 	ContactParticules contactParticules;
-	this->generateursContact.ajouterContact(contactParticules, Constant::limiteCollision);
+	this->generateursContactParticule.ajouterContact(contactParticules, Constant::limiteCollision);
 
-	// Résoudre les contacts
-	ResolveurContactParticule resolveurContact;
-	resolveurContact.resoudreContact(contactParticules, duration);
+	// Génerer les contacts des corpsRigides
+	GenerateursContact generateurs;
+	// TODO Octree
+	for (int i = 0; i < this->corpsRigides.size(); ++i)
+	{
+		BoundingVolumeSphere spherei(this->corpsRigides[i]);
+		for (int j = i + 1; j < this->corpsRigides.size(); ++j)
+		{
+			BoundingVolumeSphere spherej(this->corpsRigides[j]);
+			if (spherei.PossibleCollision(spherej))
+				generateurs.push_back(new GenerateurContactCorpsRigide(this->corpsRigides[i], this->corpsRigides[j]));
+		}
+	}
+	// TODO Ajouter à "generateurs" les générateurs (Tiges...)
+	Contacts contacts;
+	generateurs.ajouterContact(contacts, Constant::limiteCollision);
 
-	// Suppression des contacts
+
+
+	// Résoudre les contacts des particules
+	ResolveurContactParticule resolveurContactParticule;
+	resolveurContactParticule.resoudreContact(contactParticules, duration);
+
+	// Résoudre les contacts des corpsRigides
+	ResolveurContact resolveurContact;
+	resolveurContact.resoudreContacts(contacts, duration);
+
+
+	// Suppression des contacts des particules
 	contactParticules.deleteContactParticules();
+
+	// Suppression des contacts des corpsRigides
+	contacts.deleteContacts();
 }

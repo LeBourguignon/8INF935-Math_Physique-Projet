@@ -9,7 +9,8 @@
 #include "corps-rigide/CorpsRigides.h"
 #include "corps-rigide/force/RegistreForce.h"
 
-#include "corps-rigide/cuboide/Cuboide.h"
+#include "corps-rigide/contact/BoundingVolumeSphere.h"
+#include "corps-rigide/contact/GenerateursContact.h"
 
 // Model physique
 class Model
@@ -18,13 +19,15 @@ private:
 	// Particule
 	Particules particules;
 	RegistreForceParticule registreForceParticule;
-	GenerateursContactParticule generateursContact;
+	GenerateursContactParticule generateursContactParticule;
 
 	GenerateurContactParticuleNaive* generateurContactParticuleNaive;
 
 	// Corps Rigide
 	CorpsRigides corpsRigides;
 	RegistreForce registreForce;
+	// TODO Octree
+	// TODO constGenerateursContact
 
 public:
 	// Initilisation du model

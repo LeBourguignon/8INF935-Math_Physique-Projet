@@ -10,8 +10,8 @@ BoundingVolumeSphere::BoundingVolumeSphere(CorpsRigide* corpsRigide, double radi
 {
 }
 
-bool BoundingVolumeSphere::PossibleCollision(BoundingVolumeSphere *other)
+bool BoundingVolumeSphere::PossibleCollision(BoundingVolumeSphere other)
 {
-	return ((this->radius + other->radius) > (this->corpsRigide->position - other->corpsRigide->position).norme());
+	return ((this->radius + other.radius) > (this->corpsRigide->position - other.corpsRigide->position).norme());
 }
 

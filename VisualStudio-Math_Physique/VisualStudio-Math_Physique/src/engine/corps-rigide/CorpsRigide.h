@@ -26,6 +26,11 @@ struct Forme
 			
 			if (rayon > this->maxRayon)
 				this->maxRayon = rayon;
+		}
+
+		for (auto& indice : this->indices)
+		{
+			double rayon = ((this->vertices[indice[0]] + this->vertices[indice[1]] + this->vertices[indice[2]]) / 3).norme();
 
 			if (rayon < this->minRayon)
 				this->minRayon = rayon;

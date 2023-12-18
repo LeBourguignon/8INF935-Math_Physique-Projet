@@ -139,6 +139,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\engine\corps-rigide\contact\GenerateurContactTigeCorpsRigides.cpp" />
+    <ClCompile Include="src\engine\corps-rigide\contact\GenerateurContactLienCorpsRigides.cpp" />
     <ClCompile Include="src\engine\corps-rigide\cuboide\contact\GenerateurContactCuboide.cpp" />
     <ClCompile Include="src\engine\corps-rigide\contact\GenerateurContactCorpsRigide.cpp" />
     <ClCompile Include="src\engine\corps-rigide\contact\GenerateursContact.cpp" />
@@ -208,6 +210,8 @@
     <ClCompile Include="src\engine\particule\force\TraineeParticule.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\engine\corps-rigide\contact\GenerateurContactTigeCorpsRigides.h" />
+    <ClInclude Include="src\engine\corps-rigide\contact\GenerateurContactLienCorpsRigides.h" />
     <ClInclude Include="src\engine\corps-rigide\cuboide\contact\GenerateurContactCuboide.h" />
     <ClInclude Include="src\engine\corps-rigide\contact\GenerateurContactCorpsRigide.h" />
     <ClInclude Include="src\engine\corps-rigide\contact\GenerateursContact.h" />

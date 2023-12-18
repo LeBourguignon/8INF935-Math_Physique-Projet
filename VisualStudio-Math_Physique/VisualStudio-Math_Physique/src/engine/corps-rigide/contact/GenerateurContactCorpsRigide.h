@@ -10,10 +10,11 @@ public:
 	CorpsRigide* corpsRigides[2];
 
 	GenerateurContactCorpsRigide(CorpsRigide* corpsRigides[2]);
+	GenerateurContactCorpsRigide(CorpsRigide* corpsRigide0, CorpsRigide* corpsRigide1);
 
 	void ajouterContact(Contacts& contacts, unsigned int limit) override;
 
-	bool isCollision(const std::vector<Vecteur3D>& sommetsCorpsRigide0, const std::vector<Vecteur3D>& sommetsCorpsRigide1);
+	bool isCollision(const std::vector<Vecteur3D>& sommetsCorpsRigide0, const std::vector<Vecteur3D>& sommetsCorpsRigide1, std::vector<Vecteur3D>& outIntersectionPoints);
 };
 
 // Algorithme d'intersection de Möller-Trumbore - Wikipedia
