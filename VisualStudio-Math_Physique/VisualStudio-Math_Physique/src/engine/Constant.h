@@ -6,7 +6,7 @@ namespace Constant {
 	const double facteurAmortissementLineaire = 0.999999999;
 
 	// Facteur d'amortissement
-	const double facteurAmortissementAngulaire = 0.99999;
+	const double facteurAmortissementAngulaire = 0.999;
 
 	// "Masse infinie" = 0
 	const double masseInfinie = 0;

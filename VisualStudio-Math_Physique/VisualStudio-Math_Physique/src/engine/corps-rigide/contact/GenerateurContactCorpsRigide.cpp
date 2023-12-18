@@ -53,7 +53,7 @@ void GenerateurContactCorpsRigide::ajouterContact(Contacts& contacts, unsigned i
 
                 Vecteur3D outIntersectionPoint;
 
-                if (RayIntersectsTriangle(pointContact + (rayVector * 0.1f), -rayVector * 2.0f, triangle0, outIntersectionPoint))
+                if (RayIntersectsTriangle(pointContact - (rayVector * 0.1f), rayVector * 2.0f, triangle0, outIntersectionPoint))
                 {
                     if ((outIntersectionPoint - pointContact).norme() < (outIntersectionPoint0 - pointContact).norme())
                     {
@@ -72,7 +72,7 @@ void GenerateurContactCorpsRigide::ajouterContact(Contacts& contacts, unsigned i
 
                 Vecteur3D outIntersectionPoint;
 
-                if (RayIntersectsTriangle(pointContact - (rayVector * 0.1f), rayVector * 2, triangle1, outIntersectionPoint))
+                if (RayIntersectsTriangle(pointContact + (rayVector * 0.1f), -rayVector * 2, triangle1, outIntersectionPoint))
                 {
                     if ((outIntersectionPoint - pointContact).norme() < (outIntersectionPoint1 - pointContact).norme())
                     {
@@ -119,10 +119,8 @@ void GenerateurContactCorpsRigide::ajouterContact(Contacts& contacts, unsigned i
 
             double penetration = (outIntersectionPoint1 - outIntersectionPoint0).norme(); // penetration
 
-            DonneeContact donneeContact(this->corpsRigides[0], this->corpsRigides[1], 0.5f, penetration, pointContact, normalContact.direction());
-            
-            if (penetration > 0.0f && !(std::isinf(penetration)))
-                contacts.push_back(new Contact(donneeContact));
+            DonneeContact donneeContact(this->corpsRigides[0], this->corpsRigides[1], 0.5f, penetration, pointContact, normalContact.direction());         
+            contacts.push_back(new Contact(donneeContact));
         }
 	}
 }
