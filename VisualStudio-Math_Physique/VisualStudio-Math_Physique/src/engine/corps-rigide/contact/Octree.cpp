@@ -1,5 +1,12 @@
 #include "Octree.h"
 
+Octree::Octree(int* initialDimension, int maxDepth) : maxDepth(maxDepth)
+{
+    this->root = new Node(initialDimension);
+    this->generateNode(this->root, 0);
+}
+
+
 bool Octree::CR_Into_Zone(Node zone, CorpsRigide cr)	
 // Si le corps rigide est dans la zone, alors il faut le mettre dans la liste de possession de la branche/zone
 {	
@@ -78,6 +85,7 @@ void Octree::generateNode(Node* parent, int depth)
 
     for (int i = 0; i < 8; i++) {
         Node* newNode = new Node(newdimension[i]);
+        parent->children[i] = newNode;
         generateNode(newNode, depth + 1);
 
     }
@@ -86,17 +94,33 @@ void Octree::generateNode(Node* parent, int depth)
 
 }
 
-CorpsRigide* Octree::getleaf(Node* branche, int currentDepth, std::vector<int>& result)
+std::vector<CorpsRigide[2]> Octree::getLeaf(Node* branch, int currentDepth, std::vector<CorpsRigide>& listeGlobale)
 {
-    std::vector<CorpsRigide> liste_CR_Global;
+    //std::vector<CorpsRigide> liste_CR_Global;
 
-    
-        if (branche == nullptr || currentDepth > MAX_DEPTH) {
-            return;
+    //
+    //    if (branch == nullptr || currentDepth > MAX_DEPTH) {
+    //        return;
+    //    }
+
+    std::vector<Node*> leaves = std::vector<Node*>({ branch });
+    std::vector<CorpsRigide[2]> ret = std::vector<CorpsRigide[2]>();
+    Node* current;
+    while (leaves.size() > 0) {
+        current = leaves[0];
+        if (current->children[0] == nullptr) {
+            if (current->liste_Corp_Rigide.size() > 1) {
+                ret.push_back({ current->liste_Corp_Rigide[0], current->liste_Corp_Rigide[1] });
+            }
         }
-
-    
-    return nullptr;
+        else {
+            for (int i = 0; i < 8; i += 1) {
+                leaves.push_back(current->children[i]);
+            }
+        }
+        leaves.erase(leaves.begin());
+    }
+    return ret;
 }
 
 void Octree::deleteTree(Node* node)

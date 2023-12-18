@@ -33,6 +33,7 @@ const int MAX_CORPS_RIGIDE = 2;
 struct Node {           
     //chaque noeuds possèdent une dimension et une liste pouvant contenir 1 ou 2 corps rigide
     int dimension[6];
+    Node* children[8] = { nullptr };
     std::vector<CorpsRigide> liste_Corp_Rigide;
 
     Node(int* dim) { for (int i = 0; i < 6; ++i) { dimension[i] = dim[i]; } }       //constructeur 
@@ -58,7 +59,7 @@ public:
                                                                 //créer 8 branches et donne la dimension à chacun
                                                                 //test_CR_Into_Zone()  &&  set_CR_Into_Zone_Liste()
                                                                     
-    CorpsRigide* getleaf(Node);                             //Effectue la liste de tout les duets de CR en fouillant les feuilles
+    std::vector<CorpsRigide[2]> getLeaf(Node* branch, int currentDepth, std::vector<CorpsRigide>& listeGlobale);                             //Effectue la liste de tout les duets de CR en fouillant les feuilles
     
     void deleteTree(Node* node);                            // Coupe la branche lorsque le dernier corp rigide disparait
     
