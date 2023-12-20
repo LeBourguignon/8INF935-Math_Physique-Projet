@@ -63,9 +63,9 @@ double Vecteur3D::operator*(const Vecteur3D& v) const
 
 Vecteur3D Vecteur3D::operator%(const Vecteur3D& v) const
 {
-    return Vecteur3D(this->x * v.y - this->y * v.x,
-        this->y * v.z - this->z * v.y,
-        this->z * v.x - this->x * v.z);
+    return Vecteur3D(this->y * v.z - this->z * v.y,
+        this->z * v.x - this->x * v.z,
+        this->x * v.y - this->y * v.x);
 }
 
 
