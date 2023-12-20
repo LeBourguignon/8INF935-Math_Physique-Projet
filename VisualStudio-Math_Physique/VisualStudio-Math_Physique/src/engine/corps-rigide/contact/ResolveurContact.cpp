@@ -2,35 +2,17 @@
 
 void ResolveurContact::resoudreContactsInterpenetration(Contacts& contacts, float duration)
 {
-	while (this->iteration < this->nbIterationMax) {
-
-		double maxPenetration = DBL_MIN;
-		int finalIndex = 0;
-		int index = 0;
-
-		for (auto contact : contacts) {
-			double newPenetration = contact->donneeContact.penetration;
-
-			if (newPenetration > maxPenetration) {
-
-				maxPenetration = newPenetration;
-				finalIndex = index;
-			}
-
-			index++;
-		}
-
-		if (maxPenetration <= 0.0f) { return; }
-
-		contacts[finalIndex]->resoudreInterpenetration(duration);
-
-		this->iteration++;
+	for (int i = 0; i < contacts.size(); i++)
+	{
+		contacts[i]->resoudreInterpenetration(duration);
 	}
 }
 
 void ResolveurContact::resoudreContactsVelocite(Contacts& contacts, float duration)
 {
-	while (this->iteration < this->nbIterationMax) {
+	double nbIterationMax = contacts.size() * 2;
+
+	while (this->iteration < nbIterationMax) {
 
 		double minVs = DBL_MAX;
 		int finalIndex = 0;
@@ -58,11 +40,6 @@ void ResolveurContact::resoudreContactsVelocite(Contacts& contacts, float durati
 
 void ResolveurContact::resoudreContacts(Contacts& contacts, float duration)
 {
-	this->nbIterationMax = contacts.size() * 2;
-
 	//this->resoudreContactsInterpenetration(contacts, duration);
-
-	this->nbIterationMax = contacts.size() * 2;
-
 	this->resoudreContactsVelocite(contacts, duration);
 }

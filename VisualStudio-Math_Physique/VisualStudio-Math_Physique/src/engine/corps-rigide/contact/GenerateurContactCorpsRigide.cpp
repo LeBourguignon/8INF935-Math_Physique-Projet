@@ -42,7 +42,7 @@ void GenerateurContactCorpsRigide::ajouterContact(Contacts& contacts, unsigned i
 
 
 
-            Vecteur3D rayVector = this->corpsRigides[1]->position - this->corpsRigides[0]->position; // 0 -> 1
+            Vecteur3D rayVector = this->corpsRigides[0]->position - this->corpsRigides[1]->position; // 1 -> 0
 
             Vecteur3D outIntersectionPoint0(DBL_MAX / 2, DBL_MAX / 2, DBL_MAX / 2), outIntersectionPoint1(DBL_MAX / 2, DBL_MAX / 2, DBL_MAX / 2);
 
@@ -54,7 +54,7 @@ void GenerateurContactCorpsRigide::ajouterContact(Contacts& contacts, unsigned i
 
                 Vecteur3D outIntersectionPoint;
 
-                if (RayIntersectsTriangle(pointContact - (rayVector * 0.1f), rayVector * 2.0f, triangle0, outIntersectionPoint))
+                if (RayIntersectsTriangle(pointContact - rayVector, rayVector * 2.0f, triangle0, outIntersectionPoint))
                 {
                     if ((outIntersectionPoint - pointContact).norme() < (outIntersectionPoint0 - pointContact).norme())
                     {
@@ -73,7 +73,7 @@ void GenerateurContactCorpsRigide::ajouterContact(Contacts& contacts, unsigned i
 
                 Vecteur3D outIntersectionPoint;
 
-                if (RayIntersectsTriangle(pointContact + (rayVector * 0.1f), -rayVector * 2, triangle1, outIntersectionPoint))
+                if (RayIntersectsTriangle(pointContact + rayVector, -rayVector * 2.0f, triangle1, outIntersectionPoint))
                 {
                     if ((outIntersectionPoint - pointContact).norme() < (outIntersectionPoint1 - pointContact).norme())
                     {
@@ -86,17 +86,13 @@ void GenerateurContactCorpsRigide::ajouterContact(Contacts& contacts, unsigned i
                 }
             }          
 
-            double centering0 = std::min({
-                (outIntersectionTriangle0[0] - outIntersectionPoint0).norme(), 
-                (outIntersectionTriangle0[1] - outIntersectionPoint0).norme(), 
-                (outIntersectionTriangle0[2] - outIntersectionPoint0).norme() 
-                });
+            double centering0 = (outIntersectionTriangle0[0] - outIntersectionPoint0).norme() *
+                (outIntersectionTriangle0[1] - outIntersectionPoint0).norme() *
+                (outIntersectionTriangle0[2] - outIntersectionPoint0).norme();
 
-            double centering1 = std::min({
-                (outIntersectionTriangle1[0] - outIntersectionPoint1).norme(),
-                (outIntersectionTriangle1[1] - outIntersectionPoint1).norme(),
-                (outIntersectionTriangle1[2] - outIntersectionPoint1).norme()
-                });
+            double centering1 = (outIntersectionTriangle1[0] - outIntersectionPoint1).norme() * 
+                (outIntersectionTriangle1[1] - outIntersectionPoint1).norme() *
+                (outIntersectionTriangle1[2] - outIntersectionPoint1).norme();
 
             Vecteur3D normalContact; // normalContact
             
@@ -105,14 +101,14 @@ void GenerateurContactCorpsRigide::ajouterContact(Contacts& contacts, unsigned i
                 Vecteur3D u = outIntersectionTriangle0[1] - outIntersectionTriangle0[0];
                 Vecteur3D v = outIntersectionTriangle0[2] - outIntersectionTriangle0[0];
 
-                normalContact = (u % v).direction();
+                normalContact = u % v;
             }
             else
             {
                 Vecteur3D u = outIntersectionTriangle1[1] - outIntersectionTriangle1[0];
                 Vecteur3D v = outIntersectionTriangle1[2] - outIntersectionTriangle1[0];
 
-                normalContact = (u % v).direction();
+                normalContact = u % v;
             }
 
             if (normalContact * (pointContact - this->corpsRigides[0]->position) > 0.0f)

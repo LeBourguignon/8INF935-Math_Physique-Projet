@@ -202,9 +202,9 @@ void Model::startDemoCuboide1()
 {
 	this->reinitialisation();
 
-	Cuboide* anchorLeft = new Cuboide(Vecteur3D(0.5, 0.5, 0.5), 10, Vecteur3D(-3, 10, -5), Quaternion());
+	Cuboide* anchorLeft = new Cuboide(Vecteur3D(0.5, 0.5, 0.5), 1000000, Vecteur3D(-3, 10, -5), Quaternion());
 	this->corpsRigides.push_back(anchorLeft);
-	Cuboide* anchorRight = new Cuboide(Vecteur3D(0.5, 0.5, 0.5), 10, Vecteur3D(3, 10, -5), Quaternion());
+	Cuboide* anchorRight = new Cuboide(Vecteur3D(0.5, 0.5, 0.5), 1000000, Vecteur3D(3, 10, -5), Quaternion());
 	this->corpsRigides.push_back(anchorRight);
 
 	Cuboide* top = new Cuboide(Vecteur3D(1, 1, 0.2), 1000, Vecteur3D(0, 10, -5), Quaternion());
@@ -245,14 +245,14 @@ void Model::startDemoCuboide2()
 	CorpsRigide* topMid[2] = { top, mid };
 	Vecteur3D topMidAttache1[2] = { Vecteur3D(0.1, -0.5, 0.1), Vecteur3D(0.1, 1.5, 0.1) };
 	Vecteur3D topMidAttache2[2] = { Vecteur3D(-0.1, -0.5, -0.1), Vecteur3D(-0.1, 1.5, -0.1) };
-	//constGenerateursContact.push_back(new GenerateurContactTigeCorpsRigides(topMid, topMidAttache1, 0.0f));
+	constGenerateursContact.push_back(new GenerateurContactTigeCorpsRigides(topMid, topMidAttache1, 0.0f));
 	constGenerateursContact.push_back(new GenerateurContactTigeCorpsRigides(topMid, topMidAttache2, 0.0f));
 
 	CorpsRigide* midBot[2] = { mid, bot };
 	Vecteur3D midBotAttache1[2] = { Vecteur3D(0.1, 0.25, 0.1), Vecteur3D(0.1, -1.5, 0.1) };
 	Vecteur3D midBotAttache2[2] = { Vecteur3D(-0.1, 0.25, -0.1), Vecteur3D(-0.1, -1.5, -0.1) };
 	constGenerateursContact.push_back(new GenerateurContactTigeCorpsRigides(midBot, midBotAttache1, 0.0f));
-	//constGenerateursContact.push_back(new GenerateurContactTigeCorpsRigides(midBot, midBotAttache2, 0.0f));
+	constGenerateursContact.push_back(new GenerateurContactTigeCorpsRigides(midBot, midBotAttache2, 0.0f));
 
 }
 
@@ -289,7 +289,7 @@ void Model::actualiser(float duration)
 		{
 			BoundingVolumeSphere spherej(this->corpsRigides[j]);
 			if (spherei.PossibleCollision(spherej))
-				generateursContact.push_back(new GenerateurContactCorpsRigide(this->corpsRigides[i], this->corpsRigides[j], 0.5f));
+				generateursContact.push_back(new GenerateurContactCorpsRigide(this->corpsRigides[i], this->corpsRigides[j], 1.0f));
 		}
 	}
 

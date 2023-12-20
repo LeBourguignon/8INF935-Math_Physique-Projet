@@ -7,7 +7,6 @@ class ResolveurContact
 {
 private:
 	unsigned int iteration = 0;
-	int nbIterationMax = 0;
 
 	void resoudreContactsInterpenetration(Contacts& contacts, float duration);
 	void resoudreContactsVelocite(Contacts& contacts, float duration);
