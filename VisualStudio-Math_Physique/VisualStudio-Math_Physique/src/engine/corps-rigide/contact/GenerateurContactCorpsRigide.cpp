@@ -1,11 +1,12 @@
 #include "GenerateurContactCorpsRigide.h"
 
-GenerateurContactCorpsRigide::GenerateurContactCorpsRigide(CorpsRigide* corpsRigides[2])
-    : GenerateurContactCorpsRigide(corpsRigides[0], corpsRigides[1])
+GenerateurContactCorpsRigide::GenerateurContactCorpsRigide(CorpsRigide* corpsRigides[2], const double& restitution)
+    : GenerateurContactCorpsRigide(corpsRigides[0], corpsRigides[1], restitution)
 {
 }
 
-GenerateurContactCorpsRigide::GenerateurContactCorpsRigide(CorpsRigide* corpsRigide0, CorpsRigide* corpsRigide1)
+GenerateurContactCorpsRigide::GenerateurContactCorpsRigide(CorpsRigide* corpsRigide0, CorpsRigide* corpsRigide1, const double& restitution)
+    : restitution(restitution)
 {
     this->corpsRigides[0] = corpsRigide0;
     this->corpsRigides[1] = corpsRigide1;
@@ -119,8 +120,7 @@ void GenerateurContactCorpsRigide::ajouterContact(Contacts& contacts, unsigned i
 
             double penetration = (outIntersectionPoint1 - outIntersectionPoint0).norme(); // penetration
 
-            DonneeContact donneeContact(this->corpsRigides[0], this->corpsRigides[1], 0.5f, penetration, pointContact, normalContact.direction());         
-            contacts.push_back(new Contact(donneeContact));
+            contacts.push_back(new Contact(DonneeContact(this->corpsRigides, this->restitution, penetration, pointContact, normalContact.direction())));
         }
 	}
 }

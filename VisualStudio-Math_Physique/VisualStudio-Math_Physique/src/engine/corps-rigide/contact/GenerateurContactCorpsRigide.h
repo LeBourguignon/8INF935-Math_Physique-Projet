@@ -8,9 +8,10 @@ class GenerateurContactCorpsRigide : public GenerateurContact
 {
 public:
 	CorpsRigide* corpsRigides[2];
+	double restitution;
 
-	GenerateurContactCorpsRigide(CorpsRigide* corpsRigides[2]);
-	GenerateurContactCorpsRigide(CorpsRigide* corpsRigide0, CorpsRigide* corpsRigide1);
+	GenerateurContactCorpsRigide(CorpsRigide* corpsRigides[2], const double& restitution);
+	GenerateurContactCorpsRigide(CorpsRigide* corpsRigide0, CorpsRigide* corpsRigide1, const double& restitution);
 
 	void ajouterContact(Contacts& contacts, unsigned int limit) override;
 

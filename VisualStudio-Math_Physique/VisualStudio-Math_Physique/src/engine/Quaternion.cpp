@@ -71,13 +71,12 @@ Quaternion Quaternion::operator*(const Vecteur3D& vecteur)
 
 void Quaternion::rotationParVecteur(const Vecteur3D& vecteur)
 {
-	*this = *this * vecteur;
+	*this = *this + *this * vecteur;
 	this->normalise();
 }
 
 
 void Quaternion::actualisationParVelociteAngulaire(const Vecteur3D& rotation, float duration)
 {
-	*this = *this + *this * (rotation * (duration / 2));
-	this->normalise();
+	this->rotationParVecteur(rotation * (duration / 2));
 }

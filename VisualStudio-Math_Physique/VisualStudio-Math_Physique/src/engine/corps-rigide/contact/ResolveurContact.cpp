@@ -1,31 +1,68 @@
 #include "ResolveurContact.h"
 
-void ResolveurContact::resoudreContacts(Contacts& contacts, float duration)
+void ResolveurContact::resoudreContactsInterpenetration(Contacts& contacts, float duration)
 {
-	float nbIterationMax = contacts.size() * 2;
+	while (this->iteration < this->nbIterationMax) {
 
-	while (this->iteration < nbIterationMax) {
-
-		float minVs = std::numeric_limits<float>::max();
-		int vsFinalIndex = 0;
-		int vsIndex = 0;
+		double maxPenetration = DBL_MIN;
+		int finalIndex = 0;
+		int index = 0;
 
 		for (auto contact : contacts) {
-			float newVs = contact->getVelociteRelative();
+			double newPenetration = contact->donneeContact.penetration;
+
+			if (newPenetration > maxPenetration) {
+
+				maxPenetration = newPenetration;
+				finalIndex = index;
+			}
+
+			index++;
+		}
+
+		if (maxPenetration <= 0.0f) { return; }
+
+		contacts[finalIndex]->resoudreInterpenetration(duration);
+
+		this->iteration++;
+	}
+}
+
+void ResolveurContact::resoudreContactsVelocite(Contacts& contacts, float duration)
+{
+	while (this->iteration < this->nbIterationMax) {
+
+		double minVs = DBL_MAX;
+		int finalIndex = 0;
+		int index = 0;
+
+		for (auto contact : contacts) {
+			double newVs = contact->getVelociteRelative();
 
 			if (newVs < minVs) {
 
 				minVs = newVs;
-				vsFinalIndex = vsIndex;
+				finalIndex = index;
 			}
 
-			vsIndex++;
+			index++;
 		}
 
-		if (minVs >= 0) { return; }
+		if (minVs >= 0.0f) { return; }
 
-		contacts[vsFinalIndex]->resoudre(duration);
+		contacts[finalIndex]->resoudreVelocite(duration);
 
 		this->iteration++;
 	}
+}
+
+void ResolveurContact::resoudreContacts(Contacts& contacts, float duration)
+{
+	this->nbIterationMax = contacts.size() * 2;
+
+	//this->resoudreContactsInterpenetration(contacts, duration);
+
+	this->nbIterationMax = contacts.size() * 2;
+
+	this->resoudreContactsVelocite(contacts, duration);
 }

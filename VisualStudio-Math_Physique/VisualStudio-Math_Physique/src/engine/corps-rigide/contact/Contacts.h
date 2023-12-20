@@ -7,8 +7,6 @@
 class Contacts : public std::vector<Contact*>
 {
 public:
-	void resoudre(float duration);
-
 	void deleteContacts();
 };
 

@@ -297,6 +297,13 @@ void Graphic::updateWindow(float deltaFrameTime, float deltaUpdateTime)
 			model->startDemoCuboide1();
 		}
 
+		//ImGui::SeparatorText("Demo 2");
+		//ImGui::Text("Marteau");
+		//if (ImGui::Button("Lancer demo 2"))
+		//{
+		//	model->startDemoCuboide2();
+		//}
+
 		ImGui::End();
 	}
 

@@ -21,6 +21,7 @@
 #include "corps-rigide/contact/ResolveurContact.h"
 
 #include "corps-rigide/contact/GenerateurContactCorpsRigide.h" // TODO
+#include "corps-rigide/contact/GenerateurContactTigeCorpsRigides.h"
 
 Model::Model()
 {
@@ -38,6 +39,7 @@ void Model::reinitialisation()
 
 	this->corpsRigides.deleteCorpsRigides();
 	this->registreForce.deleteForce();
+	this->constGenerateursContact.deleteGenerateurs();
 
 	// Initialisation du model
 	this->particules = Particules();
@@ -49,6 +51,7 @@ void Model::reinitialisation()
 
 	this->corpsRigides = CorpsRigides();
 	this->registreForce = RegistreForce();
+	this->constGenerateursContact = GenerateursContact();
 }
 
 /*
@@ -179,7 +182,7 @@ void Model::startDemoParticule8()
 }
 
 /*
-	Cuboide
+	Corps Rigide
 */
 
 CorpsRigides Model::getCorpsRigides()
@@ -226,6 +229,33 @@ void Model::startDemoCuboide1()
 	this->registreForce.ajouterForce(left, new GenerateurRessort(Vecteur3D(0.25, 0, 0), right, Vecteur3D(-0.25, 0, 0), 500, 3));
 }
 
+void Model::startDemoCuboide2()
+{
+	this->reinitialisation();
+
+	Cuboide* top = new Cuboide(Vecteur3D(2, 1, 2), 10, Vecteur3D(0, 3.75, 0), Quaternion());
+	this->ajouterCuboide(top, Vecteur3D(0, -10, 0));
+
+	Cuboide* mid = new Cuboide(Vecteur3D(0.2, 3, 0.2), 1, Vecteur3D(0, 1.75, 0), Quaternion());
+	this->ajouterCuboide(mid, Vecteur3D(0, -10, 0));
+
+	Cuboide* bot = new Cuboide(Vecteur3D(0.5, 0.5, 0.5), 1, Vecteur3D(0, 0, 0), Quaternion());
+	this->ajouterCuboide(bot, Vecteur3D(0, -10, 0));
+
+	CorpsRigide* topMid[2] = { top, mid };
+	Vecteur3D topMidAttache1[2] = { Vecteur3D(0.1, -0.5, 0.1), Vecteur3D(0.1, 1.5, 0.1) };
+	Vecteur3D topMidAttache2[2] = { Vecteur3D(-0.1, -0.5, -0.1), Vecteur3D(-0.1, 1.5, -0.1) };
+	//constGenerateursContact.push_back(new GenerateurContactTigeCorpsRigides(topMid, topMidAttache1, 0.0f));
+	constGenerateursContact.push_back(new GenerateurContactTigeCorpsRigides(topMid, topMidAttache2, 0.0f));
+
+	CorpsRigide* midBot[2] = { mid, bot };
+	Vecteur3D midBotAttache1[2] = { Vecteur3D(0.1, 0.25, 0.1), Vecteur3D(0.1, -1.5, 0.1) };
+	Vecteur3D midBotAttache2[2] = { Vecteur3D(-0.1, 0.25, -0.1), Vecteur3D(-0.1, -1.5, -0.1) };
+	constGenerateursContact.push_back(new GenerateurContactTigeCorpsRigides(midBot, midBotAttache1, 0.0f));
+	//constGenerateursContact.push_back(new GenerateurContactTigeCorpsRigides(midBot, midBotAttache2, 0.0f));
+
+}
+
 
 void Model::actualiser(float duration)
 {
@@ -250,7 +280,7 @@ void Model::actualiser(float duration)
 	this->generateursContactParticule.ajouterContact(contactParticules, Constant::limiteCollision);
 
 	// Génerer les contacts des corpsRigides
-	GenerateursContact generateurs;
+	GenerateursContact generateursContact;
 	// TODO Octree
 	for (int i = 0; i < this->corpsRigides.size(); ++i)
 	{
@@ -259,12 +289,18 @@ void Model::actualiser(float duration)
 		{
 			BoundingVolumeSphere spherej(this->corpsRigides[j]);
 			if (spherei.PossibleCollision(spherej))
-				generateurs.push_back(new GenerateurContactCorpsRigide(this->corpsRigides[i], this->corpsRigides[j]));
+				generateursContact.push_back(new GenerateurContactCorpsRigide(this->corpsRigides[i], this->corpsRigides[j], 0.5f));
 		}
 	}
-	// TODO Ajouter à "generateurs" les générateurs (Tiges...)
+
 	Contacts contacts;
-	generateurs.ajouterContact(contacts, Constant::limiteCollision);
+	generateursContact.ajouterContact(contacts, Constant::limiteCollision);
+	constGenerateursContact.ajouterContact(contacts, Constant::limiteCollision);
+
+
+
+	// Suppression des générateurs de contacts des corpsRigides
+	generateursContact.deleteGenerateurs();
 
 
 
@@ -275,6 +311,7 @@ void Model::actualiser(float duration)
 	// Résoudre les contacts des corpsRigides
 	ResolveurContact resolveurContact;
 	resolveurContact.resoudreContacts(contacts, duration);
+
 
 
 	// Suppression des contacts des particules

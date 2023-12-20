@@ -27,7 +27,8 @@ private:
 	CorpsRigides corpsRigides;
 	RegistreForce registreForce;
 	// TODO Octree
-	// TODO constGenerateursContact
+
+	GenerateursContact constGenerateursContact;
 
 public:
 	// Initilisation du model
@@ -65,7 +66,8 @@ public:
 
 	// Démo Cuboide 1
 	void startDemoCuboide1();
-
+	// Démo Cuboide 2
+	void startDemoCuboide2();
 
 	// Actualisation du model d'un dt
 	void actualiser(float duration);
